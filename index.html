@@ -1490,12 +1490,16 @@ function renderPlaner() {
       const timeStr = item.time || '—';
       const timeClass = item.time ? 'ev-time' : 'ev-empty';
 
-      // Kind badge
-      let kindBadge = '';
+      // Kind badge + type icon
+      const typeIcon = item.kind === 'todo'
+        ? `<span style="display:inline-flex;align-items:center;gap:3px;font-size:10px;color:var(--sage);font-family:'Nunito',sans-serif;font-weight:600;background:rgba(107,140,110,.1);border:1px solid rgba(107,140,110,.2);border-radius:20px;padding:2px 7px;">✓ Aufgabe</span>`
+        : `<span style="display:inline-flex;align-items:center;gap:3px;font-size:10px;color:var(--primary);font-family:'Nunito',sans-serif;font-weight:600;background:rgba(194,98,58,.08);border:1px solid rgba(194,98,58,.2);border-radius:20px;padding:2px 7px;">📅 Termin</span>`;
+
+      let kindBadge = typeIcon;
       if (item.kind === 'todo') {
         const p = pById(item.person);
         const pCls = {julia:'b-julia',rainer:'b-rainer',both:'b-both',hoffi:'b-hoffi',justine:'b-justine',caro:'b-caro'}[item.person]||'b-both';
-        kindBadge = `<span class="badge ${pCls}" style="font-size:10px">${p.emoji} ${esc(p.name)}</span>`;
+        kindBadge += ` <span class="badge ${pCls}" style="font-size:10px">${p.emoji} ${esc(p.name)}</span>`;
       }
 
       // Checkbox for todos

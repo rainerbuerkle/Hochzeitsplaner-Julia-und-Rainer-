@@ -140,10 +140,11 @@ main{max-width:1000px;margin:0 auto;padding:40px 20px 100px;}
 
 /* SWIPE */
 .swipe-wrap{position:relative;overflow:hidden;border-radius:12px;margin-bottom:0;}
-.swipe-bg{position:absolute;inset:0;display:flex;align-items:center;border-radius:12px;pointer-events:none;opacity:0;transition:opacity .15s;}
-.swipe-bg.left{background:linear-gradient(to left,#8a2020,#b02828);justify-content:flex-end;padding-right:24px;}
-.swipe-bg.right{background:linear-gradient(to right,var(--primary-dark),var(--primary));justify-content:flex-start;padding-left:24px;}
-.swipe-bg-icon{font-size:18px;color:#fff;font-weight:700;letter-spacing:.5px;}
+.swipe-bg{position:absolute;inset:0;display:flex;align-items:center;border-radius:12px;pointer-events:none;opacity:0;transition:opacity .2s;}
+.swipe-bg.left{background:linear-gradient(to left,#701515,#c02020);justify-content:flex-end;padding-right:20px;gap:8px;flex-direction:column;}
+.swipe-bg.right{background:linear-gradient(to right,var(--primary-dark),var(--primary));justify-content:flex-start;padding-left:20px;gap:8px;flex-direction:column;}
+.swipe-bg-icon{font-size:22px;color:#fff;}
+.swipe-bg-label{font-size:10px;color:rgba(255,255,255,.85);font-family:'Nunito',sans-serif;font-weight:600;letter-spacing:1px;text-transform:uppercase;}
 .swipe-card{position:relative;z-index:1;transition:transform .15s ease;will-change:transform;touch-action:pan-y;}
 .swipe-card.swiping{transition:none;}
 .swipe-card.snap-back{transition:transform .3s cubic-bezier(.4,0,.2,1);}
@@ -706,6 +707,7 @@ let todos        = JSON.parse(JSON.stringify(DEF_TODOS));
 let packItems    = JSON.parse(JSON.stringify(DEF_PACK));
 let persons      = JSON.parse(JSON.stringify(DEF_PERSONS));
 let customEvents = [];
+let deletedWishes  = [];    // IDs of soft-deleted wishes
 let ablaufEntries  = [];    // Custom ablauf entries {id, time, desc, person}
 let deletedStatic = [];    // IDs of deleted static events
 let staticOverrides = {};  // Edits to static events {id: {desc,date,time,person}}
@@ -715,7 +717,7 @@ let activeF      = {person:null, due:null, status:null};
 let zeitF        = 'all';
 let zeitPF       = null;
 let settled      = false;
-let lastH        = {todos:'', pack:'', persons:'', events:'', wishes:'', deleted:'', overrides:'', ablauf:''};
+let lastH        = {todos:'', pack:'', persons:'', events:'', wishes:'', deleted:'', overrides:'', ablauf:'', deletedwishes:''};
 
 const esc = s => s ? String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') : '';
 const saveVotes = () => localStorage.setItem('hvotes', JSON.stringify(myVotes));
@@ -729,6 +731,7 @@ function save() {
   fbS('persons', persons);
   fbS('customEvents', customEvents);
   fbS('ablaufEntries', ablaufEntries);
+  fbS('deletedWishes', deletedWishes);
 }
 
 // ══════════════════════════════════════════════
@@ -1008,7 +1011,7 @@ function renderPack() {
   packItems.forEach(p => {
     const wrap = document.createElement('div');
     wrap.style.cssText = 'position:relative;overflow:hidden;border-radius:10px;';
-    wrap.innerHTML = `<div class="swipe-bg left" style="border-radius:10px"><span class="swipe-bg-icon">🗑</span></div><div class="swipe-bg right" style="border-radius:10px"><span class="swipe-bg-icon">✏️</span></div>`;
+    wrap.innerHTML = `<div class="swipe-bg left" style="border-radius:10px"><span class="swipe-bg-icon">🗑</span><span class="swipe-bg-label">Löschen</span></div><div class="swipe-bg right" style="border-radius:10px"><span class="swipe-bg-icon">✏️</span><span class="swipe-bg-label">Bearbeiten</span></div>`;
     const el = document.createElement('div');
     el.className = 'swipe-card pack-card' + (p.done ? ' done' : '');
     el.innerHTML = `<div class="pack-chk">${p.done ? '✓' : ''}</div><span class="pack-lbl">${esc(p.text)}</span>`;
@@ -1088,7 +1091,7 @@ function renderZ() {
       if (!e.static) {
         const ewrap = document.createElement('div');
         ewrap.style.cssText = 'position:relative;overflow:hidden;border-radius:10px;';
-        ewrap.innerHTML = `<div class="swipe-bg left" style="border-radius:10px"><span class="swipe-bg-icon">🗑</span></div><div class="swipe-bg right" style="border-radius:10px"><span class="swipe-bg-icon">📋</span></div>`;
+        ewrap.innerHTML = `<div class="swipe-bg left" style="border-radius:10px"><span class="swipe-bg-icon">🗑</span><span class="swipe-bg-label">Löschen</span></div><div class="swipe-bg right" style="border-radius:10px"><span class="swipe-bg-icon">✏️</span><span class="swipe-bg-label">Bearbeiten</span></div>`;
         const ecard = document.createElement('div');
         ecard.className = `swipe-card tl-item${e.highlight?' hl':''}`;
         ecard.innerHTML = `<div class="${e.time?'ev-time':'ev-empty'}">${e.time||'—'}</div><div><div class="ev-desc">${esc(e.desc)}</div>${e.person?`<div class="ev-who">${esc(e.person)}</div>`:''}</div><div></div>`;
@@ -1105,7 +1108,7 @@ function renderZ() {
         // Static events: same swipe as custom — delete (moves to deleted list) + edit modal
         const swrap = document.createElement('div');
         swrap.style.cssText = 'position:relative;overflow:hidden;border-radius:10px;';
-        swrap.innerHTML = `<div class="swipe-bg left" style="border-radius:10px"><span class="swipe-bg-icon">🗑</span></div><div class="swipe-bg right" style="border-radius:10px"><span class="swipe-bg-icon">✏️</span></div>`;
+        swrap.innerHTML = `<div class="swipe-bg left" style="border-radius:10px"><span class="swipe-bg-icon">🗑</span><span class="swipe-bg-label">Löschen</span></div><div class="swipe-bg right" style="border-radius:10px"><span class="swipe-bg-icon">✏️</span><span class="swipe-bg-label">Bearbeiten</span></div>`;
         const scard = document.createElement('div');
         scard.className = `swipe-card tl-item${e.highlight?' hl':''}`;
         scard.innerHTML = `<div class="${e.time?'ev-time':'ev-empty'}">${e.time||'—'}</div><div><div class="ev-desc">${esc(e.desc)}</div>${e.person?`<div class="ev-who">${esc(e.person)}</div>`:''}</div><div></div>`;
@@ -1177,27 +1180,93 @@ async function vote(id) {
   else { myVotes.push(id); w.votes = (w.votes||0)+1; await fbS(`wishes/${id}/votes`,w.votes); }
   saveVotes(); renderWishes();
 }
+function softDeleteWish(id) {
+  if (!deletedWishes.includes(id)) { deletedWishes.push(id); }
+  fbS('deletedWishes', deletedWishes);
+  lastH.deletedwishes = '';
+  renderWishes();
+  showToast('🗑 Wunsch in Papierkorb verschoben');
+}
+
+function restoreWish(id) {
+  deletedWishes = deletedWishes.filter(x => x !== id);
+  fbS('deletedWishes', deletedWishes);
+  lastH.deletedwishes = '';
+  renderWishes();
+  showToast('✓ Wunsch wiederhergestellt');
+}
+
+async function permanentDeleteWish(id) {
+  deletedWishes = deletedWishes.filter(x => x !== id);
+  fbS('deletedWishes', deletedWishes);
+  await fbS(`wishes/${id}`, null);
+  wishes = wishes.filter(x => x.id !== id);
+  lastH.deletedwishes = ''; lastH.wishes = '';
+  renderWishes();
+}
+
 function renderWishes() {
   const list = document.getElementById('wishes-list'), cnt = document.getElementById('wish-cnt');
-  if (!wishes.length) { list.innerHTML = '<div class="empty"><div class="big">🎶</div><p>Noch keine Wünsche!</p></div>'; cnt.textContent = '0 Wünsche'; return; }
-  const s = [...wishes].sort((a,b) => (b.votes||0)-(a.votes||0) || a.ts-b.ts);
+  const active = wishes.filter(w => !deletedWishes.includes(w.id));
+  const deleted = wishes.filter(w => deletedWishes.includes(w.id));
+
+  if (!active.length && !deleted.length) {
+    list.innerHTML = '<div class="empty"><div class="big">🎶</div><p>Noch keine Wünsche!</p></div>';
+    cnt.textContent = '0 Wünsche'; return;
+  }
+
+  const s = [...active].sort((a,b) => (b.votes||0)-(a.votes||0) || a.ts-b.ts);
   cnt.textContent = `${s.length} ${s.length===1?'Wunsch':'Wünsche'}`;
   list.innerHTML = '';
+
+  // Active wishes
   s.forEach((w,i) => {
     const voted = myVotes.includes(w.id);
     const wwrap = document.createElement('div');
     wwrap.style.cssText = 'position:relative;overflow:hidden;border-radius:12px;';
-    wwrap.innerHTML = `<div class="swipe-bg left" style="border-radius:12px"><span class="swipe-bg-icon">🗑</span></div><div class="swipe-bg right" style="border-radius:12px"><span class="swipe-bg-icon">✏️</span></div>`;
+    wwrap.innerHTML = `<div class="swipe-bg left" style="border-radius:12px"><span class="swipe-bg-icon">🗑</span><span class="swipe-bg-label">Löschen</span></div><div class="swipe-bg right" style="border-radius:12px"><span class="swipe-bg-icon">✏️</span><span class="swipe-bg-label">Bearbeiten</span></div>`;
     const el = document.createElement('div');
     el.className = 'swipe-card wish-card'; el.style.animationDelay = (i*.04)+'s';
     el.innerHTML = `<div class="wish-rank${i===0&&w.votes>0?' top':''}">${i+1}</div><div><div class="wish-song">${esc(w.song)}</div><div class="wish-artist">${esc(w.artist)}</div>${w.name?`<div class="wish-from">${esc(w.name)}</div>`:''}</div><div class="vote-col"><button class="vote-btn${voted?' voted':''}" onclick="vote('${w.id}')">${voted?'♥':'♡'}</button><span class="vote-cnt">${w.votes||0}</span></div>`;
     wwrap.appendChild(el);
     initSwipeGeneric(el, {
-      onDelete: async () => { await fbS(`wishes/${w.id}`, null); wishes = wishes.filter(x => x.id !== w.id); renderWishes(); },
+      onDelete: () => softDeleteWish(w.id),
       onEdit: () => openWishEditModal(w.id),
     });
     list.appendChild(wwrap);
   });
+
+  // Deleted wishes (trash section)
+  if (deleted.length) {
+    const trashSection = document.createElement('div');
+    trashSection.style.cssText = 'margin-top:24px;';
+    trashSection.innerHTML = `
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;cursor:pointer;" onclick="toggleTrash(this)">
+        <div style="font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);font-weight:600;">🗑 Gelöscht (${deleted.length})</div>
+        <div style="flex:1;height:1px;background:var(--border);"></div>
+        <div style="font-size:12px;color:var(--muted);">▼</div>
+      </div>
+      <div class="trash-items" style="display:none;flex-direction:column;gap:8px;">
+        ${deleted.map(w => `
+          <div style="background:var(--card-bg);border:1.5px dashed var(--border);border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:12px;opacity:.65;">
+            <div style="flex:1;">
+              <div style="font-size:14px;font-weight:500;color:var(--muted);text-decoration:line-through;">${esc(w.song)}</div>
+              <div style="font-size:12px;color:var(--muted);">${esc(w.artist)}${w.name?' · '+esc(w.name):''}</div>
+            </div>
+            <button onclick="restoreWish('${w.id}')" style="padding:6px 12px;background:linear-gradient(135deg,var(--sage),var(--sage-dark));color:#fff;border:none;border-radius:6px;font-family:'Nunito',sans-serif;font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap;">↩ Wiederherstellen</button>
+            <button onclick="permanentDeleteWish('${w.id}')" style="padding:6px 10px;background:rgba(176,32,32,.1);color:var(--urgent);border:1.5px solid rgba(176,32,32,.2);border-radius:6px;font-family:'Nunito',sans-serif;font-size:11px;cursor:pointer;" title="Endgültig löschen">✕</button>
+          </div>`).join('')}
+      </div>`;
+    list.appendChild(trashSection);
+  }
+}
+
+function toggleTrash(header) {
+  const items = header.parentElement.querySelector('.trash-items');
+  const arrow = header.querySelector('div:last-child');
+  const open = items.style.display !== 'none';
+  items.style.display = open ? 'none' : 'flex';
+  arrow.textContent = open ? '▼' : '▲';
 }
 
 // ══════════════════════════════════════════════
@@ -1407,7 +1476,7 @@ function renderPlaner() {
     byDate[dateKey].forEach(item => {
       const swrap = document.createElement('div');
       swrap.style.cssText = 'position:relative;overflow:hidden;border-radius:10px;';
-      swrap.innerHTML = `<div class="swipe-bg left" style="border-radius:10px"><span class="swipe-bg-icon">🗑</span></div><div class="swipe-bg right" style="border-radius:10px"><span class="swipe-bg-icon">✏️</span></div>`;
+      swrap.innerHTML = `<div class="swipe-bg left" style="border-radius:10px"><span class="swipe-bg-icon">🗑</span><span class="swipe-bg-label">Löschen</span></div><div class="swipe-bg right" style="border-radius:10px"><span class="swipe-bg-icon">✏️</span><span class="swipe-bg-label">Bearbeiten</span></div>`;
 
       const card = document.createElement('div');
       card.className = `swipe-card tl-item${item.highlight?' hl':''}${item.done?' planer-done':''}`;
@@ -1547,9 +1616,10 @@ function checkAllDone(type) {
 // FIREBASE LIVE POLL (alle 3 Sekunden)
 async function poll() {
   // Fetch ALL Firebase data in one round-trip for reliable sync
-  const [rt, rp, rpers, revs, rw, rabl, rds, rso] = await Promise.all([
+  const [rt, rp, rpers, revs, rw, rabl, rds, rso, rdw2] = await Promise.all([
     fbG('todos'), fbG('pack'), fbG('persons'), fbG('customEvents'),
-    fbG('wishes'), fbG('ablaufEntries'), fbG('deletedStatic'), fbG('staticOverrides')
+    fbG('wishes'), fbG('ablaufEntries'), fbG('deletedStatic'), fbG('staticOverrides'),
+    fbG('deletedWishes')
   ]);
 
   let needsPlaner = false, needsAblauf = false;
@@ -1586,6 +1656,9 @@ async function poll() {
     const arr = Object.entries(rw).map(([id,v]) => ({...v,id}));
     const h = JSON.stringify(arr);
     if (h !== lastH.wishes) { lastH.wishes=h; wishes=arr; renderWishes(); }
+  }
+  if (rdw2 && Array.isArray(rdw2)) {
+    const h=JSON.stringify(rdw2); if(h!==lastH.deletedwishes){lastH.deletedwishes=h; deletedWishes=rdw2; renderWishes();}
   }
 
   // Batch render at end to avoid multiple repaints
@@ -2243,6 +2316,8 @@ async function init() {
   const rabl = await fbG('ablaufEntries');
   if (rabl && Array.isArray(rabl)) { ablaufEntries=rabl; lastH.ablauf=JSON.stringify(rabl); }
   else if (!rabl) { fbS('ablaufEntries', []); }
+  const rdw = await fbG('deletedWishes');
+  if (rdw && Array.isArray(rdw)) { deletedWishes=rdw; lastH.deletedwishes=JSON.stringify(rdw); }
   const rds2 = await fbG('deletedStatic');
   const rso2 = await fbG('staticOverrides');
   if (rds2 && Array.isArray(rds2))                   { deletedStatic=rds2; lastH.deleted=JSON.stringify(rds2); }

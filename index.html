@@ -1742,26 +1742,45 @@ function savePackModal(id) {
 function openZeitEditModal(id) {
   const e = customEvents.find(x => x.id === id); if (!e) return;
   const perOpts = [{v:'',l:'Keine Angabe'}, ...persons.map(p=>({v:p.name,l:`${p.emoji} ${p.name}`}))];
+  const typeBtns = `<div style="display:flex;gap:8px;margin-bottom:16px;">
+    <button id="edit-type-todo" onclick="setModalType('todo')" style="flex:1;padding:8px;border-radius:8px;border:2px solid var(--border);background:none;color:var(--muted);font-family:'Nunito',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;">✓ Aufgabe</button>
+    <button id="edit-type-event" onclick="setModalType('event')" style="flex:1;padding:8px;border-radius:8px;border:2px solid var(--sage);background:var(--sage);color:#fff;font-family:'Nunito',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;">📅 Termin</button>
+  </div>`;
   showModal(
-    modalTitle('Termin <em style="font-style:italic;color:var(--blue)">bearbeiten</em>') +
+    modalTitle('Eintrag <em style="font-style:italic;color:var(--primary)">bearbeiten</em>') +
+    typeBtns +
     modalField('Beschreibung', mInp('zm-desc', e.desc, 'z.B. Blumen abholen')) +
     `<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">` +
     modalField('Datum', `<input id="zm-date" type="date" value="${e.date}" style="width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:8px;font-family:'Nunito',sans-serif;font-size:13px;color:var(--ink);background:var(--paper);outline:none;">`) +
     modalField('Uhrzeit', `<input id="zm-time" type="time" value="${e.time||''}" style="width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:8px;font-family:'Nunito',sans-serif;font-size:13px;color:var(--ink);background:var(--paper);outline:none;">`) +
     `</div>` +
     modalField('Verantwortlich', mSel('zm-per', perOpts, e.person||'')) +
-    mActions(`saveZeitModal('${id}')`,
-      '')
+    mActions(`saveZeitModal('${id}')`, '')
   );
 }
 function saveZeitModal(id) {
   const e = customEvents.find(x => x.id === id); if (!e) return;
   const desc = document.getElementById('zm-desc').value.trim(); if (!desc) return;
-  e.desc = desc;
-  e.date = document.getElementById('zm-date').value || e.date;
-  e.time = document.getElementById('zm-time').value || null;
-  e.person = document.getElementById('zm-per').value || null;
-  closeModal(); save(); renderPlaner(); renderAblauf();
+  const isTodo = document.getElementById('edit-type-todo')?.dataset.active === '1';
+  if (isTodo) {
+    // Convert event → todo
+    const dv = document.getElementById('zm-date').value;
+    let due = null;
+    if (dv) { const p=dv.split('-'); due=`${p[2]}.${p[1]}.${p[0]}`; }
+    const time = document.getElementById('zm-time').value || null;
+    const perVal = document.getElementById('zm-per').value;
+    const pMatch = persons.find(p => p.name === perVal);
+    todos.push({id:Date.now(), text:desc, person:pMatch?pMatch.id:'both', due, time, done:false});
+    customEvents = customEvents.filter(x => x.id !== id);
+    closeModal(); save(); renderPlaner(); renderAblauf();
+    showToast('✓ Als Aufgabe gespeichert');
+  } else {
+    e.desc = desc;
+    e.date = document.getElementById('zm-date').value || e.date;
+    e.time = document.getElementById('zm-time').value || null;
+    e.person = document.getElementById('zm-per').value || null;
+    closeModal(); save(); renderPlaner(); renderAblauf();
+  }
 }
 // Static event delete — move to deletedStatic list stored in Firebase
 function deleteStaticEvent(id) {
@@ -1775,28 +1794,51 @@ function openStaticEventEditModal(id) {
   const over = staticOverrides[id] || {};
   const e = {...base, ...over};
   const perOpts = [{v:'',l:'Keine Angabe'}, ...persons.map(p=>({v:p.name,l:`${p.emoji} ${p.name}`}))];
+  const typeBtns = `<div style="display:flex;gap:8px;margin-bottom:16px;">
+    <button id="edit-type-todo" onclick="setModalType('todo')" style="flex:1;padding:8px;border-radius:8px;border:2px solid var(--border);background:none;color:var(--muted);font-family:'Nunito',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;">✓ Aufgabe</button>
+    <button id="edit-type-event" onclick="setModalType('event')" style="flex:1;padding:8px;border-radius:8px;border:2px solid var(--sage);background:var(--sage);color:#fff;font-family:'Nunito',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;">📅 Termin</button>
+  </div>`;
   showModal(
-    modalTitle('Termin <em style="font-style:italic;color:var(--primary)">bearbeiten</em>') +
+    modalTitle('Eintrag <em style="font-style:italic;color:var(--primary)">bearbeiten</em>') +
+    typeBtns +
     modalField('Beschreibung', mInp('sm-desc', e.desc, 'z.B. Blumen abholen')) +
     `<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">` +
     modalField('Datum', `<input id="sm-date" type="date" value="${e.date}" style="width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:8px;font-family:'Nunito',sans-serif;font-size:13px;color:var(--ink);background:var(--paper);outline:none;">`) +
     modalField('Uhrzeit', `<input id="sm-time" type="time" value="${e.time||''}" style="width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:8px;font-family:'Nunito',sans-serif;font-size:13px;color:var(--ink);background:var(--paper);outline:none;">`) +
     `</div>` +
     modalField('Verantwortlich', mSel('sm-per', perOpts, e.person||'')) +
-    mActions(`saveStaticEventModal('${id}')`,
-      '')
+    mActions(`saveStaticEventModal('${id}')`, '')
   );
 }
 function saveStaticEventModal(id) {
   const desc = document.getElementById('sm-desc').value.trim(); if (!desc) return;
-  staticOverrides[id] = {
-    desc,
-    date: document.getElementById('sm-date').value,
-    time: document.getElementById('sm-time').value || null,
-    person: document.getElementById('sm-per').value || null,
-  };
-  fbS('staticOverrides', staticOverrides);
-  closeModal(); renderPlaner();
+  const isTodo = document.getElementById('edit-type-todo')?.dataset.active === '1';
+  if (isTodo) {
+    // Convert static event → todo (copies it, keeps original)
+    const base = STATIC_EVENTS.find(x => x.id === id);
+    const over = staticOverrides[id] || {};
+    const e = {...base, ...over};
+    const dv = document.getElementById('sm-date').value || e.date;
+    let due = null;
+    if (dv) { const p=dv.split('-'); due=`${p[2]}.${p[1]}.${p[0]}`; }
+    const time = document.getElementById('sm-time').value || null;
+    const perVal = document.getElementById('sm-per').value;
+    const pMatch = persons.find(p => p.name === perVal);
+    todos.push({id:Date.now(), text:desc, person:pMatch?pMatch.id:'both', due, time, done:false});
+    // Also delete from static view
+    if (!deletedStatic.includes(id)) { deletedStatic.push(id); fbS('deletedStatic', deletedStatic); }
+    closeModal(); save(); renderPlaner(); renderAblauf();
+    showToast('✓ Als Aufgabe gespeichert');
+  } else {
+    staticOverrides[id] = {
+      desc,
+      date: document.getElementById('sm-date').value,
+      time: document.getElementById('sm-time').value || null,
+      person: document.getElementById('sm-per').value || null,
+    };
+    fbS('staticOverrides', staticOverrides);
+    closeModal(); renderPlaner(); renderAblauf();
+  }
 }
 
 function copyStaticEventToTodo(e) {
@@ -1899,9 +1941,9 @@ function openEdit(id) {
     {v:'18.07.2026',l:'18. Juli'},
   ];
   const typeBtns = `<div style="display:flex;gap:8px;margin-bottom:16px;">
-    <button id="em-type-todo" onclick="setEditType('todo')"
+    <button id="em-type-todo" onclick="setModalType('todo')"
       style="flex:1;padding:8px;border-radius:8px;border:2px solid var(--primary);background:var(--primary);color:#fff;font-family:'Nunito',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;">✓ Aufgabe</button>
-    <button id="em-type-event" onclick="setEditType('event')"
+    <button id="em-type-event" onclick="setModalType('event')"
       style="flex:1;padding:8px;border-radius:8px;border:2px solid var(--border);background:none;color:var(--muted);font-family:'Nunito',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;">📅 Termin</button>
   </div>`;
   showModal(
@@ -1918,6 +1960,21 @@ function openEdit(id) {
     modalField('Notiz (optional)', mInp('em-note', t.note||'', 'Zusatzinfo …')) +
     mActions(`saveTodoModal(${id})`, '')
   );
+}
+
+function setModalType(type) {
+  const todoBt  = document.getElementById('edit-type-todo');
+  const eventBt = document.getElementById('edit-type-event');
+  if (!todoBt || !eventBt) return;
+  if (type === 'todo') {
+    todoBt.style.cssText  = 'flex:1;padding:8px;border-radius:8px;border:2px solid var(--primary);background:var(--primary);color:#fff;font-family:Nunito,sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;';
+    eventBt.style.cssText = 'flex:1;padding:8px;border-radius:8px;border:2px solid var(--border);background:none;color:var(--muted);font-family:Nunito,sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;';
+    todoBt.dataset.active = '1'; eventBt.dataset.active = '';
+  } else {
+    eventBt.style.cssText = 'flex:1;padding:8px;border-radius:8px;border:2px solid var(--sage);background:var(--sage);color:#fff;font-family:Nunito,sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;';
+    todoBt.style.cssText  = 'flex:1;padding:8px;border-radius:8px;border:2px solid var(--border);background:none;color:var(--muted);font-family:Nunito,sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;';
+    eventBt.dataset.active = '1'; todoBt.dataset.active = '';
+  }
 }
 
 function setEditType(type) {
@@ -1937,8 +1994,8 @@ function setEditType(type) {
 function saveTodoModal(id) {
   const t = todos.find(x => x.id === id); if (!t) return;
   const txt = document.getElementById('em-txt').value.trim(); if (!txt) return;
-  const eventBt = document.getElementById('em-type-event');
-  const isEvent = eventBt && eventBt.dataset.active === '1';
+  const todoBtA = document.getElementById('em-type-todo');
+  const isEvent = !todoBtA || todoBtA.dataset.active !== '1';
 
   if (isEvent) {
     // Convert todo → custom event

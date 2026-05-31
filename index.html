@@ -185,12 +185,27 @@ main{max-width:1000px;margin:0 auto;padding:40px 20px 100px;}
 .tl-item.planer-done:hover{opacity:1;}
 
 /* ZEITPLAN */
+/* ABLAUF */
+.ablauf-hero{background:linear-gradient(145deg,#3d1f0e 0%,#7a3520 40%,#c2623a 75%,#8a6a30 100%);border-radius:14px;padding:28px 24px;margin-bottom:28px;text-align:center;position:relative;overflow:hidden;}
+.ablauf-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 30% 50%,rgba(255,220,160,.12),transparent),radial-gradient(ellipse 50% 50% at 70% 40%,rgba(200,144,42,.1),transparent);}
+.ablauf-hero-inner{position:relative;z-index:1;}
+.ablauf-item{display:grid;grid-template-columns:70px 1fr;gap:0;background:var(--card-bg);border:1.5px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);transition:all .2s;}
+.ablauf-item:hover{border-color:var(--primary-light);box-shadow:0 6px 24px rgba(194,98,58,.1);}
+.ablauf-item.highlight{background:linear-gradient(135deg,#fdf6ee,#faf0e0);border-color:rgba(200,144,42,.4);border-left:4px solid var(--gold);}
+.ablauf-time{display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(44,31,20,.04);border-right:1px solid var(--border);padding:14px 8px;}
+.ablauf-time-num{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--primary);line-height:1;}
+.ablauf-time-empty{font-size:20px;color:var(--muted);opacity:.3;}
+.ablauf-body{padding:14px 16px;}
+.ablauf-desc{font-size:14px;font-weight:500;color:var(--ink);line-height:1.4;}
+.ablauf-who{font-size:12px;color:var(--muted);margin-top:4px;display:flex;align-items:center;gap:4px;}
+.ablauf-who::before{content:'👤';font-size:10px;}
+.ablauf-section-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;font-weight:700;padding:18px 0 8px;color:var(--muted);}
+.ablauf-section-label.main{color:var(--primary);}
+.planer-filters{background:var(--card-bg);border:1.5px solid var(--border);border-radius:14px;padding:16px 18px;margin-bottom:20px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--shadow);}
+.pf-row{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-start;}
+.pf-group{display:flex;flex-direction:column;gap:5px;}
+.pf-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:600;}
 .zt-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;align-items:center;}
-.mic-btn{padding:8px 12px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;border:none;border-radius:8px;font-size:16px;cursor:pointer;transition:all .2s;box-shadow:0 4px 14px rgba(194,98,58,.25);flex-shrink:0;}
-.mic-btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(194,98,58,.35);}
-.mic-btn.recording{background:linear-gradient(135deg,#b02020,#8a1515);animation:micpulse 1s ease-in-out infinite;box-shadow:0 4px 20px rgba(176,32,32,.5);}
-@keyframes micpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
-@keyframes vpulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.85)}}
 .zt-add{margin-left:auto;padding:8px 16px;background:linear-gradient(135deg,var(--sage),var(--sage-dark));color:#fff;border:none;border-radius:8px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;box-shadow:0 4px 14px rgba(107,140,110,.25);}
 .zt-add:hover{background:linear-gradient(135deg,var(--sage-dark),#3a5a3c);transform:translateY(-1px);}
 .nef{background:linear-gradient(135deg,#faf6f0,var(--card-bg));border:2px solid rgba(194,98,58,.2);border-radius:14px;padding:24px;margin-bottom:22px;box-shadow:0 4px 24px rgba(26,111,191,.1);animation:fadeUp .3s ease;}
@@ -237,6 +252,19 @@ main{max-width:1000px;margin:0 auto;padding:40px 20px 100px;}
 .pack-lbl{font-size:14px;font-weight:300;flex:1;}
 
 /* MUSIK */
+.musik-gast-box{background:var(--card-bg);border:1.5px solid var(--border);border-radius:14px;padding:22px;margin-bottom:22px;display:flex;gap:20px;align-items:flex-start;box-shadow:var(--shadow);}
+.musik-gast-left{flex:1;min-width:0;}
+.musik-gast-eye{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--sage);font-weight:600;margin-bottom:6px;}
+.musik-gast-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:var(--ink);margin-bottom:8px;}
+.musik-gast-title em{font-style:italic;color:var(--primary);}
+.musik-gast-hint{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:12px;}
+.musik-gast-url{font-family:monospace;font-size:11px;color:var(--ink);background:var(--paper);border:1px solid var(--border);border-radius:6px;padding:7px 10px;word-break:break-all;margin-bottom:10px;}
+.musik-copy-btn{padding:8px 18px;background:linear-gradient(135deg,var(--sage),var(--sage-dark));color:#fff;border:none;border-radius:8px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;box-shadow:0 3px 12px rgba(107,140,110,.25);}
+.musik-copy-btn:hover{background:linear-gradient(135deg,var(--sage-dark),#3a5a3c);}
+.musik-copy-btn.copied{background:linear-gradient(135deg,var(--primary),var(--primary-dark));}
+.musik-qr-wrap{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:6px;}
+.musik-qr-lbl{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);}
+#qr-canvas{border-radius:8px;border:1px solid var(--border);}
 .musik-hero{background:linear-gradient(150deg,#2c1f14,#4a2c18,#6a3820);border-radius:16px;padding:32px;margin-bottom:26px;text-align:center;position:relative;overflow:hidden;}
 .musik-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 30% 50%,rgba(232,160,0,.15),transparent),radial-gradient(ellipse 50% 50% at 70% 40%,rgba(112,64,192,.15),transparent);}
 .musik-inner{position:relative;z-index:1;}
@@ -363,7 +391,8 @@ main{max-width:1000px;margin:0 auto;padding:40px 20px 100px;}
 
 <nav>
   <div class="nav-wrap">
-    <button class="tab on" onclick="goTab('planer',this)"><span class="tab-icon">📅</span><span>Planer</span></button>
+    <button class="tab on" onclick="goTab('ablauf',this)"><span class="tab-icon">💍</span><span>Ablauf</span></button>
+    <button class="tab" onclick="goTab('planer',this)"><span class="tab-icon">📅</span><span>Planer</span></button>
     <button class="tab" onclick="goTab('pack',this)"><span class="tab-icon">🧳</span><span>Packliste</span></button>
     <button class="tab" onclick="goTab('musik',this)"><span class="tab-icon">🎵</span><span>Musik</span></button>
     <button class="tab" onclick="goTab('settings',this)"><span class="tab-icon">⚙️</span><span>Einstellungen</span></button>
@@ -373,8 +402,27 @@ main{max-width:1000px;margin:0 auto;padding:40px 20px 100px;}
 
 <main>
 
+<!-- ABLAUF 18. JULI -->
+<div class="panel on" id="panel-ablauf">
+  <div class="sec-head fade-up">
+    <div class="sec-eye">18. Juli 2026</div>
+    <div class="sec-title">Ablauf <em>Hochzeitstag</em></div>
+  </div>
+
+  <!-- Wedding day timeline hero -->
+  <div class="ablauf-hero fade-up">
+    <div class="ablauf-hero-inner">
+      <div style="font-size:32px;margin-bottom:8px;">💍</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#fff;margin-bottom:4px;">Julia & Rainer</div>
+      <div style="font-size:13px;color:rgba(255,255,255,.6);font-style:italic;">Standesamt · Sektempfang · Burg Michelwinnaden</div>
+    </div>
+  </div>
+
+  <div id="ablauf-cont"></div>
+</div>
+
 <!-- PLANER (Termine + Aufgaben kombiniert) -->
-<div class="panel on" id="panel-planer">
+<div class="panel" id="panel-planer">
   <div class="sec-head fade-up">
     <div class="sec-eye">Termine & Aufgaben</div>
     <div class="sec-title">Planer <em>Übersicht</em></div>
@@ -382,37 +430,51 @@ main{max-width:1000px;margin:0 auto;padding:40px 20px 100px;}
   </div>
 
   <!-- filter + add bar -->
-  <div class="zt-bar fade-up" style="margin-bottom:14px;flex-wrap:wrap;gap:8px;">
-    <div class="chip on" data-pf="all"    onclick="filterPlaner(this)">Alle</div>
-    <div class="chip" data-pf="before" onclick="filterPlaner(this)">Vor Hochzeit</div>
-    <div class="chip" data-pf="wedding" onclick="filterPlaner(this)">18. Juli ✨</div>
-    <div class="chip" data-pf="after"  onclick="filterPlaner(this)">Danach</div>
-    <div class="chip" data-pf="open"   onclick="filterPlaner(this)">○ Offen</div>
-    <div class="chip" data-pf="done"   onclick="filterPlaner(this)">✓ Erledigt</div>
-    <div class="chips" id="pchips" style="gap:5px"></div>
-    <div class="fsearch-icon" style="flex:1;min-width:120px;max-width:200px">
-      <input class="fsearch" id="tsearch" placeholder="Suchen …" oninput="renderPlaner()" style="width:100%;padding:7px 14px 7px 30px;border:1.5px solid var(--border);border-radius:20px;font-family:'Nunito',sans-serif;font-size:12px;color:var(--ink);background:var(--paper);outline:none;">
+  <div class="planer-filters fade-up">
+
+    <!-- Row 1: Typ + Zeitraum + Suche + Button -->
+    <div class="pf-row">
+      <div class="pf-group">
+        <div class="pf-label">Typ</div>
+        <div class="chips">
+          <div class="chip on" data-pf="all"    onclick="filterPlaner(this)">Alle</div>
+          <div class="chip" data-pf="todos"  onclick="filterPlaner(this)">✓ Aufgaben</div>
+          <div class="chip" data-pf="events" onclick="filterPlaner(this)">📅 Termine</div>
+        </div>
+      </div>
+      <div class="pf-group">
+        <div class="pf-label">Zeitraum</div>
+        <div class="chips">
+          <div class="chip" data-pf="before"  onclick="filterPlaner(this)">Vor Hochzeit</div>
+          <div class="chip" data-pf="wedding" onclick="filterPlaner(this)">18. Juli ✨</div>
+          <div class="chip" data-pf="after"   onclick="filterPlaner(this)">Danach</div>
+        </div>
+      </div>
+      <div class="pf-group">
+        <div class="pf-label">Status</div>
+        <div class="chips">
+          <div class="chip" data-pf="open" onclick="filterPlaner(this)">○ Offen</div>
+          <div class="chip" data-pf="done" onclick="filterPlaner(this)">✓ Erledigt</div>
+        </div>
+      </div>
     </div>
-    <button class="zt-add" onclick="toggleAddEntry()">＋ Neuer Eintrag</button>
-    <button class="mic-btn" id="mic-btn" onclick="toggleVoice()" title="Spracheingabe">🎤</button>
+
+    <!-- Row 2: Person + Suche + Button -->
+    <div class="pf-row" style="align-items:center;">
+      <div class="pf-group" style="flex:1;">
+        <div class="pf-label">Person</div>
+        <div class="chips" id="pchips"></div>
+      </div>
+      <div class="fsearch-icon" style="min-width:140px;max-width:220px;">
+        <input class="fsearch" id="tsearch" placeholder="Suchen …" oninput="renderPlaner()"
+          style="width:100%;padding:7px 14px 7px 30px;border:1.5px solid var(--border);border-radius:20px;font-family:'Nunito',sans-serif;font-size:12px;color:var(--ink);background:var(--paper);outline:none;">
+      </div>
+      <button class="zt-add" onclick="toggleAddEntry()">＋ Neuer Eintrag</button>
+    </div>
+
   </div>
 
   <!-- combined add form -->
-  <!-- Voice status -->
-  <div id="voice-status" style="display:none;margin-bottom:14px;">
-    <div style="background:linear-gradient(135deg,#2c1f14,#5a2e14);border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:14px;box-shadow:0 4px 20px rgba(44,31,20,.2);">
-      <div id="voice-pulse" style="width:14px;height:14px;border-radius:50%;background:var(--primary);flex-shrink:0;animation:vpulse 1s ease-in-out infinite;"></div>
-      <div style="flex:1;">
-        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:3px;">Spracheingabe aktiv</div>
-        <div id="voice-interim" style="font-family:'Cormorant Garamond',serif;font-size:17px;color:#fff;min-height:24px;font-style:italic;">Spreche …</div>
-      </div>
-      <button onclick="stopVoice()" style="padding:7px 14px;border:1.5px solid rgba(255,255,255,.25);border-radius:8px;background:none;color:rgba(255,255,255,.7);font-family:'Nunito',sans-serif;font-size:12px;cursor:pointer;">✕ Stop</button>
-    </div>
-    <div id="voice-hint" style="font-size:12px;color:var(--muted);margin-top:8px;padding:0 4px;line-height:1.6;">
-      💡 Beispiel: <em>„Morgen um 14 Uhr Torte abholen"</em> oder <em>„Am 17. Juli Aufbau um 13 Uhr"</em>
-    </div>
-  </div>
-
   <div id="add-entry-wrap" style="display:none">
     <div class="nef" style="border-color:rgba(194,98,58,.2);background:linear-gradient(135deg,#faf6f0,var(--card-bg));">
       <div class="nef-title">Neuer <em style="color:var(--primary)">Eintrag</em></div>
@@ -456,7 +518,23 @@ main{max-width:1000px;margin:0 auto;padding:40px 20px 100px;}
     <h2>Musik<em>wünsche</em></h2>
     <p>Welcher Song darf auf unserer Hochzeit nicht fehlen? Wir freuen uns über jeden Wunsch! 🎶</p>
   </div></div>
-  <div class="share-box fade-up">
+
+  <!-- Gäste-Link mit QR -->
+  <div class="musik-gast-box fade-up">
+    <div class="musik-gast-left">
+      <div class="musik-gast-eye">Für Gäste — separate Seite</div>
+      <div class="musik-gast-title">Musikwünsche <em>teilen</em></div>
+      <div class="musik-gast-hint">Schick diesen Link oder QR-Code an deine Gäste. Alle Wünsche landen direkt hier und werden live synchronisiert.</div>
+      <div class="musik-gast-url" id="musik-gast-url">https://rainerbuerkle.github.io/Musikw-nsche/</div>
+      <button class="musik-copy-btn" onclick="copyMusikLink()">📋 Link kopieren</button>
+    </div>
+    <div class="musik-qr-wrap">
+      <canvas id="qr-canvas" width="120" height="120"></canvas>
+      <div class="musik-qr-lbl">QR-Code</div>
+    </div>
+  </div>
+
+  <div class="share-box fade-up" style="display:none">
     <div class="share-lbl">🔗 Link teilen</div>
     <div class="share-url" id="share-url">Lade …</div>
     <button class="copy-btn" id="copy-btn" onclick="copyLink()">📋 Kopieren</button>
@@ -562,8 +640,8 @@ const DEF_TODOS = [
   {id:19, text:'Spieleanhänger & Fotobox abholen',                person:'both',   due:'17.07.2026', done:false},
   {id:20, text:'Q-Ace abholen',                                   person:'both',   due:'17.07.2026', done:false},
   {id:21, text:'Karten / Geschenkbox bei Eva abholen',            person:'both',   due:'17.07.2026', done:false},
-  {id:22, text:'Hochzeitstorte abholen',                          person:'both',   due:'18.07.2026', done:false},
-  {id:23, text:'Frühstück organisieren',                          person:'both',   due:'18.07.2026', done:false},
+  {id:22, text:'Hochzeitstorte abholen',                          person:'both',   due:'18.07.2026', done:false, showInAblauf:true},
+  {id:23, text:'Frühstück organisieren',                          person:'both',   due:'19.07.2026', done:false},
 ];
 
 const DEF_PACK = [
@@ -615,6 +693,7 @@ let todos        = JSON.parse(JSON.stringify(DEF_TODOS));
 let packItems    = JSON.parse(JSON.stringify(DEF_PACK));
 let persons      = JSON.parse(JSON.stringify(DEF_PERSONS));
 let customEvents = [];
+let ablaufEntries  = [];    // Custom ablauf entries {id, time, desc, person}
 let deletedStatic = [];    // IDs of deleted static events
 let staticOverrides = {};  // Edits to static events {id: {desc,date,time,person}}
 let wishes       = [];
@@ -623,7 +702,7 @@ let activeF      = {person:null, due:null, status:null};
 let zeitF        = 'all';
 let zeitPF       = null;
 let settled      = false;
-let lastH        = {todos:'', pack:'', persons:'', events:'', wishes:'', deleted:'', overrides:''};
+let lastH        = {todos:'', pack:'', persons:'', events:'', wishes:'', deleted:'', overrides:'', ablauf:''};
 
 const esc = s => s ? String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') : '';
 const saveVotes = () => localStorage.setItem('hvotes', JSON.stringify(myVotes));
@@ -636,6 +715,7 @@ function save() {
   fbS('pack', packItems);
   fbS('persons', persons);
   fbS('customEvents', customEvents);
+  fbS('ablaufEntries', ablaufEntries);
 }
 
 // ══════════════════════════════════════════════
@@ -646,6 +726,11 @@ function goTab(name, btn) {
   document.querySelectorAll('.tab').forEach(b => b.classList.remove('on'));
   document.getElementById('panel-' + name).classList.add('on');
   btn.classList.add('on');
+  // Re-render when switching tabs so content is always fresh
+  if (name === 'planer') renderPlaner();
+  if (name === 'ablauf') renderAblauf();
+  if (name === 'pack')   renderPack();
+  if (name === 'musik')  { renderWishes(); setTimeout(() => drawQR('qr-canvas', MUSIK_PAGE_URL), 100); }
 }
 
 // ══════════════════════════════════════════════
@@ -876,20 +961,7 @@ function renderTodos() {
   applyF();
 }
 
-function openEdit(id) {
-  document.querySelectorAll('.edit-form').forEach(f => { if (f.id !== 'ef-'+id) f.classList.remove('open'); });
-  document.getElementById('ef-'+id).classList.toggle('open');
-}
-function closeEdit(id) { document.getElementById('ef-'+id).classList.remove('open'); }
-function saveEdit(id) {
-  const t = todos.find(x => x.id === id); if (!t) return;
-  const txt = document.getElementById('ei-txt-'+id).value.trim(); if (!txt) return;
-  t.text = txt;
-  t.person = document.getElementById('ei-per-'+id).value;
-  t.due = document.getElementById('ei-due-'+id).value || null;
-  t.note = document.getElementById('ei-note-'+id).value.trim() || null;
-  closeEdit(id); save(); renderPlaner();
-}
+// openEdit → see modal version below
 function toggleTodo(id) {
   const t = todos.find(x => x.id === id);
   if (t) { t.done = !t.done; save(); renderPlaner(); }
@@ -1038,12 +1110,38 @@ function renderZ() {
 }
 
 // MUSIK
+const MUSIK_PAGE_URL = 'https://rainerbuerkle.github.io/Musikw-nsche/';
+
 function copyLink() {
   const url = window.location.href;
   navigator.clipboard.writeText(url).catch(() => {});
   const btn = document.getElementById('copy-btn');
-  btn.textContent = '✓ Kopiert!'; btn.classList.add('copied');
-  setTimeout(() => { btn.textContent = '📋 Kopieren'; btn.classList.remove('copied'); }, 2500);
+  if (btn) { btn.textContent = '✓ Kopiert!'; btn.classList.add('copied'); setTimeout(() => { btn.textContent = '📋 Kopieren'; btn.classList.remove('copied'); }, 2500); }
+}
+
+function copyMusikLink() {
+  navigator.clipboard.writeText(MUSIK_PAGE_URL).catch(() => {});
+  const btn = document.querySelector('.musik-copy-btn');
+  if (btn) { btn.textContent = '✓ Kopiert!'; btn.classList.add('copied'); setTimeout(() => { btn.textContent = '📋 Link kopieren'; btn.classList.remove('copied'); }, 2500); }
+}
+
+// QR Code generator (no external lib needed - pure JS)
+function drawQR(canvasId, text) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const size = 120;
+  // Use Google Charts API for QR (free, no auth needed)
+  const img = new Image();
+  img.crossOrigin = 'anonymous';
+  img.onload = () => { ctx.drawImage(img, 0, 0, size, size); };
+  img.onerror = () => {
+    // Fallback: just show URL text
+    ctx.fillStyle = '#fff'; ctx.fillRect(0,0,size,size);
+    ctx.fillStyle = '#2c1f14'; ctx.font = '8px monospace';
+    ctx.fillText('QR: Seite öffnen', 5, 60);
+  };
+  img.src = `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(text)}&bgcolor=fffdf9&color=2c1f14&margin=1`;
 }
 async function submitWish() {
   const song = document.getElementById('w-song').value.trim();
@@ -1181,6 +1279,8 @@ function getPlanerItems() {
   else if (planFilter === 'after')   items = items.filter(i => i.date && i.date > W);
   else if (planFilter === 'open')    items = items.filter(i => i.kind==='todo' ? !i.done : true);
   else if (planFilter === 'done')    items = items.filter(i => i.kind==='todo' ? i.done : false);
+  else if (planFilter === 'todos')   items = items.filter(i => i.kind === 'todo');
+  else if (planFilter === 'events')  items = items.filter(i => i.kind === 'static' || i.kind === 'event');
 
   // Filter by person
   if (planPersonF) {
@@ -1192,7 +1292,8 @@ function getPlanerItems() {
   }
 
   // Search
-  const q = (document.getElementById('tsearch')?.value||'').toLowerCase();
+  const tsEl = document.getElementById('tsearch');
+  const q = tsEl ? tsEl.value.toLowerCase().trim() : '';
   if (q) items = items.filter(i => i.desc.toLowerCase().includes(q) || (i.note||'').toLowerCase().includes(q));
 
   // Sort: by date, then time, no date → end
@@ -1303,21 +1404,48 @@ function renderPlaner() {
 
       swrap.appendChild(card);
 
+      // "In Ablauf" toggle star for todos
+      if (item.kind === 'todo') {
+        const starBtn = document.createElement('button');
+        starBtn.title = item.obj.showInAblauf ? 'Aus Ablauf entfernen' : 'Im Ablauf anzeigen';
+        starBtn.style.cssText = `position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:6px;border:none;background:${item.obj.showInAblauf?'var(--gold)':'rgba(44,31,20,.07)'};cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:2;`;
+        starBtn.textContent = item.obj.showInAblauf ? '★' : '☆';
+        starBtn.onclick = (e) => { e.stopPropagation(); requireAblaufPw(() => toggleAblaufPin(item.id)); };
+        card.style.position = 'relative';
+        card.appendChild(starBtn);
+      }
+
       // Swipe actions
       if (item.kind === 'todo') {
         initSwipeGeneric(card, {
-          onDelete: () => { todos=todos.filter(x=>x.id!==item.id); save(); renderPlaner(); },
+          onDelete: () => { todos=todos.filter(x=>x.id!==item.id); save(); renderPlaner(); renderAblauf(); },
           onEdit:   () => openPlanerEditModal('todo', item.id),
         });
       } else if (item.kind === 'event') {
+        const starBtnE = document.createElement('button');
+        const isAbl = ablaufEntries.some(a => a.refId === item.id);
+        starBtnE.title = isAbl ? 'Aus Ablauf entfernen' : 'Im Ablauf anzeigen';
+        starBtnE.style.cssText = `position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:6px;border:none;background:${isAbl?'var(--gold)':'rgba(44,31,20,.07)'};cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:2;`;
+        starBtnE.textContent = isAbl ? '★' : '☆';
+        starBtnE.onclick = (e) => { e.stopPropagation(); requireAblaufPw(() => toggleEventAblaufPin(item.id, item.time, item.desc, item.person)); };
+        card.style.position = 'relative';
+        card.appendChild(starBtnE);
         initSwipeGeneric(card, {
-          onDelete: () => { customEvents=customEvents.filter(x=>x.id!==item.id); save(); renderPlaner(); },
+          onDelete: () => { customEvents=customEvents.filter(x=>x.id!==item.id); save(); renderPlaner(); renderAblauf(); },
           onEdit:   () => openPlanerEditModal('event', item.id),
         });
       } else {
         // static
+        const starBtnS = document.createElement('button');
+        const isAblS = ablaufEntries.some(a => a.refId === item.id);
+        starBtnS.title = isAblS ? 'Aus Ablauf entfernen' : 'Im Ablauf anzeigen';
+        starBtnS.style.cssText = `position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:6px;border:none;background:${isAblS?'var(--gold)':'rgba(44,31,20,.07)'};cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:2;`;
+        starBtnS.textContent = isAblS ? '★' : '☆';
+        starBtnS.onclick = (e) => { e.stopPropagation(); requireAblaufPw(() => toggleEventAblaufPin(item.id, item.time, item.desc, item.person)); };
+        card.style.position = 'relative';
+        card.appendChild(starBtnS);
         initSwipeGeneric(card, {
-          onDelete: () => { deleteStaticEvent(item.id); renderPlaner(); },
+          onDelete: () => { deleteStaticEvent(item.id); renderPlaner(); renderAblauf(); },
           onEdit:   () => openStaticEventEditModal(item.id),
         });
       }
@@ -1334,7 +1462,7 @@ function togglePlanerItem(id) {
   const t = todos.find(x => x.id == id);
   if (!t) return;
   t.done = !t.done;
-  save(); renderPlaner();
+  save(); renderPlaner(); renderAblauf();
   if (todos.every(t => t.done) && todos.length) showToast('🎉 Alle Aufgaben erledigt!');
 }
 
@@ -1375,15 +1503,16 @@ function checkAllDone(type) {
 // FIREBASE LIVE POLL (alle 3 Sekunden)
 async function poll() {
   const [rt,rp,rpers,revs,rw] = await Promise.all([fbG('todos'),fbG('pack'),fbG('persons'),fbG('customEvents'),fbG('wishes')]);
-  if (rt && Array.isArray(rt)) { const h=JSON.stringify(rt); if(h!==lastH.todos){lastH.todos=h; todos=rt; renderPlaner();} }
+  if (rt && Array.isArray(rt)) { const h=JSON.stringify(rt); if(h!==lastH.todos){lastH.todos=h; todos=rt; renderPlaner(); renderAblauf();} }
   if (rp && Array.isArray(rp)) { const h=JSON.stringify(rp); if(h!==lastH.pack){lastH.pack=h; packItems=rp; renderPack();} }
   if (rpers && Array.isArray(rpers)) { const h=JSON.stringify(rpers); if(h!==lastH.persons){lastH.persons=h; persons=rpers; buildSelects(); buildPlanerPersonChips(); if(sOpen)renderPersList();} }
-  if (revs && Array.isArray(revs)) { const h=JSON.stringify(revs); if(h!==lastH.events){lastH.events=h; customEvents=revs; renderPlaner();} }
-  const [rds, rso] = await Promise.all([fbG('deletedStatic'), fbG('staticOverrides')]);
+  if (revs && Array.isArray(revs)) { const h=JSON.stringify(revs); if(h!==lastH.events){lastH.events=h; customEvents=revs; renderPlaner(); renderAblauf();} }
+  const [rabl2, rds, rso] = await Promise.all([fbG('ablaufEntries'), fbG('deletedStatic'), fbG('staticOverrides')]);
+  if (rabl2 && Array.isArray(rabl2)) { const h=JSON.stringify(rabl2); if(h!==lastH.ablauf){lastH.ablauf=h; ablaufEntries=rabl2; renderAblauf();} }
   let zNeedsRender = false;
   if (rds && Array.isArray(rds)) { const h=JSON.stringify(rds); if(h!==lastH.deleted){lastH.deleted=h; deletedStatic=rds; zNeedsRender=true;} }
   if (rso && typeof rso==='object' && !Array.isArray(rso)) { const h=JSON.stringify(rso); if(h!==lastH.overrides){lastH.overrides=h; staticOverrides=rso; zNeedsRender=true;} }
-  if (zNeedsRender) renderPlaner();
+  if (zNeedsRender) { renderPlaner(); renderAblauf(); }
   if (rw && typeof rw==='object' && !Array.isArray(rw)) {
     const arr = Object.entries(rw).map(([id,v]) => ({...v,id}));
     const h = JSON.stringify(arr); if(h!==lastH.wishes){lastH.wishes=h; wishes=arr; renderWishes();}
@@ -1521,7 +1650,7 @@ function mActions(saveCall, extraBtns='') {
 function openPackEditModal(id) {
   const p = packItems.find(x => x.id === id); if (!p) return;
   showModal(
-    modalTitle('Gegenstand <em style="font-style:italic;color:var(--orange)">bearbeiten</em>') +
+    modalTitle('Gegenstand <em style="font-style:italic;color:var(--primary)">bearbeiten</em>') +
     modalField('Gegenstand', mInp('pm-txt', p.text, 'z.B. Ringe')) +
     mActions(`savePackModal(${id})`)
   );
@@ -1558,7 +1687,7 @@ function saveZeitModal(id) {
   e.date = document.getElementById('zm-date').value || e.date;
   e.time = document.getElementById('zm-time').value || null;
   e.person = document.getElementById('zm-per').value || null;
-  closeModal(); save(); renderPlaner();
+  closeModal(); save(); renderPlaner(); renderAblauf();
 }
 // Static event delete — move to deletedStatic list stored in Firebase
 function deleteStaticEvent(id) {
@@ -1685,8 +1814,6 @@ async function saveWishModal(id) {
 }
 
 // ══════════════════════════════════════════════
-// UPDATED openEdit for todos → uses modal + move button
-// ══════════════════════════════════════════════
 function openEdit(id) {
   document.querySelectorAll('.edit-form').forEach(f => f.classList.remove('open'));
   const t = todos.find(x => x.id === id); if (!t) return;
@@ -1698,7 +1825,7 @@ function openEdit(id) {
     {v:'18.07.2026',l:'18. Juli'},
   ];
   showModal(
-    modalTitle('Aufgabe <em style="font-style:italic;color:var(--orange)">bearbeiten</em>') +
+    modalTitle('Aufgabe <em style="font-style:italic;color:var(--primary)">bearbeiten</em>') +
     modalField('Aufgabe', mInp('em-txt', t.text, 'Aufgabe …')) +
     `<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">` +
     modalField('Person', mSel('em-per', persons.map(p=>({v:p.id,l:`${p.emoji} ${p.name}`})), t.person)) +
@@ -1730,226 +1857,206 @@ function showToast(msg) {
 
 
 
-// ══════════════════════════════════════════════
-// VOICE INPUT
-// ══════════════════════════════════════════════
-let recognition = null;
-let voiceActive = false;
 
-function toggleVoice() {
-  if (voiceActive) { stopVoice(); return; }
-  startVoice();
+
+// ══════════════════════════════════════════════
+// ABLAUF – Hochzeitstag 18. Juli
+// ══════════════════════════════════════════════
+// toggle todo pinned in ablauf
+function toggleAblaufPin(todoId) {
+  const t = todos.find(x => x.id == todoId); if (!t) return;
+  t.showInAblauf = !t.showInAblauf;
+  save(); renderPlaner(); renderAblauf();
+  showToast(t.showInAblauf ? '★ Im Ablauf hinzugefügt' : '☆ Aus Ablauf entfernt');
 }
 
-function startVoice() {
-  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if (!SR) {
-    showToast('⚠️ Spracheingabe wird in diesem Browser nicht unterstützt');
+// toggle event/static pinned in ablauf
+function toggleEventAblaufPin(refId, time, desc, person) {
+  const idx = ablaufEntries.findIndex(a => a.refId === refId);
+  if (idx >= 0) {
+    ablaufEntries.splice(idx, 1);
+    showToast('☆ Aus Ablauf entfernt');
+  } else {
+    ablaufEntries.push({id:'abl_'+Date.now(), refId, time, desc, person});
+    showToast('★ Im Ablauf hinzugefügt');
+  }
+  fbS('ablaufEntries', ablaufEntries);
+  lastH.ablauf = '';
+  renderPlaner(); renderAblauf();
+}
+
+// Add custom ablauf entry (password protected)
+let ablaufUnlocked = false;
+let _ablaufPwCallback = null;
+
+function requireAblaufPw(callback) {
+  if (ablaufUnlocked) { callback(); return; }
+  _ablaufPwCallback = callback;
+  showModal(`
+    <div style="font-family:'Cormorant Garamond',serif;font-size:24px;margin-bottom:12px;color:var(--ink);">🔒 <em style="font-style:italic;color:var(--primary)">Passwort</em> erforderlich</div>
+    <div style="font-size:13px;color:var(--muted);margin-bottom:16px;">Passwort eingeben um den Ablauf zu bearbeiten.</div>
+    <input id="abl-pw" type="password" placeholder="••••" maxlength="10"
+      style="width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:8px;font-family:'Nunito',sans-serif;font-size:20px;text-align:center;letter-spacing:8px;color:var(--ink);background:var(--paper);outline:none;margin-bottom:12px;"
+      onkeydown="if(event.key==='Enter')checkAblaufPw()">
+    <div style="display:flex;gap:10px;">
+      <button id="modal-save-btn" onclick="checkAblaufPw()" style="flex:1;padding:12px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;border:none;border-radius:10px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:600;cursor:pointer;">Entsperren</button>
+      <button onclick="closeModal()" style="padding:12px 20px;background:none;border:1.5px solid var(--border);color:var(--muted);border-radius:10px;font-family:'Nunito',sans-serif;font-size:13px;cursor:pointer;">Abbrechen</button>
+    </div>
+  `);
+  setTimeout(() => { const el = document.getElementById('abl-pw'); if(el) el.focus(); }, 80);
+}
+function openAddAblaufModal() {
+  if (!ablaufUnlocked) {
+    showModal(`
+      <div style="font-family:'Cormorant Garamond',serif;font-size:24px;margin-bottom:20px;color:var(--ink);">🔒 <em style="font-style:italic;color:var(--primary)">Passwort</em> erforderlich</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:16px;">Bitte Passwort eingeben um Ablaufeinträge hinzuzufügen.</div>
+      <input id="abl-pw" type="password" placeholder="••••" maxlength="10"
+        style="width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:8px;font-family:'Nunito',sans-serif;font-size:18px;text-align:center;letter-spacing:6px;color:var(--ink);background:var(--paper);outline:none;margin-bottom:12px;"
+        onkeydown="if(event.key==='Enter')checkAblaufPw()">
+      <div style="display:flex;gap:10px;margin-top:4px;">
+        <button id="modal-save-btn" onclick="checkAblaufPw()" style="flex:1;padding:12px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;border:none;border-radius:10px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:600;cursor:pointer;">Entsperren</button>
+        <button onclick="closeModal()" style="padding:12px 20px;background:none;border:1.5px solid var(--border);color:var(--muted);border-radius:10px;font-family:'Nunito',sans-serif;font-size:13px;cursor:pointer;">Abbrechen</button>
+      </div>
+    `);
+    setTimeout(() => document.getElementById('abl-pw').focus(), 80);
+    return;
+  }
+  showAddAblaufForm();
+}
+
+function checkAblaufPw() {
+  if (document.getElementById('abl-pw').value === '123') {
+    ablaufUnlocked = true;
+    closeModal();
+    if (_ablaufPwCallback) {
+      const cb = _ablaufPwCallback;
+      _ablaufPwCallback = null;
+      setTimeout(cb, 150);
+    }
+  } else {
+    const inp = document.getElementById('abl-pw');
+    inp.style.borderColor = 'var(--urgent)';
+    inp.value = '';
+    setTimeout(() => inp.style.borderColor = '', 500);
+  }
+}
+
+function showAddAblaufForm() {
+  showModal(
+    modalTitle('Ablauf <em style="font-style:italic;color:var(--primary)">Eintrag hinzufügen</em>') +
+    modalField('Beschreibung *', mInp('abl-desc','','z.B. Sektempfang beginnt')) +
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">' +
+    modalField('Uhrzeit', `<input id="abl-time" type="time" style="width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:8px;font-family:'Nunito',sans-serif;font-size:13px;color:var(--ink);background:var(--paper);outline:none;">`) +
+    modalField('Person (optional)', mSel('abl-per', [{v:'',l:'Keine Angabe'}, ...persons.map(p=>({v:p.name,l:`${p.emoji} ${p.name}`}))], '')) +
+    '</div>' +
+    mActions('saveAblaufEntry()')
+  );
+}
+
+function saveAblaufEntry() {
+  const desc = document.getElementById('abl-desc').value.trim(); if (!desc) return;
+  const time = document.getElementById('abl-time').value || null;
+  const person = document.getElementById('abl-per').value || null;
+  ablaufEntries.push({id:'abl_'+Date.now(), refId:null, time, desc, person});
+  fbS('ablaufEntries', ablaufEntries);
+  lastH.ablauf = '';
+  closeModal(); renderAblauf();
+  showToast('✓ Eintrag im Ablauf hinzugefügt');
+}
+
+function deleteAblaufEntry(id) {
+  ablaufEntries = ablaufEntries.filter(a => a.id !== id);
+  fbS('ablaufEntries', ablaufEntries);
+  lastH.ablauf = '';
+  renderAblauf();
+}
+
+function renderAblauf() {
+  const cont = document.getElementById('ablauf-cont');
+  if (!cont) return;
+
+  // Build combined list: pinned todos + pinned events + custom ablauf entries
+  const pinnedTodos = todos
+    .filter(t => t.showInAblauf)
+    .map(t => ({ id:'t_'+t.id, todoId:t.id, time:t.time||null, desc:t.text, person:t.person, done:t.done, isTodo:true }));
+
+  const pinnedEvents = ablaufEntries.map(a => {
+    // If refId, try to get latest desc from source
+    if (a.refId) {
+      const se = STATIC_EVENTS.find(e => e.id === a.refId);
+      const ce = customEvents.find(e => e.id === a.refId);
+      const src = ce || (se && !deletedStatic.includes(a.refId) ? (staticOverrides[a.refId] ? {...se,...staticOverrides[a.refId]} : se) : null);
+      if (src) return { id:a.id, refId:a.refId, time:src.time, desc:src.desc, person:src.person, isTodo:false, ablaufId:a.id };
+    }
+    return { id:a.id, refId:a.refId, time:a.time, desc:a.desc, person:a.person, isTodo:false, ablaufId:a.id };
+  });
+
+  const all = [...pinnedTodos, ...pinnedEvents].sort((a,b) => {
+    const ta = a.time||'99:99', tb = b.time||'99:99';
+    return ta.localeCompare(tb);
+  });
+
+  // Render header + add button
+  cont.innerHTML = `
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px;">
+      <div style="font-size:11px;color:var(--muted);">
+        ${all.length} ${all.length===1?'Eintrag':'Einträge'} · 
+        <span style="font-size:10px;">★ im Planer markieren um hier anzuzeigen</span>
+      </div>
+
+    </div>`;
+
+  if (!all.length) {
+    cont.innerHTML += '<div class="empty"><div class="big">💍</div><p>Im Planer Einträge mit ★ markieren</p></div>';
     return;
   }
 
-  recognition = new SR();
-  recognition.lang = 'de-DE';
-  recognition.continuous = false;
-  recognition.interimResults = true;
-  recognition.maxAlternatives = 1;
+  const list = document.createElement('div');
+  list.style.cssText = 'display:flex;flex-direction:column;gap:8px;';
 
-  recognition.onstart = () => {
-    voiceActive = true;
-    document.getElementById('voice-status').style.display = 'block';
-    document.getElementById('mic-btn').classList.add('recording');
-    document.getElementById('mic-btn').textContent = '⏹';
-    document.getElementById('voice-interim').textContent = 'Spreche …';
-  };
+  all.forEach(item => {
+    const card = document.createElement('div');
+    const isDone = item.isTodo && item.done;
+    card.className = `ablauf-item${isDone?' planer-done':''}`;
+    card.style.position = 'relative';
 
-  recognition.onresult = (e) => {
-    let interim = '', final = '';
-    for (let i = e.resultIndex; i < e.results.length; i++) {
-      const t = e.results[i][0].transcript;
-      if (e.results[i].isFinal) final += t;
-      else interim += t;
-    }
-    document.getElementById('voice-interim').textContent = final || interim || 'Spreche …';
-    if (final) {
-      stopVoice();
-      parseVoiceInput(final.trim());
-    }
-  };
+    const pCls = {julia:'b-julia',rainer:'b-rainer',both:'b-both',hoffi:'b-hoffi',justine:'b-justine',caro:'b-caro'}[item.person]||'b-date';
+    const p = item.isTodo ? pById(item.person) : null;
 
-  recognition.onerror = (e) => {
-    stopVoice();
-    if (e.error === 'no-speech') showToast('🎤 Kein Ton erkannt — bitte nochmal versuchen');
-    else if (e.error === 'not-allowed') showToast('⚠️ Mikrofon-Zugriff verweigert');
-    else showToast('⚠️ Fehler: ' + e.error);
-  };
+    card.innerHTML = `
+      <div class="ablauf-time"${item.isTodo?' style="cursor:pointer;" onclick="togglePlanerItem('+item.todoId+')"':''}>
+        ${item.time
+          ? `<div class="ablauf-time-num">${item.time}</div>`
+          : (item.isTodo
+            ? `<div class="planer-chk${isDone?' planer-chk-done':''}" style="margin:0 auto;">${isDone?'✓':''}</div>`
+            : `<div class="ablauf-time-empty">—</div>`)}
+      </div>
+      <div class="ablauf-body">
+        <div class="ablauf-desc${isDone?' planer-done-txt':''}">${esc(item.desc)}</div>
+        ${item.person && !item.isTodo ? `<div class="ablauf-who">${esc(item.person)}</div>` : ''}
+        ${item.isTodo && p ? `<div style="margin-top:4px"><span class="badge ${pCls}" style="font-size:10px">${p.emoji} ${esc(p.name)}</span></div>` : ''}
+      </div>`;
 
-  recognition.onend = () => { if (voiceActive) stopVoice(); };
-  recognition.start();
-}
+    // Unpin button
+    const unpinBtn = document.createElement('button');
+    unpinBtn.style.cssText = 'position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:6px;border:none;background:rgba(44,31,20,.08);cursor:pointer;font-size:12px;opacity:0;transition:opacity .2s;display:flex;align-items:center;justify-content:center;color:var(--muted);';
+    unpinBtn.textContent = '★';
+    unpinBtn.title = 'Aus Ablauf entfernen';
+    unpinBtn.onclick = (e) => {
+      e.stopPropagation();
+      requireAblaufPw(() => {
+        if (item.isTodo) toggleAblaufPin(item.todoId);
+        else deleteAblaufEntry(item.ablaufId);
+      });
+    };
+    card.appendChild(unpinBtn);
+    card.addEventListener('mouseenter', () => unpinBtn.style.opacity='1');
+    card.addEventListener('mouseleave', () => unpinBtn.style.opacity='0');
 
-function stopVoice() {
-  voiceActive = false;
-  if (recognition) { try { recognition.stop(); } catch(e){} recognition = null; }
-  document.getElementById('voice-status').style.display = 'none';
-  document.getElementById('mic-btn').classList.remove('recording');
-  document.getElementById('mic-btn').textContent = '🎤';
-}
+    list.appendChild(card);
+  });
 
-// ── VOICE PARSER ──
-function parseVoiceInput(text) {
-  const orig = text;
-  text = text.toLowerCase();
-
-  // ── 1. Extract time ──
-  let time = null;
-  const timePatterns = [
-    /um (\d{1,2})[:\.](\d{2})\s*uhr/,
-    /um (\d{1,2})\s*uhr/,
-    /(\d{1,2})[:\.](\d{2})\s*uhr/,
-    /(\d{1,2})\s*uhr/,
-  ];
-  for (const p of timePatterns) {
-    const m = text.match(p);
-    if (m) {
-      const h = String(parseInt(m[1])).padStart(2,'0');
-      const min = m[2] ? String(parseInt(m[2])).padStart(2,'0') : '00';
-      time = `${h}:${min}`;
-      text = text.replace(m[0], '');
-      break;
-    }
-  }
-
-  // ── 2. Extract date ──
-  let date = null;
-  const today = new Date();
-  const todayStr = isoDate(today);
-  const W = '2026-07-18';
-
-  // Named dates
-  const namedDates = {
-    'heute':   todayStr,
-    'morgen':  isoDate(addDays(today,1)),
-    'übermorgen': isoDate(addDays(today,2)),
-    'hochzeit': W,
-    'trauung':  W,
-    'standesamt': W,
-    'aufbau':   '2026-07-17',
-    'burg michelwinnaden': '2026-07-18',
-  };
-  for (const [word, d] of Object.entries(namedDates)) {
-    if (text.includes(word)) { date = d; text = text.replace(word, ''); break; }
-  }
-
-  // Weekday (next occurrence)
-  if (!date) {
-    const days = ['sonntag','montag','dienstag','mittwoch','donnerstag','freitag','samstag'];
-    for (let i=0; i<days.length; i++) {
-      if (text.includes(days[i])) {
-        const d = nextWeekday(i);
-        date = isoDate(d);
-        text = text.replace(days[i], '');
-        break;
-      }
-    }
-  }
-
-  // "am X. Monat" or "X. Juli" etc.
-  if (!date) {
-    const months = ['januar','februar','märz','april','mai','juni','juli','august','september','oktober','november','dezember'];
-    for (let mi=0; mi<months.length; mi++) {
-      const mname = months[mi];
-      const re = new RegExp(`(\d{1,2})\.?\s*${mname}`);
-      const m = text.match(re);
-      if (m) {
-        const day = String(parseInt(m[1])).padStart(2,'0');
-        const month = String(mi+1).padStart(2,'0');
-        const year = '2026';
-        date = `${year}-${month}-${day}`;
-        text = text.replace(m[0], '');
-        break;
-      }
-    }
-  }
-
-  // "am DD.MM." or "DD.MM.YYYY"
-  if (!date) {
-    const m = text.match(/(\d{1,2})\.(\d{1,2})\.?(\d{4})?/);
-    if (m) {
-      const day   = String(parseInt(m[1])).padStart(2,'0');
-      const month = String(parseInt(m[2])).padStart(2,'0');
-      const year  = m[3] || '2026';
-      date = `${year}-${month}-${day}`;
-      text = text.replace(m[0], '');
-    }
-  }
-
-  // ── 3. Extract type (todo vs event) ──
-  let kind = 'todo';
-  const eventWords = ['termin','treffen','meeting','shooting','sektempfang','trauung','essen','frühstück','aufbau','friseur'];
-  for (const w of eventWords) {
-    if (text.includes(w)) { kind = 'event'; break; }
-  }
-  // Explicit todo words
-  const todoWords = ['aufgabe','erledigen','kaufen','abholen','anrufen','bestellen','organisieren','schreiben','messen','bringen','anfragen','ausleihen','reservieren','buchen'];
-  for (const w of todoWords) {
-    if (text.includes(w)) { kind = 'todo'; break; }
-  }
-
-  // ── 4. Extract person ──
-  let personId = 'both';
-  for (const p of persons) {
-    if (text.includes(p.name.toLowerCase())) { personId = p.id; break; }
-  }
-
-  // ── 5. Clean up description ──
-  // Remove filler words
-  let desc = orig; // use original capitalisation
-  const fillers = [
-    /um \d{1,2}[:\.]?\d{0,2}\s*uhr/gi,
-    /am \d{1,2}\.\s*(januar|februar|märz|april|mai|juni|juli|august|september|oktober|november|dezember)/gi,
-    /\d{1,2}\.\s*(januar|februar|märz|april|mai|juni|juli|august|september|oktober|november|dezember)/gi,
-    /heute/gi, /morgen/gi, /übermorgen/gi,
-    /am montag|am dienstag|am mittwoch|am donnerstag|am freitag|am samstag|am sonntag/gi,
-    /aufgabe:?\s*/gi,
-    /termin:?\s*/gi,
-    /^\s*(am|um|an|auf|für|bei|den|der|die|das|in)\s+/gi,
-  ];
-  for (const f of fillers) desc = desc.replace(f, ' ');
-  desc = desc.replace(/\s+/g,' ').trim();
-  // Capitalise first letter
-  if (desc) desc = desc[0].toUpperCase() + desc.slice(1);
-
-  if (!desc) desc = orig; // fallback to full original
-
-  // ── 6. Create entry ──
-  if (kind === 'todo') {
-    let due = null;
-    if (date) { const p=date.split('-'); due=`${p[2]}.${p[1]}.${p[0]}`; }
-    todos.push({id:Date.now(), text:desc, person:personId, due, time:time||null, done:false});
-  } else {
-    if (!date) date = todayStr;
-    customEvents.push({id:'c_'+Date.now(), date, time, desc, person:null, static:false});
-  }
-
-  save(); renderPlaner();
-  showToast(`✓ "${desc}" ${date ? 'am '+formatDateShort(date) : ''} ${time ? 'um '+time : ''} hinzugefügt`);
-}
-
-// ── DATE HELPERS ──
-function isoDate(d) {
-  return d.toISOString().slice(0,10);
-}
-function addDays(d, n) {
-  const r = new Date(d); r.setDate(r.getDate()+n); return r;
-}
-function nextWeekday(targetDay) {
-  const d = new Date();
-  const diff = (targetDay - d.getDay() + 7) % 7 || 7;
-  return addDays(d, diff);
-}
-function formatDateShort(iso) {
-  if (!iso) return '';
-  return new Date(iso+'T12:00:00').toLocaleDateString('de-DE',{day:'numeric',month:'short'});
+  cont.appendChild(list);
 }
 
 // INIT
@@ -1960,6 +2067,8 @@ async function init() {
   if (rp && Array.isArray(rp) && rp.length)          { packItems=rp; lastH.pack=JSON.stringify(rp); }        else fbS('pack', packItems);
   if (rpers && Array.isArray(rpers) && rpers.length) { persons=rpers; lastH.persons=JSON.stringify(rpers); } else fbS('persons', persons);
   if (revs && Array.isArray(revs))                   { customEvents=revs; lastH.events=JSON.stringify(revs); } else fbS('customEvents', []);
+  const rabl = await fbG('ablaufEntries');
+  if (rabl && Array.isArray(rabl)) { ablaufEntries=rabl; lastH.ablauf=JSON.stringify(rabl); }
   const rds2 = await fbG('deletedStatic');
   const rso2 = await fbG('staticOverrides');
   if (rds2 && Array.isArray(rds2))                   { deletedStatic=rds2; lastH.deleted=JSON.stringify(rds2); }

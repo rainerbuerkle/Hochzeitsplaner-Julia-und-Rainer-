@@ -1502,21 +1502,51 @@ function checkAllDone(type) {
 
 // FIREBASE LIVE POLL (alle 3 Sekunden)
 async function poll() {
-  const [rt,rp,rpers,revs,rw] = await Promise.all([fbG('todos'),fbG('pack'),fbG('persons'),fbG('customEvents'),fbG('wishes')]);
-  if (rt && Array.isArray(rt)) { const h=JSON.stringify(rt); if(h!==lastH.todos){lastH.todos=h; todos=rt; renderPlaner(); renderAblauf();} }
-  if (rp && Array.isArray(rp)) { const h=JSON.stringify(rp); if(h!==lastH.pack){lastH.pack=h; packItems=rp; renderPack();} }
-  if (rpers && Array.isArray(rpers)) { const h=JSON.stringify(rpers); if(h!==lastH.persons){lastH.persons=h; persons=rpers; buildSelects(); buildPlanerPersonChips(); if(sOpen)renderPersList();} }
-  if (revs && Array.isArray(revs)) { const h=JSON.stringify(revs); if(h!==lastH.events){lastH.events=h; customEvents=revs; renderPlaner(); renderAblauf();} }
-  const [rabl2, rds, rso] = await Promise.all([fbG('ablaufEntries'), fbG('deletedStatic'), fbG('staticOverrides')]);
-  if (rabl2 && Array.isArray(rabl2)) { const h=JSON.stringify(rabl2); if(h!==lastH.ablauf){lastH.ablauf=h; ablaufEntries=rabl2; renderAblauf();} }
-  let zNeedsRender = false;
-  if (rds && Array.isArray(rds)) { const h=JSON.stringify(rds); if(h!==lastH.deleted){lastH.deleted=h; deletedStatic=rds; zNeedsRender=true;} }
-  if (rso && typeof rso==='object' && !Array.isArray(rso)) { const h=JSON.stringify(rso); if(h!==lastH.overrides){lastH.overrides=h; staticOverrides=rso; zNeedsRender=true;} }
-  if (zNeedsRender) { renderPlaner(); renderAblauf(); }
+  // Fetch ALL Firebase data in one round-trip for reliable sync
+  const [rt, rp, rpers, revs, rw, rabl, rds, rso] = await Promise.all([
+    fbG('todos'), fbG('pack'), fbG('persons'), fbG('customEvents'),
+    fbG('wishes'), fbG('ablaufEntries'), fbG('deletedStatic'), fbG('staticOverrides')
+  ]);
+
+  let needsPlaner = false, needsAblauf = false;
+
+  if (rt && Array.isArray(rt)) {
+    const h = JSON.stringify(rt);
+    if (h !== lastH.todos) { lastH.todos=h; todos=rt; needsPlaner=true; needsAblauf=true; }
+  }
+  if (rp && Array.isArray(rp)) {
+    const h = JSON.stringify(rp);
+    if (h !== lastH.pack) { lastH.pack=h; packItems=rp; renderPack(); }
+  }
+  if (rpers && Array.isArray(rpers)) {
+    const h = JSON.stringify(rpers);
+    if (h !== lastH.persons) { lastH.persons=h; persons=rpers; buildSelects(); buildPlanerPersonChips(); if(sOpen)renderPersList(); }
+  }
+  if (revs && Array.isArray(revs)) {
+    const h = JSON.stringify(revs);
+    if (h !== lastH.events) { lastH.events=h; customEvents=revs; needsPlaner=true; needsAblauf=true; }
+  }
+  if (rabl && Array.isArray(rabl)) {
+    const h = JSON.stringify(rabl);
+    if (h !== lastH.ablauf) { lastH.ablauf=h; ablaufEntries=rabl; needsAblauf=true; }
+  }
+  if (rds && Array.isArray(rds)) {
+    const h = JSON.stringify(rds);
+    if (h !== lastH.deleted) { lastH.deleted=h; deletedStatic=rds; needsAblauf=true; needsPlaner=true; }
+  }
+  if (rso && typeof rso==='object' && !Array.isArray(rso)) {
+    const h = JSON.stringify(rso);
+    if (h !== lastH.overrides) { lastH.overrides=h; staticOverrides=rso; needsAblauf=true; needsPlaner=true; }
+  }
   if (rw && typeof rw==='object' && !Array.isArray(rw)) {
     const arr = Object.entries(rw).map(([id,v]) => ({...v,id}));
-    const h = JSON.stringify(arr); if(h!==lastH.wishes){lastH.wishes=h; wishes=arr; renderWishes();}
+    const h = JSON.stringify(arr);
+    if (h !== lastH.wishes) { lastH.wishes=h; wishes=arr; renderWishes(); }
   }
+
+  // Batch render at end to avoid multiple repaints
+  if (needsPlaner) renderPlaner();
+  if (needsAblauf) renderAblauf();
 }
 
 
@@ -2069,6 +2099,7 @@ async function init() {
   if (revs && Array.isArray(revs))                   { customEvents=revs; lastH.events=JSON.stringify(revs); } else fbS('customEvents', []);
   const rabl = await fbG('ablaufEntries');
   if (rabl && Array.isArray(rabl)) { ablaufEntries=rabl; lastH.ablauf=JSON.stringify(rabl); }
+  else if (!rabl) { fbS('ablaufEntries', []); }
   const rds2 = await fbG('deletedStatic');
   const rso2 = await fbG('staticOverrides');
   if (rds2 && Array.isArray(rds2))                   { deletedStatic=rds2; lastH.deleted=JSON.stringify(rds2); }

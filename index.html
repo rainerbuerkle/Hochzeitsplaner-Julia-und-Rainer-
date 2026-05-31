@@ -140,16 +140,17 @@ main{max-width:1000px;margin:0 auto;padding:40px 20px 100px;}
 
 /* SWIPE */
 .swipe-wrap{position:relative;overflow:hidden;border-radius:12px;margin-bottom:0;}
-.swipe-bg{position:absolute;inset:0;display:flex;align-items:center;border-radius:12px;pointer-events:none;opacity:0;transition:opacity .2s;}
-.swipe-bg.left{background:linear-gradient(to left,#701515,#c02020);justify-content:flex-end;padding-right:20px;gap:8px;flex-direction:column;}
-.swipe-bg.right{background:linear-gradient(to right,var(--primary-dark),var(--primary));justify-content:flex-start;padding-left:20px;gap:8px;flex-direction:column;}
-.swipe-bg-icon{font-size:22px;color:#fff;}
-.swipe-bg-label{font-size:10px;color:rgba(255,255,255,.85);font-family:'Nunito',sans-serif;font-weight:600;letter-spacing:1px;text-transform:uppercase;}
-.swipe-card{position:relative;z-index:1;transition:transform .15s ease;will-change:transform;touch-action:pan-y;}
-.swipe-card.swiping{transition:none;}
-.swipe-card.snap-back{transition:transform .3s cubic-bezier(.4,0,.2,1);}
-.swipe-card.snap-delete{transition:transform .35s cubic-bezier(.4,0,.2,1);transform:translateX(-110%) !important;}
-.swipe-card.snap-edit{transition:transform .25s cubic-bezier(.4,0,.2,1);}
+.swipe-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px;border-radius:12px;pointer-events:none;opacity:0;transition:opacity .15s;}
+.swipe-bg.left{background:linear-gradient(135deg,#c02020,#8a1515);}
+.swipe-bg.right{background:linear-gradient(135deg,var(--primary),var(--primary-dark));}
+.swipe-bg.left .swipe-bg-icon,.swipe-bg.left .swipe-bg-label{margin-left:auto;margin-right:22px;}
+.swipe-bg.right .swipe-bg-icon,.swipe-bg.right .swipe-bg-label{margin-right:auto;margin-left:22px;}
+.swipe-bg-icon{font-size:24px;color:#fff;line-height:1;}
+.swipe-bg-label{font-size:10px;color:rgba(255,255,255,.9);font-family:'Nunito',sans-serif;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
+.swipe-card{position:relative;z-index:1;will-change:transform;touch-action:pan-y;transition:none;}
+.swipe-card.snap-back{transition:transform .28s cubic-bezier(.25,.46,.45,.94);}
+.swipe-card.snap-delete{transition:transform .32s cubic-bezier(.4,0,.2,1);transform:translateX(-115%) !important;}
+.swipe-card.snap-edit{transition:transform .22s cubic-bezier(.25,.46,.45,.94);}
 
 /* EDIT FORM */
 .edit-form{display:none;padding:0 14px 14px 48px;border-top:1px solid var(--border);animation:slideDown .2s ease;}
@@ -1214,10 +1215,15 @@ function renderWishes() {
     list.innerHTML = '<div class="empty"><div class="big">🎶</div><p>Noch keine Wünsche!</p></div>';
     cnt.textContent = '0 Wünsche'; return;
   }
+  if (!active.length) {
+    list.innerHTML = '<div class="empty" style="padding:24px 20px;"><div class="big">🎶</div><p>Keine aktiven Wünsche</p></div>';
+    cnt.textContent = '0 Wünsche';
+    // still render trash below
+  }
 
   const s = [...active].sort((a,b) => (b.votes||0)-(a.votes||0) || a.ts-b.ts);
   cnt.textContent = `${s.length} ${s.length===1?'Wunsch':'Wünsche'}`;
-  list.innerHTML = '';
+  if (active.length) list.innerHTML = '';
 
   // Active wishes
   s.forEach((w,i) => {
@@ -1236,29 +1242,28 @@ function renderWishes() {
     list.appendChild(wwrap);
   });
 
-  // Deleted wishes (trash section)
-  if (deleted.length) {
-    const trashSection = document.createElement('div');
-    trashSection.style.cssText = 'margin-top:24px;';
-    trashSection.innerHTML = `
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;cursor:pointer;" onclick="toggleTrash(this)">
-        <div style="font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);font-weight:600;">🗑 Gelöscht (${deleted.length})</div>
-        <div style="flex:1;height:1px;background:var(--border);"></div>
-        <div style="font-size:12px;color:var(--muted);">▼</div>
+  // Trash section — always visible
+  const trashSection = document.createElement('div');
+  trashSection.style.cssText = 'margin-top:24px;';
+  const trashContent = deleted.length ? deleted.map(w => `
+    <div style="background:var(--card-bg);border:1.5px dashed var(--border);border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:12px;opacity:.65;">
+      <div style="flex:1;">
+        <div style="font-size:14px;font-weight:500;color:var(--muted);text-decoration:line-through;">${esc(w.song)}</div>
+        <div style="font-size:12px;color:var(--muted);">${esc(w.artist)}${w.name?' · '+esc(w.name):''}</div>
       </div>
-      <div class="trash-items" style="display:none;flex-direction:column;gap:8px;">
-        ${deleted.map(w => `
-          <div style="background:var(--card-bg);border:1.5px dashed var(--border);border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:12px;opacity:.65;">
-            <div style="flex:1;">
-              <div style="font-size:14px;font-weight:500;color:var(--muted);text-decoration:line-through;">${esc(w.song)}</div>
-              <div style="font-size:12px;color:var(--muted);">${esc(w.artist)}${w.name?' · '+esc(w.name):''}</div>
-            </div>
-            <button onclick="restoreWish('${w.id}')" style="padding:6px 12px;background:linear-gradient(135deg,var(--sage),var(--sage-dark));color:#fff;border:none;border-radius:6px;font-family:'Nunito',sans-serif;font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap;">↩ Wiederherstellen</button>
-            <button onclick="permanentDeleteWish('${w.id}')" style="padding:6px 10px;background:rgba(176,32,32,.1);color:var(--urgent);border:1.5px solid rgba(176,32,32,.2);border-radius:6px;font-family:'Nunito',sans-serif;font-size:11px;cursor:pointer;" title="Endgültig löschen">✕</button>
-          </div>`).join('')}
-      </div>`;
-    list.appendChild(trashSection);
-  }
+      <button onclick="restoreWish('${w.id}')" style="padding:6px 12px;background:linear-gradient(135deg,var(--sage),var(--sage-dark));color:#fff;border:none;border-radius:6px;font-family:'Nunito',sans-serif;font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap;">↩ Wiederherstellen</button>
+      <button onclick="permanentDeleteWish('${w.id}')" style="padding:6px 10px;background:rgba(176,32,32,.1);color:var(--urgent);border:1.5px solid rgba(176,32,32,.2);border-radius:6px;font-family:'Nunito',sans-serif;font-size:11px;cursor:pointer;" title="Endgültig löschen">✕</button>
+    </div>`).join('') :
+    `<div style="padding:16px;text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--muted);">Noch nichts gelöscht</div>`;
+
+  trashSection.innerHTML = `
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;cursor:pointer;" onclick="toggleTrash(this)">
+      <div style="font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);font-weight:600;">🗑 Papierkorb${deleted.length ? ' ('+deleted.length+')' : ''}</div>
+      <div style="flex:1;height:1px;background:var(--border);"></div>
+      <div style="font-size:12px;color:var(--muted);">▼</div>
+    </div>
+    <div class="trash-items" style="display:none;flex-direction:column;gap:8px;">${trashContent}</div>`;
+  list.appendChild(trashSection);
 }
 
 function toggleTrash(header) {
@@ -1680,8 +1685,8 @@ function delTodoNoConfirm(id) {
 // GENERIC SWIPE (Pack, Zeitplan, Musik, Todos)
 // ══════════════════════════════════════════════
 function initSwipeGeneric(card, { onDelete, onEdit, rightAction } = {}) {
-  let startX=0, startY=0, curX=0, dragging=false, locked=false;
-  const THRESHOLD=80;
+  let startX=0, startY=0, curX=0, dragging=false, locked=false, dirLocked=false;
+  const THRESHOLD = 72;
 
   function getBgs() {
     const wrap = card.parentElement;
@@ -1691,49 +1696,53 @@ function initSwipeGeneric(card, { onDelete, onEdit, rightAction } = {}) {
   function onStart(e) {
     if (locked) return;
     const t = e.touches ? e.touches[0] : e;
-    startX=t.clientX; startY=t.clientY; curX=0; dragging=false;
+    startX=t.clientX; startY=t.clientY; curX=0; dragging=false; dirLocked=false;
+    card.style.transition = 'none';
     card.classList.remove('snap-back','snap-edit','snap-delete');
+    const bgs = getBgs();
+    bgs.left.style.transition='none'; bgs.right.style.transition='none';
   }
 
   function onMove(e) {
     if (locked) return;
     const t = e.touches ? e.touches[0] : e;
     const dx = t.clientX - startX, dy = t.clientY - startY;
-    if (!dragging) {
-      if (Math.abs(dx)<8 && Math.abs(dy)<8) return;
-      if (Math.abs(dy) > Math.abs(dx)) return;
-      dragging = true;
+    if (!dirLocked) {
+      if (Math.abs(dx) < 5 && Math.abs(dy) < 5) return;
+      if (Math.abs(dy) > Math.abs(dx)) { dirLocked=true; return; }
+      dirLocked=true; dragging=true;
     }
+    if (!dragging) return;
     if (e.cancelable) e.preventDefault();
-    card.classList.add('swiping');
     curX = dx;
     card.style.transform = `translateX(${dx}px)`;
     const bgs = getBgs();
-    const ratio = Math.min(Math.abs(dx)/THRESHOLD, 1);
+    const ratio = Math.min(Math.abs(dx) / THRESHOLD, 1);
     if (dx < 0) { bgs.left.style.opacity=ratio; bgs.right.style.opacity=0; }
-    else { bgs.right.style.opacity=ratio; bgs.left.style.opacity=0; }
+    else        { bgs.right.style.opacity=ratio; bgs.left.style.opacity=0; }
   }
 
   function onEnd() {
-    if (!dragging || locked) { card.classList.remove('swiping'); return; }
-    card.classList.remove('swiping');
+    if (!dragging || locked) { card.style.transform=''; return; }
     const bgs = getBgs();
+    bgs.left.style.transition='opacity .15s'; bgs.right.style.transition='opacity .15s';
     bgs.left.style.opacity=0; bgs.right.style.opacity=0;
+
     if (curX < -THRESHOLD) {
       locked = true;
       card.classList.add('snap-delete');
-      setTimeout(() => { if (onDelete) onDelete(); }, 320);
+      setTimeout(() => { if (onDelete) onDelete(); }, 300);
     } else if (curX > THRESHOLD) {
       card.classList.add('snap-edit');
       card.style.transform = 'translateX(0)';
       setTimeout(() => {
         card.classList.remove('snap-edit');
         if (rightAction) rightAction(); else if (onEdit) onEdit();
-      }, 180);
+      }, 200);
     } else {
       card.classList.add('snap-back');
       card.style.transform = 'translateX(0)';
-      setTimeout(() => card.classList.remove('snap-back'), 300);
+      setTimeout(() => card.classList.remove('snap-back'), 280);
     }
     curX = 0;
   }
@@ -1742,7 +1751,7 @@ function initSwipeGeneric(card, { onDelete, onEdit, rightAction } = {}) {
   card.addEventListener('touchmove', onMove, {passive:false});
   card.addEventListener('touchend', onEnd);
   card.addEventListener('mousedown', e => {
-    if (e.target.closest('button,input,select,.pack-chk,.todo-chk,.vote-btn')) return;
+    if (e.target.closest('button,input,select,.pack-chk,.todo-chk,.vote-btn,.planer-chk')) return;
     onStart(e);
     const mm = ev => onMove(ev);
     const mu = () => { onEnd(); document.removeEventListener('mousemove',mm); document.removeEventListener('mouseup',mu); };

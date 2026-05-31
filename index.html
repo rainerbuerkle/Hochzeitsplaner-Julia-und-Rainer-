@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💍 Julia & Rainer — Hochzeit 18. Juli 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #faf7f2; --blush: #e8c9b8; --rose: #c4786a; --deep: #3d2c2c;
+    --gold: #b8965a; --sage: #8fa68b; --text: #4a3535; --muted: #9a8080;
+    --white: #ffffff; --done-bg: #f0f5ef;
+    --julia-color: #c4786a; --rainer-color: #7a9cb5; --both-color: #b8965a; --urgent-color: #d45a4a;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--cream); color:var(--text); font-family:'Jost',sans-serif; font-weight:300; min-height:100vh; }
+
+  /* HEADER */
+  header { background:var(--deep); color:var(--cream); text-align:center; padding:56px 20px 44px; position:relative; overflow:hidden; }
+  header::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 30% 50%,rgba(196,120,106,.25) 0%,transparent 60%),radial-gradient(ellipse at 70% 50%,rgba(143,166,139,.15) 0%,transparent 60%); }
+  .header-inner { position:relative; z-index:1; }
+  .header-eyebrow { font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--blush); margin-bottom:14px; font-weight:400; }
+  header h1 { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(42px,8vw,78px); line-height:1; letter-spacing:-1px; }
+  header h1 em { font-style:italic; color:var(--blush); }
+  .header-date { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:21px; color:var(--blush); margin-top:14px; letter-spacing:1px; }
+  .header-divider { width:80px; height:1px; background:linear-gradient(to right,transparent,var(--blush),transparent); margin:22px auto; }
+  .countdown { display:inline-flex; gap:28px; background:rgba(255,255,255,.06); border:1px solid rgba(232,201,184,.2); border-radius:4px; padding:14px 28px; }
+  .countdown-item { text-align:center; }
+  .countdown-num { display:block; font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:300; color:var(--blush); line-height:1; }
+  .countdown-label { display:block; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-top:3px; }
+
+  /* NAV */
+  nav { background:var(--white); border-bottom:1px solid rgba(0,0,0,.06); position:sticky; top:0; z-index:100; box-shadow:0 2px 20px rgba(61,44,44,.06); }
+  .nav-inner { max-width:980px; margin:0 auto; display:flex; padding:0 16px; align-items:stretch; }
+  .tab-btn { flex:1; padding:16px 8px; border:none; background:none; cursor:pointer; font-family:'Jost',sans-serif; font-size:11px; font-weight:500; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); border-bottom:2px solid transparent; transition:all .25s; display:flex; align-items:center; justify-content:center; gap:6px; }
+  .tab-btn:hover { color:var(--rose); }
+  .tab-btn.active { color:var(--rose); border-bottom-color:var(--rose); }
+  .tab-icon { font-size:15px; }
+  .sync-pill { font-size:10px; letter-spacing:.5px; padding:4px 12px; margin-left:auto; display:flex; align-items:center; color:var(--muted); white-space:nowrap; flex-shrink:0; }
+
+  /* MAIN */
+  main { max-width:980px; margin:0 auto; padding:40px 20px 80px; }
+  .tab-panel { display:none; }
+  .tab-panel.active { display:block; }
+
+  /* SECTION HEADER */
+  .section-header { margin-bottom:32px; }
+  .section-tag { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--sage); font-weight:500; margin-bottom:8px; }
+  .section-title { font-family:'Cormorant Garamond',serif; font-size:38px; font-weight:300; color:var(--deep); line-height:1.1; }
+  .section-title em { font-style:italic; color:var(--rose); }
+
+  /* PROGRESS */
+  .progress-wrap { margin-top:14px; display:flex; align-items:center; gap:14px; }
+  .progress-bar-bg { flex:1; height:4px; background:rgba(0,0,0,.07); border-radius:2px; overflow:hidden; }
+  .progress-bar-fill { height:100%; background:linear-gradient(to right,var(--sage),var(--rose)); border-radius:2px; transition:width .5s ease; }
+  .progress-text { font-size:11px; letter-spacing:1px; color:var(--muted); white-space:nowrap; }
+
+  /* FILTER BAR */
+  .filter-bar { background:var(--white); border:1px solid rgba(0,0,0,.07); border-radius:12px; padding:18px 22px; margin-bottom:26px; display:flex; flex-wrap:wrap; gap:14px; align-items:flex-end; }
+  .filter-group { display:flex; flex-direction:column; gap:6px; }
+  .filter-label { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); font-weight:500; }
+  .filter-chips { display:flex; flex-wrap:wrap; gap:6px; }
+  .chip { padding:5px 13px; border-radius:20px; border:1px solid rgba(0,0,0,.1); background:var(--cream); font-family:'Jost',sans-serif; font-size:12px; font-weight:400; color:var(--muted); cursor:pointer; transition:all .18s; white-space:nowrap; user-select:none; }
+  .chip:hover { border-color:var(--rose); color:var(--rose); }
+  .chip.active { background:var(--rose); border-color:var(--rose); color:white; font-weight:500; }
+  .chip.julia-chip.active { background:var(--julia-color); border-color:var(--julia-color); }
+  .chip.rainer-chip.active { background:var(--rainer-color); border-color:var(--rainer-color); }
+  .chip.both-chip.active { background:var(--both-color); border-color:var(--both-color); }
+  .chip.urgent-chip.active { background:var(--urgent-color); border-color:var(--urgent-color); }
+  .filter-search-wrap { flex:1; min-width:160px; }
+  .filter-search { width:100%; padding:8px 14px 8px 32px; border:1px solid rgba(0,0,0,.1); border-radius:20px; font-family:'Jost',sans-serif; font-size:13px; font-weight:300; color:var(--text); background:var(--cream); outline:none; transition:border-color .2s; }
+  .filter-search:focus { border-color:var(--rose); background:var(--white); }
+  .filter-search-icon { position:relative; }
+  .filter-search-icon::before { content:'🔍'; position:absolute; left:10px; top:50%; transform:translateY(-50%); font-size:11px; pointer-events:none; z-index:1; }
+  .filter-reset-btn { padding:7px 14px; border:1px solid rgba(0,0,0,.1); border-radius:20px; background:none; font-family:'Jost',sans-serif; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); cursor:pointer; transition:all .18s; align-self:flex-end; }
+  .filter-reset-btn:hover { border-color:var(--rose); color:var(--rose); }
+  .filter-results-count { font-size:11px; color:var(--muted); letter-spacing:1px; align-self:flex-end; padding-bottom:2px; }
+
+  /* TODO */
+  .todo-list { display:flex; flex-direction:column; gap:8px; }
+  .todo-item { display:grid; grid-template-columns:24px 1fr auto; gap:14px; align-items:start; background:var(--white); border:1px solid rgba(0,0,0,.06); border-radius:10px; padding:16px 18px; transition:all .2s; user-select:none; }
+  .todo-item:hover { border-color:var(--blush); box-shadow:0 2px 12px rgba(196,120,106,.1); transform:translateY(-1px); }
+  .todo-item.done { background:var(--done-bg); border-color:rgba(143,166,139,.3); }
+  .todo-item.done .todo-text { text-decoration:line-through; color:var(--muted); }
+  .todo-item.urgent-highlight { border-left:3px solid var(--urgent-color); }
+  .todo-checkbox { width:20px; height:20px; border-radius:50%; border:2px solid var(--blush); flex-shrink:0; margin-top:2px; display:flex; align-items:center; justify-content:center; transition:all .2s; background:var(--white); cursor:pointer; }
+  .todo-item.done .todo-checkbox { background:var(--sage); border-color:var(--sage); color:white; font-size:11px; }
+  .todo-body { cursor:pointer; }
+  .todo-text { font-size:15px; font-weight:400; line-height:1.45; color:var(--text); }
+  .todo-note { font-size:12px; color:var(--muted); margin-top:4px; line-height:1.5; }
+  .todo-meta { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+  .badge { display:inline-flex; align-items:center; gap:4px; padding:3px 10px; border-radius:20px; font-size:11px; font-weight:500; }
+  .badge-julia { background:rgba(196,120,106,.12); color:var(--julia-color); border:1px solid rgba(196,120,106,.25); }
+  .badge-rainer { background:rgba(122,156,181,.12); color:var(--rainer-color); border:1px solid rgba(122,156,181,.25); }
+  .badge-both { background:rgba(184,150,90,.12); color:var(--both-color); border:1px solid rgba(184,150,90,.25); }
+  .badge-date { background:rgba(61,44,44,.07); color:var(--text); border:1px solid rgba(0,0,0,.08); }
+  .badge-urgent { background:rgba(212,90,74,.1); color:var(--urgent-color); border:1px solid rgba(212,90,74,.2); }
+  .badge-done-tag { background:rgba(143,166,139,.15); color:var(--sage); border:1px solid rgba(143,166,139,.25); }
+  .badge-hoffi { background:rgba(150,100,180,.12); color:#8855bb; border:1px solid rgba(150,100,180,.25); }
+  .badge-justine { background:rgba(80,160,140,.12); color:#2a9d8f; border:1px solid rgba(80,160,140,.25); }
+  .badge-caro { background:rgba(230,160,50,.12); color:#d4860a; border:1px solid rgba(230,160,50,.25); }
+  .todo-actions { display:flex; align-items:center; }
+  .delete-btn { width:28px; height:28px; border-radius:50%; border:none; background:none; color:var(--muted); cursor:pointer; font-size:16px; display:flex; align-items:center; justify-content:center; transition:all .18s; opacity:0; }
+  .todo-item:hover .delete-btn { opacity:1; }
+  .delete-btn:hover { background:rgba(212,90,74,.1); color:var(--urgent-color); }
+
+  /* ADD ROW */
+  .add-section { margin-top:24px; }
+  .add-section-title { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
+  .add-row { display:flex; gap:8px; flex-wrap:wrap; }
+  .add-input { flex:1; min-width:180px; padding:11px 16px; border:1px solid rgba(0,0,0,.1); border-radius:8px; font-family:'Jost',sans-serif; font-size:14px; font-weight:300; color:var(--text); background:var(--white); outline:none; transition:border-color .2s; }
+  .add-input:focus { border-color:var(--rose); }
+  .add-select { padding:11px 12px; border:1px solid rgba(0,0,0,.1); border-radius:8px; font-family:'Jost',sans-serif; font-size:13px; color:var(--text); background:var(--white); outline:none; cursor:pointer; }
+  .add-select:focus { border-color:var(--rose); }
+  .add-btn { padding:11px 20px; background:var(--rose); color:white; border:none; border-radius:8px; font-family:'Jost',sans-serif; font-size:12px; font-weight:500; letter-spacing:1px; text-transform:uppercase; cursor:pointer; transition:all .2s; white-space:nowrap; }
+  .add-btn:hover { background:var(--deep); transform:translateY(-1px); }
+
+  /* EMPTY */
+  .empty-state { text-align:center; padding:48px 20px; color:var(--muted); }
+  .empty-state .big { font-size:40px; margin-bottom:12px; }
+  .empty-state p { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:20px; }
+
+  /* TIMELINE */
+  .zeitplan-filter { margin-bottom:22px; display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+  .day-group { margin-bottom:44px; }
+  .day-label { display:flex; align-items:center; gap:20px; margin-bottom:18px; }
+  .day-bubble { background:var(--deep); color:var(--blush); border-radius:40px; padding:8px 20px; font-family:'Cormorant Garamond',serif; font-size:17px; font-style:italic; white-space:nowrap; flex-shrink:0; }
+  .day-bubble.wedding-day { background:var(--rose); color:var(--white); }
+  .day-line { flex:1; height:1px; background:rgba(0,0,0,.08); }
+  .timeline-items { display:flex; flex-direction:column; gap:8px; }
+  .timeline-item { display:grid; grid-template-columns:64px 1fr; gap:16px; background:var(--white); border:1px solid rgba(0,0,0,.06); border-radius:8px; padding:14px 20px; align-items:start; transition:all .2s; }
+  .timeline-item:hover { border-color:var(--blush); box-shadow:0 2px 12px rgba(196,120,106,.08); }
+  .timeline-item.highlight { background:linear-gradient(135deg,#fdf1ee,var(--white)); border-color:rgba(196,120,106,.3); }
+  .event-time { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:600; color:var(--rose); text-align:right; line-height:1.2; }
+  .event-time-empty { font-size:18px; color:var(--blush); text-align:right; opacity:.4; }
+  .event-desc { font-size:14px; font-weight:400; color:var(--text); line-height:1.4; }
+  .event-who { font-size:12px; color:var(--muted); margin-top:4px; display:flex; align-items:center; gap:4px; }
+  .event-who::before { content:'👤'; font-size:10px; }
+
+  /* PACK */
+  .pack-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:10px; }
+  .pack-item { display:flex; align-items:center; gap:14px; background:var(--white); border:1px solid rgba(0,0,0,.06); border-radius:8px; padding:14px 18px; cursor:pointer; transition:all .2s; user-select:none; }
+  .pack-item:hover { border-color:var(--blush); transform:translateY(-1px); box-shadow:0 4px 16px rgba(196,120,106,.1); }
+  .pack-item.done { background:var(--done-bg); border-color:rgba(143,166,139,.3); }
+  .pack-item.done .pack-label { text-decoration:line-through; color:var(--muted); }
+  .pack-checkbox { width:18px; height:18px; border-radius:4px; border:2px solid var(--blush); flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:10px; transition:all .2s; background:var(--white); }
+  .pack-item.done .pack-checkbox { background:var(--sage); border-color:var(--sage); color:white; }
+  .pack-label { font-size:15px; font-weight:300; flex:1; }
+
+  /* MUSIK */
+  .musik-intro { background:var(--deep); border-radius:12px; padding:28px 32px; margin-bottom:32px; text-align:center; position:relative; overflow:hidden; }
+  .musik-intro::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 30% 50%,rgba(196,120,106,.2) 0%,transparent 60%),radial-gradient(ellipse at 70% 50%,rgba(184,150,90,.15) 0%,transparent 60%); }
+  .musik-intro-inner { position:relative; z-index:1; }
+  .musik-note { font-size:36px; margin-bottom:10px; animation:float 3s ease-in-out infinite; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
+  .musik-intro h2 { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:32px; color:var(--cream); margin-bottom:8px; }
+  .musik-intro h2 em { font-style:italic; color:var(--blush); }
+  .musik-intro p { font-size:13px; color:rgba(232,201,184,.7); line-height:1.7; max-width:400px; margin:0 auto; }
+
+  .musik-share-box { background:var(--white); border:1px solid rgba(0,0,0,.07); border-radius:10px; padding:16px 20px; margin-bottom:28px; display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+  .musik-share-label { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); font-weight:500; flex-shrink:0; }
+  .musik-share-url { flex:1; min-width:180px; font-size:12px; color:var(--text); background:var(--cream); border:1px solid rgba(0,0,0,.08); border-radius:6px; padding:8px 12px; font-family:monospace; word-break:break-all; }
+  .copy-btn { padding:8px 16px; background:var(--rose); color:white; border:none; border-radius:6px; font-family:'Jost',sans-serif; font-size:11px; font-weight:500; letter-spacing:1px; text-transform:uppercase; cursor:pointer; transition:all .2s; white-space:nowrap; flex-shrink:0; }
+  .copy-btn:hover { background:var(--deep); }
+  .copy-btn.copied { background:var(--sage); }
+
+  .submit-card { background:var(--white); border:1px solid rgba(0,0,0,.07); border-radius:14px; padding:28px; margin-bottom:36px; box-shadow:0 4px 24px rgba(61,44,44,.05); }
+  .submit-card-title { font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:300; color:var(--deep); margin-bottom:6px; }
+  .submit-card-title em { font-style:italic; color:var(--rose); }
+  .submit-hint { font-size:13px; color:var(--muted); margin-bottom:22px; line-height:1.6; }
+  .form-grid { display:flex; flex-direction:column; gap:13px; }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .form-field { display:flex; flex-direction:column; gap:6px; }
+  .form-label { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); font-weight:500; }
+  .form-input { padding:12px 16px; border:1px solid rgba(0,0,0,.1); border-radius:8px; font-family:'Jost',sans-serif; font-size:14px; font-weight:300; color:var(--text); background:var(--cream); outline:none; transition:all .2s; }
+  .form-input:focus { border-color:var(--rose); background:var(--white); box-shadow:0 0 0 3px rgba(196,120,106,.08); }
+  .form-input::placeholder { color:var(--muted); }
+  .submit-btn { width:100%; padding:14px; background:var(--rose); color:white; border:none; border-radius:8px; font-family:'Jost',sans-serif; font-size:12px; font-weight:500; letter-spacing:2px; text-transform:uppercase; cursor:pointer; transition:all .2s; margin-top:4px; }
+  .submit-btn:hover { background:var(--deep); transform:translateY(-1px); }
+  .submit-btn:disabled { background:var(--muted); transform:none; cursor:not-allowed; }
+  .success-msg { display:none; text-align:center; padding:18px; background:rgba(143,166,139,.1); border:1px solid rgba(143,166,139,.3); border-radius:8px; color:var(--sage); font-size:14px; margin-top:14px; }
+  .success-msg.show { display:block; }
+  .success-msg .big { font-size:26px; margin-bottom:5px; }
+
+  .wishes-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; flex-wrap:wrap; gap:10px; }
+  .wishes-title { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; color:var(--deep); }
+  .wishes-title em { font-style:italic; color:var(--rose); }
+  .wish-count-badge { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); padding:5px 14px; background:rgba(0,0,0,.04); border-radius:20px; }
+  .wishes-list { display:flex; flex-direction:column; gap:10px; }
+  .wish-card { background:var(--white); border:1px solid rgba(0,0,0,.06); border-radius:10px; padding:16px 18px; display:grid; grid-template-columns:42px 1fr auto; gap:14px; align-items:center; transition:all .2s; animation:fadeUp .4s ease both; }
+  .wish-card:hover { border-color:var(--blush); box-shadow:0 2px 12px rgba(196,120,106,.08); }
+  .wish-rank { width:42px; height:42px; border-radius:50%; background:var(--cream); border:1px solid rgba(0,0,0,.07); display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:600; color:var(--muted); flex-shrink:0; }
+  .wish-rank.top { background:linear-gradient(135deg,var(--gold),#e8c06a); color:white; border-color:var(--gold); }
+  .wish-song { font-size:15px; font-weight:500; color:var(--deep); line-height:1.3; }
+  .wish-artist { font-size:13px; color:var(--muted); margin-top:2px; }
+  .wish-from { font-size:11px; color:var(--blush); margin-top:5px; display:flex; align-items:center; gap:4px; }
+  .wish-from::before { content:'♥'; font-size:9px; }
+  .wish-votes { display:flex; flex-direction:column; align-items:center; gap:4px; flex-shrink:0; }
+  .vote-btn { width:34px; height:34px; border-radius:50%; border:1px solid rgba(0,0,0,.1); background:var(--cream); cursor:pointer; font-size:14px; transition:all .18s; display:flex; align-items:center; justify-content:center; }
+  .vote-btn:hover { background:var(--rose); border-color:var(--rose); transform:scale(1.1); color:white; }
+  .vote-btn.voted { background:var(--rose); border-color:var(--rose); color:white; }
+  .vote-count { font-size:13px; font-weight:500; color:var(--text); }
+  .empty-wishes { text-align:center; padding:40px 20px; color:var(--muted); }
+  .empty-wishes .big { font-size:38px; margin-bottom:10px; }
+  .empty-wishes p { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:19px; }
+
+  /* TOAST */
+  .all-done-toast { position:fixed; bottom:28px; left:50%; transform:translateX(-50%) translateY(100px); background:var(--sage); color:white; padding:13px 26px; border-radius:40px; font-size:14px; font-weight:500; letter-spacing:1px; opacity:0; transition:all .5s; pointer-events:none; z-index:999; }
+  .all-done-toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+  .fade-up { animation:fadeUp .45s ease both; }
+
+  @media(max-width:620px) {
+    .countdown{gap:18px;padding:12px 18px;}
+    .tab-btn span:not(.tab-icon){display:none;}
+    .pack-grid{grid-template-columns:1fr;}
+    .section-title{font-size:30px;}
+    .filter-bar{padding:14px;}
+    .todo-item{grid-template-columns:24px 1fr;}
+    .todo-actions{display:none;}
+    .form-row{grid-template-columns:1fr;}
+    .wish-card{grid-template-columns:36px 1fr auto;}
+    .sync-pill{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="header-eyebrow">✦ Hochzeitsplanung ✦</div>
+    <h1>Julia <em>&</em> Rainer</h1>
+    <div class="header-date">18. Juli 2026 — Standesamt & Burg Michelwinnaden</div>
+    <div class="header-divider"></div>
+    <div class="countdown" id="countdown">
+      <div class="countdown-item"><span class="countdown-num" id="cd-days">—</span><span class="countdown-label">Tage</span></div>
+      <div class="countdown-item"><span class="countdown-num" id="cd-hours">—</span><span class="countdown-label">Stunden</span></div>
+      <div class="countdown-item"><span class="countdown-num" id="cd-mins">—</span><span class="countdown-label">Minuten</span></div>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-inner">
+    <button class="tab-btn active" onclick="switchTab('todos',this)"><span class="tab-icon">✓</span><span>To-Dos</span></button>
+    <button class="tab-btn" onclick="switchTab('zeitplan',this)"><span class="tab-icon">📅</span><span>Zeitplan</span></button>
+    <button class="tab-btn" onclick="switchTab('packliste',this)"><span class="tab-icon">🧳</span><span>Packliste</span></button>
+    <button class="tab-btn" onclick="switchTab('musik',this)"><span class="tab-icon">🎵</span><span>Musik</span></button>
+    <div class="sync-pill" id="sync-status">⟳</div>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ══ TO-DOS ══ -->
+  <div class="tab-panel active" id="panel-todos">
+    <div class="section-header fade-up">
+      <div class="section-tag">Offene Aufgaben</div>
+      <div class="section-title">To-Do <em>Liste</em></div>
+      <div class="progress-wrap">
+        <div class="progress-bar-bg"><div class="progress-bar-fill" id="todo-progress" style="width:0%"></div></div>
+        <span class="progress-text" id="todo-progress-text">0 / 0 erledigt</span>
+      </div>
+    </div>
+
+    <div class="filter-bar fade-up">
+      <div class="filter-group">
+        <div class="filter-label">Person</div>
+        <div class="filter-chips">
+          <div class="chip julia-chip" data-filter="person" data-value="julia" onclick="toggleFilter(this)">👰 Julia</div>
+          <div class="chip rainer-chip" data-filter="person" data-value="rainer" onclick="toggleFilter(this)">🤵 Rainer</div>
+          <div class="chip both-chip" data-filter="person" data-value="both" onclick="toggleFilter(this)">💑 Beide</div>
+          <div class="chip" data-filter="person" data-value="hoffi" onclick="toggleFilter(this)">🙋 Hoffi</div>
+          <div class="chip" data-filter="person" data-value="justine" onclick="toggleFilter(this)">🙋 Justine</div>
+          <div class="chip" data-filter="person" data-value="caro" onclick="toggleFilter(this)">🙋 Caro</div>
+        </div>
+      </div>
+      <div class="filter-group">
+        <div class="filter-label">Fälligkeit</div>
+        <div class="filter-chips">
+          <div class="chip urgent-chip" data-filter="due" data-value="overdue" onclick="toggleFilter(this)">⚠️ Überfällig</div>
+          <div class="chip" data-filter="due" data-value="week" onclick="toggleFilter(this)">📆 Diese Woche</div>
+          <div class="chip" data-filter="due" data-value="04.07" onclick="toggleFilter(this)">4. Juli</div>
+          <div class="chip" data-filter="due" data-value="11.07" onclick="toggleFilter(this)">11. Juli</div>
+          <div class="chip" data-filter="due" data-value="17.07" onclick="toggleFilter(this)">17. Juli</div>
+          <div class="chip" data-filter="due" data-value="18.07" onclick="toggleFilter(this)">18. Juli</div>
+        </div>
+      </div>
+      <div class="filter-group">
+        <div class="filter-label">Status</div>
+        <div class="filter-chips">
+          <div class="chip" data-filter="status" data-value="open" onclick="toggleFilter(this)">○ Offen</div>
+          <div class="chip" data-filter="status" data-value="done" onclick="toggleFilter(this)">✓ Erledigt</div>
+        </div>
+      </div>
+      <div class="filter-group filter-search-wrap">
+        <div class="filter-label">Suche</div>
+        <div class="filter-search-icon">
+          <input class="filter-search" id="todo-search" placeholder="Aufgabe suchen …" oninput="applyFilters()">
+        </div>
+      </div>
+      <button class="filter-reset-btn" onclick="resetFilters()">↺ Reset</button>
+      <div class="filter-results-count" id="filter-count"></div>
+    </div>
+
+    <div class="todo-list" id="todo-list"></div>
+
+    <div class="add-section">
+      <div class="add-section-title">Neue Aufgabe</div>
+      <div class="add-row">
+        <input class="add-input" id="todo-input" placeholder="Aufgabe …" onkeydown="if(event.key==='Enter')addTodo()">
+        <select class="add-select" id="todo-person">
+          <option value="both">💑 Beide</option>
+          <option value="julia">👰 Julia</option>
+          <option value="rainer">🤵 Rainer</option>
+          <option value="hoffi">🙋 Hoffi</option>
+          <option value="justine">🙋 Justine</option>
+          <option value="caro">🙋 Caro</option>
+        </select>
+        <select class="add-select" id="todo-due">
+          <option value="">Kein Datum</option>
+          <option value="04.07.2026">04. Juli</option>
+          <option value="11.07.2026">11. Juli</option>
+          <option value="17.07.2026">17. Juli</option>
+          <option value="18.07.2026">18. Juli</option>
+        </select>
+        <button class="add-btn" onclick="addTodo()">+ Hinzufügen</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ ZEITPLAN ══ -->
+  <div class="tab-panel" id="panel-zeitplan">
+    <div class="section-header fade-up">
+      <div class="section-tag">Ablauf & Termine</div>
+      <div class="section-title">Zeit<em>plan</em></div>
+    </div>
+    <div class="zeitplan-filter fade-up">
+      <span style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-right:4px">Tag:</span>
+      <div class="chip active" data-zf="all" onclick="filterZeit(this)">Alle</div>
+      <div class="chip" data-zf="04.07" onclick="filterZeit(this)">04. Juli</div>
+      <div class="chip" data-zf="11.07" onclick="filterZeit(this)">11. Juli</div>
+      <div class="chip" data-zf="17.07" onclick="filterZeit(this)">17. Juli</div>
+      <div class="chip" data-zf="18.07" onclick="filterZeit(this)">18. Juli ✨</div>
+      <div class="chip" data-zf="19.07" onclick="filterZeit(this)">19. Juli</div>
+    </div>
+    <div id="zeitplan-container"></div>
+  </div>
+
+  <!-- ══ PACKLISTE ══ -->
+  <div class="tab-panel" id="panel-packliste">
+    <div class="section-header fade-up">
+      <div class="section-tag">Für den 18. Juli</div>
+      <div class="section-title">Pack<em>liste</em></div>
+      <div class="progress-wrap">
+        <div class="progress-bar-bg"><div class="progress-bar-fill" id="pack-progress" style="width:0%"></div></div>
+        <span class="progress-text" id="pack-progress-text">0 / 0 eingepackt</span>
+      </div>
+    </div>
+    <div class="pack-grid" id="pack-grid"></div>
+    <div class="add-row" style="margin-top:20px">
+      <input class="add-input" id="pack-input" placeholder="Neuen Gegenstand …" onkeydown="if(event.key==='Enter')addPackItem()">
+      <button class="add-btn" onclick="addPackItem()">+ Hinzufügen</button>
+    </div>
+  </div>
+
+  <!-- ══ MUSIK ══ -->
+  <div class="tab-panel" id="panel-musik">
+    <div class="musik-intro fade-up">
+      <div class="musik-intro-inner">
+        <div class="musik-note">🎵</div>
+        <h2>Musik<em>wünsche</em></h2>
+        <p>Welcher Song darf auf unserer Hochzeit auf keinen Fall fehlen? Schreib ihn hier rein — wir freuen uns über jeden Wunsch! 🎶</p>
+      </div>
+    </div>
+
+    <div class="musik-share-box fade-up">
+      <div class="musik-share-label">🔗 Link teilen</div>
+      <div class="musik-share-url" id="share-url">Diese Seite einfach als Link teilen!</div>
+      <button class="copy-btn" id="copy-btn" onclick="copyLink()">📋 Kopieren</button>
+    </div>
+
+    <div class="submit-card fade-up">
+      <div class="submit-card-title">Wunsch <em>eintragen</em></div>
+      <div class="submit-hint">Titel und Interpret reichen — der Name ist optional aber nett! 😊</div>
+      <div class="form-grid">
+        <div class="form-row">
+          <div class="form-field">
+            <div class="form-label">Songtitel *</div>
+            <input class="form-input" id="inp-song" placeholder="z.B. Dancing Queen" onkeydown="if(event.key==='Enter')submitWish()">
+          </div>
+          <div class="form-field">
+            <div class="form-label">Interpret *</div>
+            <input class="form-input" id="inp-artist" placeholder="z.B. ABBA" onkeydown="if(event.key==='Enter')submitWish()">
+          </div>
+        </div>
+        <div class="form-field">
+          <div class="form-label">Dein Name (optional)</div>
+          <input class="form-input" id="inp-name" placeholder="z.B. Max" onkeydown="if(event.key==='Enter')submitWish()">
+        </div>
+        <button class="submit-btn" id="submit-btn" onclick="submitWish()">🎵 Wunsch absenden</button>
+      </div>
+      <div class="success-msg" id="success-msg">
+        <div class="big">🎉</div>
+        Danke! Dein Wunsch wurde gespeichert.
+      </div>
+    </div>
+
+    <div class="wishes-header">
+      <div class="wishes-title">Alle <em>Wünsche</em></div>
+      <div class="wish-count-badge" id="wish-count">0 Wünsche</div>
+    </div>
+    <div class="wishes-list" id="wishes-list">
+      <div class="empty-wishes"><div class="big">🎶</div><p>Noch keine Wünsche — sei der Erste!</p></div>
+    </div>
+  </div>
+
+</main>
+
+<div class="all-done-toast" id="toast">🎉 Alles erledigt!</div>
+
+<script>
+// ─── FIREBASE ────────────────────────────────────────────────────────────────
+const FB = 'https://hochzeit-julia-und-rainer-default-rtdb.europe-west1.firebasedatabase.app';
+const fbGet  = async p => { try { return await (await fetch(`${FB}/${p}.json`)).json(); } catch { return null; } };
+const fbSet  = async (p,d) => { try { await fetch(`${FB}/${p}.json`,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)}); } catch {} };
+const fbPush = async (p,d) => { try { return await (await fetch(`${FB}/${p}.json`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)})).json(); } catch { return null; } };
+
+// ─── DATA ────────────────────────────────────────────────────────────────────
+const defaultTodos = [
+  {id:1, text:'Gästebuch bestellen', person:'both', due:'11.07.2026', done:false},
+  {id:2, text:'Ringhalter bestellen', person:'both', due:'11.07.2026', done:false},
+  {id:3, text:'Deo für das Bad kaufen', person:'both', due:'17.07.2026', done:false},
+  {id:4, text:'Lieder fürs Standesamt aussuchen', person:'both', due:'11.07.2026', done:false},
+  {id:5, text:'Welches Lied wird als Hochzeitstanz getanzt?', person:'both', due:'11.07.2026', done:false},
+  {id:6, text:'Sitzordnung definieren', person:'both', due:'11.07.2026', done:false},
+  {id:7, text:'Sitzkarten schreiben & organisieren', person:'both', due:'17.07.2026', done:false},
+  {id:8, text:'Personengruppen für Fotos festlegen', person:'both', due:'11.07.2026', done:false, note:'Bereits geplant: Feuerwehr Rainer, Clique, Studimädels, JGA Julia, JGA Rainer → Bitte ergänzen!'},
+  {id:9, text:'Fotobox-Hintergrund: Platz messen & Laura Bescheid geben', person:'both', due:'11.07.2026', done:false, note:'Sie kann den Hintergrund mitbringen'},
+  {id:10,text:'Vasen bei Nati abholen', person:'both', due:'04.07.2026', done:false},
+  {id:11,text:'Vasen bei Eva abholen', person:'both', due:'04.07.2026', done:false},
+  {id:12,text:'Weiße Decken bei Nati abholen', person:'both', due:'04.07.2026', done:false},
+  {id:13,text:'Lichterkette bei Sarah abholen', person:'both', due:'04.07.2026', done:false},
+  {id:14,text:'Vasen zu Blumenkraus bringen', person:'both', due:'04.07.2026', done:false},
+  {id:15,text:'Bei der Konditorin anrufen – Abholzeit der Hochzeitstorte klären', person:'both', due:'04.07.2026', done:false},
+  {id:16,text:'Essenslieferant anrufen (Bestätigung)', person:'both', due:'11.07.2026', done:false},
+  {id:17,text:'Musikbox bei Peter ausleihen', person:'both', due:'11.07.2026', done:false},
+  {id:18,text:'DJ nochmal anfragen', person:'both', due:'11.07.2026', done:false},
+  {id:19,text:'Spieleanhänger & Fotobox abholen', person:'both', due:'17.07.2026', done:false},
+  {id:20,text:'Q-Ace abholen', person:'both', due:'17.07.2026', done:false},
+  {id:21,text:'Karten / Geschenkbox bei Eva abholen', person:'both', due:'17.07.2026', done:false},
+  {id:22,text:'Hochzeitstorte abholen', person:'both', due:'18.07.2026', done:false},
+  {id:23,text:'Frühstück organisieren', person:'both', due:'18.07.2026', done:false},
+];
+
+const defaultPack = [
+  {id:1,text:'Ringe',done:false},{id:2,text:'Ausweise',done:false},
+  {id:3,text:'Gästeliste',done:false},{id:4,text:'Gästebuch',done:false},
+];
+
+const zeitplan = [
+  {date:'04. Juli 2026',dateKey:'04.07',isWeddingDay:false,events:[
+    {time:null,desc:'Vasen bei Nati abholen',who:null},
+    {time:null,desc:'Vasen bei Eva abholen',who:null},
+    {time:null,desc:'Weiße Decken bei Nati abholen',who:null},
+    {time:null,desc:'Lichterkette bei Sarah abholen',who:null},
+    {time:null,desc:'Vasen zu Blumenkraus bringen',who:null},
+    {time:null,desc:'Bei der Konditorin anrufen – Abholzeit der Hochzeitstorte klären',who:null},
+  ]},
+  {date:'11. Juli 2026',dateKey:'11.07',isWeddingDay:false,events:[
+    {time:null,desc:'Essenslieferant anrufen (Bestätigung)',who:null},
+    {time:null,desc:'Musikbox bei Peter ausleihen',who:null},
+    {time:null,desc:'DJ nochmal anfragen',who:null},
+  ]},
+  {date:'17. Juli 2026',dateKey:'17.07',isWeddingDay:false,events:[
+    {time:'13:00',desc:'Aufbau',who:'Julia, Rainer, Marcel, Jussi, Caro'},
+    {time:null,desc:'Blumen bei Kraus abholen',who:'Justine'},
+    {time:null,desc:'Spieleanhänger & Fotobox abholen',who:null},
+    {time:null,desc:'Q-Ace abholen',who:null},
+    {time:null,desc:'Karten / Geschenkbox bei Eva abholen',who:null},
+  ]},
+  {date:'18. Juli 2026 ✨',dateKey:'18.07',isWeddingDay:true,events:[
+    {time:'08:00',desc:'Blumen bei Kraus abholen',who:'Justine'},
+    {time:'08:00',desc:'Friseur Julia',who:'Julia'},
+    {time:'11:00',desc:'First Look Shooting mit Trauzeugen (bis ca. 12:20 Uhr)',who:'Trauzeugen, Laura (Fotografin)'},
+    {time:'12:30',desc:'Familienbilder enge Familie – Eltern / Geschwister (bis ca. 12:50 Uhr)',who:'Laura (Fotografin)'},
+    {time:'13:00',desc:'Mittagessen',who:null},
+    {time:'13:30',desc:'Laura fährt los zum Standesamt',who:'Laura (Fotografin)'},
+    {time:'13:40',desc:'Laura an Standesamt – fotografiert Deko etc.',who:'Laura (Fotografin)'},
+    {time:'14:00',desc:'🎉 Trauung – Standesamt',who:null,highlight:true},
+    {time:'14:45',desc:'Trauung Ende',who:null},
+    {time:'14:45',desc:'Sektempfang (bis ca. 16:40 Uhr)',who:null},
+    {time:'14:45',desc:'Gruppenbild mit Feuerwehr von Rainer (beim Sektempfang)',who:'Laura (Fotografin)'},
+    {time:'15:00',desc:'Hochzeitstorte abholen',who:null},
+    {time:'16:45',desc:'Laura fährt an die Abend-Location',who:'Laura (Fotografin)'},
+    {time:'17:00',desc:'Ankunft / Sammeln bei der Burg Michelwinnaden',who:null},
+    {time:'17:00',desc:'Sektempfang Ende',who:null},
+    {time:'17:30',desc:'Fotoshooting bei der Burg Michelwinnaden',who:null},
+    {time:'17:30',desc:'Gruppenbilder der Clique (Studimädels, JGA Julia, JGA Rainer etc.)',who:'Laura (Fotografin)'},
+    {time:'19:00',desc:'Essen 🥂',who:null},
+    {time:null,desc:'Im Laufe des Tages: Gäste gratulieren lassen (nicht direkt nach Standesamt)',who:null},
+  ]},
+  {date:'19. Juli 2026',dateKey:'19.07',isWeddingDay:false,events:[
+    {time:'10:30',desc:'Frühstück bei Bürkles',who:null},
+    {time:null,desc:'Frühstück organisieren',who:null},
+    {time:null,desc:'Abholung der Dekoartikel (Abbau)',who:null},
+  ]},
+];
+
+// ─── STATE ───────────────────────────────────────────────────────────────────
+let todos = JSON.parse(JSON.stringify(defaultTodos));
+let packItems = JSON.parse(JSON.stringify(defaultPack));
+let wishes = [];
+let myVotes = JSON.parse(localStorage.getItem('wedding_my_votes')||'[]');
+let activeFilters = {person:null,due:null,status:null};
+let lastTodosHash='', lastPackHash='', lastWishHash='';
+let zeitFilter = 'all';
+
+const saveVotes = () => localStorage.setItem('wedding_my_votes', JSON.stringify(myVotes));
+const escHtml = s => s ? String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') : '';
+
+// ─── FIREBASE SAVE ───────────────────────────────────────────────────────────
+function save() {
+  fbSet('todos', todos);
+  fbSet('pack', packItems);
+}
+
+// ─── TABS ────────────────────────────────────────────────────────────────────
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+name).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ─── COUNTDOWN ───────────────────────────────────────────────────────────────
+function updateCountdown() {
+  const diff = new Date('2026-07-18T14:00:00') - new Date();
+  if (diff<=0){document.getElementById('countdown').innerHTML='<span style="font-family:Cormorant Garamond,serif;font-style:italic;font-size:22px;color:var(--blush)">🎉 Heute ist euer großer Tag!</span>';return;}
+  document.getElementById('cd-days').textContent=Math.floor(diff/86400000);
+  document.getElementById('cd-hours').textContent=String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+  document.getElementById('cd-mins').textContent=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+}
+setInterval(updateCountdown,30000); updateCountdown();
+
+// ─── SYNC STATUS ─────────────────────────────────────────────────────────────
+function setSyncStatus(t,c){const el=document.getElementById('sync-status');if(el){el.textContent=t;el.style.color=c||'var(--muted)';}}
+
+// ─── FILTERS ─────────────────────────────────────────────────────────────────
+function toggleFilter(chip){
+  const f=chip.dataset.filter, v=chip.dataset.value;
+  if(activeFilters[f]===v){activeFilters[f]=null;chip.classList.remove('active');}
+  else{document.querySelectorAll(`.chip[data-filter="${f}"]`).forEach(c=>c.classList.remove('active'));activeFilters[f]=v;chip.classList.add('active');}
+  applyFilters();
+}
+function resetFilters(){
+  activeFilters={person:null,due:null,status:null};
+  document.querySelectorAll('.chip[data-filter]').forEach(c=>c.classList.remove('active'));
+  document.getElementById('todo-search').value='';
+  applyFilters();
+}
+function parseDue(s){if(!s)return null;const p=s.split('.');return new Date(parseInt(p[2]),parseInt(p[1])-1,parseInt(p[0]));}
+function applyFilters(){
+  const search=(document.getElementById('todo-search').value||'').toLowerCase().trim();
+  const now=new Date(), td=new Date(now.getFullYear(),now.getMonth(),now.getDate()), we=new Date(td.getTime()+7*86400000);
+  let vis=0;
+  todos.forEach(t=>{
+    let show=true;
+    const dd=parseDue(t.due);
+    if(activeFilters.person&&t.person!==activeFilters.person)show=false;
+    if(activeFilters.due&&show){
+      if(activeFilters.due==='overdue')show=dd&&dd<td&&!t.done;
+      else if(activeFilters.due==='week')show=dd&&dd>=td&&dd<=we;
+      else show=t.due&&t.due.startsWith(activeFilters.due);
+    }
+    if(activeFilters.status&&show){if(activeFilters.status==='open')show=!t.done;else show=t.done;}
+    if(search&&show)show=t.text.toLowerCase().includes(search)||(t.note||'').toLowerCase().includes(search);
+    const el=document.getElementById('todo-el-'+t.id);
+    if(el)el.style.display=show?'':'none';
+    if(show)vis++;
+  });
+  const hasF=activeFilters.person||activeFilters.due||activeFilters.status||search;
+  document.getElementById('filter-count').textContent=hasF?`${vis} Aufgabe${vis!==1?'n':''} angezeigt`:'';
+}
+
+// ─── TODOS ───────────────────────────────────────────────────────────────────
+function personBadge(p){
+  const m={julia:'<span class="badge badge-julia">👰 Julia</span>',rainer:'<span class="badge badge-rainer">🤵 Rainer</span>',both:'<span class="badge badge-both">💑 Beide</span>',hoffi:'<span class="badge badge-hoffi">🙋 Hoffi</span>',justine:'<span class="badge badge-justine">🙋 Justine</span>',caro:'<span class="badge badge-caro">🙋 Caro</span>'};
+  return m[p]||m.both;
+}
+function dueBadge(due){
+  if(!due)return '';
+  const d=parseDue(due),now=new Date(),td=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  const lbl=due.slice(0,5);
+  return d&&d<td?`<span class="badge badge-urgent">⚠️ ${lbl}</span>`:`<span class="badge badge-date">📅 ${lbl}</span>`;
+}
+function renderTodos(){
+  const list=document.getElementById('todo-list');
+  const done=todos.filter(t=>t.done).length;
+  const pct=todos.length?(done/todos.length*100):0;
+  document.getElementById('todo-progress').style.width=pct+'%';
+  document.getElementById('todo-progress-text').textContent=`${done} / ${todos.length} erledigt`;
+  list.innerHTML='';
+  if(!todos.length){list.innerHTML='<div class="empty-state"><div class="big">✓</div><p>Alle Aufgaben erledigt!</p></div>';return;}
+  const sorted=[...todos].sort((a,b)=>{
+    if(a.done!==b.done)return a.done?1:-1;
+    const da=parseDue(a.due),db=parseDue(b.due);
+    if(!da&&!db)return 0;if(!da)return 1;if(!db)return -1;return da-db;
+  });
+  sorted.forEach(t=>{
+    const now=new Date(),td=new Date(now.getFullYear(),now.getMonth(),now.getDate()),dd=parseDue(t.due),over=dd&&dd<td&&!t.done;
+    const el=document.createElement('div');
+    el.id='todo-el-'+t.id;
+    el.className='todo-item'+(t.done?' done':'')+(over?' urgent-highlight':'');
+    el.innerHTML=`<div class="todo-checkbox" onclick="toggleTodo(${t.id})">${t.done?'✓':''}</div><div class="todo-body" onclick="toggleTodo(${t.id})"><div class="todo-text">${escHtml(t.text)}</div>${t.note?`<div class="todo-note">${escHtml(t.note)}</div>`:''}<div class="todo-meta">${personBadge(t.person)}${dueBadge(t.due)}${t.done?'<span class="badge badge-done-tag">✓ Erledigt</span>':''}</div></div><div class="todo-actions"><button class="delete-btn" onclick="deleteTodo(${t.id})">×</button></div>`;
+    list.appendChild(el);
+  });
+  applyFilters();
+}
+function toggleTodo(id){const t=todos.find(x=>x.id===id);if(t){t.done=!t.done;save();renderTodos();checkAllDone('todos');}}
+function deleteTodo(id){todos=todos.filter(x=>x.id!==id);save();renderTodos();}
+function addTodo(){
+  const inp=document.getElementById('todo-input'),val=inp.value.trim();
+  if(!val)return;
+  todos.push({id:Date.now(),text:val,person:document.getElementById('todo-person').value,due:document.getElementById('todo-due').value||null,done:false});
+  inp.value='';save();renderTodos();
+}
+
+// ─── PACK ────────────────────────────────────────────────────────────────────
+function renderPack(){
+  const grid=document.getElementById('pack-grid');
+  const done=packItems.filter(p=>p.done).length,pct=packItems.length?(done/packItems.length*100):0;
+  document.getElementById('pack-progress').style.width=pct+'%';
+  document.getElementById('pack-progress-text').textContent=`${done} / ${packItems.length} eingepackt`;
+  grid.innerHTML='';
+  packItems.forEach(p=>{
+    const el=document.createElement('div');
+    el.className='pack-item'+(p.done?' done':'');
+    el.onclick=()=>togglePack(p.id);
+    el.innerHTML=`<div class="pack-checkbox">${p.done?'✓':''}</div><span class="pack-label">${escHtml(p.text)}</span>`;
+    grid.appendChild(el);
+  });
+}
+function togglePack(id){const p=packItems.find(x=>x.id===id);if(p){p.done=!p.done;save();renderPack();checkAllDone('pack');}}
+function addPackItem(){const inp=document.getElementById('pack-input'),val=inp.value.trim();if(!val)return;packItems.push({id:Date.now(),text:val,done:false});inp.value='';save();renderPack();}
+
+// ─── ZEITPLAN ────────────────────────────────────────────────────────────────
+function filterZeit(chip){document.querySelectorAll('.chip[data-zf]').forEach(c=>c.classList.remove('active'));chip.classList.add('active');zeitFilter=chip.dataset.zf;renderZeitplan();}
+function renderZeitplan(){
+  const cont=document.getElementById('zeitplan-container');cont.innerHTML='';
+  (zeitFilter==='all'?zeitplan:zeitplan.filter(d=>d.dateKey===zeitFilter)).forEach(day=>{
+    const g=document.createElement('div');g.className='day-group';
+    g.innerHTML=`<div class="day-label"><div class="day-bubble${day.isWeddingDay?' wedding-day':''}">${escHtml(day.date)}</div><div class="day-line"></div></div><div class="timeline-items">${day.events.map(e=>`<div class="timeline-item${e.highlight?' highlight':''}"><div class="${e.time?'event-time':'event-time-empty'}">${e.time||'—'}</div><div class="event-body"><div class="event-desc">${escHtml(e.desc)}</div>${e.who?`<div class="event-who">${escHtml(e.who)}</div>`:''}</div></div>`).join('')}</div>`;
+    cont.appendChild(g);
+  });
+}
+
+// ─── MUSIK ───────────────────────────────────────────────────────────────────
+function copyLink(){
+  const url=window.location.href;
+  navigator.clipboard.writeText(url).catch(()=>{});
+  const btn=document.getElementById('copy-btn');
+  btn.textContent='✓ Kopiert!';btn.classList.add('copied');
+  setTimeout(()=>{btn.textContent='📋 Kopieren';btn.classList.remove('copied');},2500);
+}
+async function submitWish(){
+  const song=document.getElementById('inp-song').value.trim(),artist=document.getElementById('inp-artist').value.trim(),name=document.getElementById('inp-name').value.trim();
+  if(!song||!artist){document.getElementById('inp-song').style.borderColor='var(--rose)';document.getElementById('inp-song').focus();return;}
+  const btn=document.getElementById('submit-btn');btn.disabled=true;btn.textContent='⟳ Wird gespeichert …';
+  const wish={song,artist,name:name||null,votes:0,ts:Date.now()};
+  const res=await fbPush('wishes',wish);
+  if(res&&res.name){wish.id=res.name;wishes.push(wish);}
+  document.getElementById('inp-song').value='';document.getElementById('inp-artist').value='';document.getElementById('inp-name').value='';
+  document.getElementById('inp-song').style.borderColor='';
+  btn.disabled=false;btn.textContent='🎵 Wunsch absenden';
+  const msg=document.getElementById('success-msg');msg.classList.add('show');setTimeout(()=>msg.classList.remove('show'),3000);
+  renderWishes();
+}
+async function vote(id){
+  if(myVotes.includes(id)){myVotes=myVotes.filter(v=>v!==id);const w=wishes.find(x=>x.id===id);if(w){w.votes=Math.max(0,(w.votes||0)-1);await fbSet(`wishes/${id}/votes`,w.votes);}}
+  else{myVotes.push(id);const w=wishes.find(x=>x.id===id);if(w){w.votes=(w.votes||0)+1;await fbSet(`wishes/${id}/votes`,w.votes);}}
+  saveVotes();renderWishes();
+}
+function renderWishes(){
+  const list=document.getElementById('wishes-list'),countEl=document.getElementById('wish-count');
+  if(!wishes.length){list.innerHTML='<div class="empty-wishes"><div class="big">🎶</div><p>Noch keine Wünsche — sei der Erste!</p></div>';countEl.textContent='0 Wünsche';return;}
+  const sorted=[...wishes].sort((a,b)=>(b.votes||0)-(a.votes||0)||a.ts-b.ts);
+  countEl.textContent=`${sorted.length} ${sorted.length===1?'Wunsch':'Wünsche'}`;
+  list.innerHTML='';
+  sorted.forEach((w,i)=>{
+    const voted=myVotes.includes(w.id),el=document.createElement('div');
+    el.className='wish-card';el.style.animationDelay=(i*.04)+'s';
+    el.innerHTML=`<div class="wish-rank${i===0&&w.votes>0?' top':''}">${i+1}</div><div class="wish-body"><div class="wish-song">${escHtml(w.song)}</div><div class="wish-artist">${escHtml(w.artist)}</div>${w.name?`<div class="wish-from">${escHtml(w.name)}</div>`:''}</div><div class="wish-votes"><button class="vote-btn${voted?' voted':''}" onclick="vote('${w.id}')">${voted?'♥':'♡'}</button><span class="vote-count">${w.votes||0}</span></div>`;
+    list.appendChild(el);
+  });
+}
+
+// ─── HELPERS ─────────────────────────────────────────────────────────────────
+function checkAllDone(type){
+  const items=type==='todos'?todos:packItems;
+  if(items.length&&items.every(i=>i.done)){const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3500);}
+}
+
+// ─── POLL ────────────────────────────────────────────────────────────────────
+async function pollAll(){
+  const [rt,rp,rw]=await Promise.all([fbGet('todos'),fbGet('pack'),fbGet('wishes')]);
+  if(rt&&Array.isArray(rt)){const h=JSON.stringify(rt);if(h!==lastTodosHash){lastTodosHash=h;todos=rt;renderTodos();}}
+  if(rp&&Array.isArray(rp)){const h=JSON.stringify(rp);if(h!==lastPackHash){lastPackHash=h;packItems=rp;renderPack();}}
+  if(rw&&typeof rw==='object'){const arr=Object.entries(rw).map(([id,v])=>({...v,id}));const h=JSON.stringify(arr);if(h!==lastWishHash){lastWishHash=h;wishes=arr;renderWishes();}}
+}
+
+// ─── INIT ────────────────────────────────────────────────────────────────────
+async function init(){
+  setSyncStatus('⟳ Verbinde …');
+  document.getElementById('share-url').textContent=window.location.href;
+  const [rt,rp,rw]=await Promise.all([fbGet('todos'),fbGet('pack'),fbGet('wishes')]);
+  if(rt&&Array.isArray(rt)&&rt.length){todos=rt;lastTodosHash=JSON.stringify(rt);}
+  else fbSet('todos',todos);
+  if(rp&&Array.isArray(rp)&&rp.length){packItems=rp;lastPackHash=JSON.stringify(rp);}
+  else fbSet('pack',packItems);
+  if(rw&&typeof rw==='object'){wishes=Object.entries(rw).map(([id,v])=>({...v,id}));lastWishHash=JSON.stringify(wishes);}
+  setSyncStatus('● Live-Sync aktiv','var(--sage)');
+  renderTodos();renderPack();renderZeitplan();renderWishes();
+  setInterval(pollAll,3000);
+}
+init();
+</script>
+</body>
+</html>

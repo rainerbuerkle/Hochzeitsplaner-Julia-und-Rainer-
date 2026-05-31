@@ -201,6 +201,14 @@ main{max-width:1000px;margin:0 auto;padding:40px 20px 100px;}
 .ablauf-who::before{content:'👤';font-size:10px;}
 .ablauf-section-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;font-weight:700;padding:18px 0 8px;color:var(--muted);}
 .ablauf-section-label.main{color:var(--primary);}
+.planer-topbar{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;}
+.pf-toggle-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;border:1.5px solid var(--border);border-radius:20px;background:var(--card-bg);font-family:'Nunito',sans-serif;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;transition:all .2s;white-space:nowrap;box-shadow:var(--shadow);}
+.pf-toggle-btn:hover{border-color:var(--primary);color:var(--primary);}
+.pf-toggle-btn.active{border-color:var(--primary);color:var(--primary);background:rgba(194,98,58,.06);}
+#pf-active-badge{background:var(--primary);color:#fff;border-radius:20px;padding:1px 7px;font-size:10px;font-weight:700;margin-left:2px;}
+.planer-filters{background:var(--card-bg);border:1.5px solid var(--border);border-radius:14px;padding:16px 18px;margin-bottom:16px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--shadow);animation:slideDown .2s ease;}
+@keyframes slideDown{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.pf-filters-open .planer-filters{display:flex;}
 .planer-filters{background:var(--card-bg);border:1.5px solid var(--border);border-radius:14px;padding:16px 18px;margin-bottom:20px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--shadow);}
 .pf-row{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-start;}
 .pf-group{display:flex;flex-direction:column;gap:5px;}
@@ -429,10 +437,22 @@ main{max-width:1000px;margin:0 auto;padding:40px 20px 100px;}
     <div class="prog-row"><div class="prog-bg"><div class="prog-fill" id="tp" style="width:0%"></div></div><span class="prog-txt" id="tt">0 / 0 erledigt</span></div>
   </div>
 
-  <!-- filter + add bar -->
-  <div class="planer-filters fade-up">
+  <!-- filter + add bar — collapsed by default -->
+  <div class="planer-topbar fade-up">
+    <div style="display:flex;align-items:center;gap:8px;flex:1;min-width:0;">
+      <button class="pf-toggle-btn" id="pf-toggle-btn" onclick="togglePlanerFilters()">
+        <span id="pf-toggle-icon">▼</span> Filter
+        <span id="pf-active-badge" style="display:none;"></span>
+      </button>
+      <div class="fsearch-icon" style="flex:1;max-width:220px;">
+        <input class="fsearch" id="tsearch" placeholder="Suchen …" oninput="renderPlaner()"
+          style="width:100%;padding:7px 14px 7px 30px;border:1.5px solid var(--border);border-radius:20px;font-family:'Nunito',sans-serif;font-size:12px;color:var(--ink);background:var(--paper);outline:none;">
+      </div>
+    </div>
+    <button class="zt-add" onclick="toggleAddEntry()">＋ Neuer Eintrag</button>
+  </div>
 
-    <!-- Row 1: Typ + Zeitraum + Suche + Button -->
+  <div class="planer-filters" id="planer-filters" style="display:none;margin-top:0;">
     <div class="pf-row">
       <div class="pf-group">
         <div class="pf-label">Typ</div>
@@ -458,20 +478,13 @@ main{max-width:1000px;margin:0 auto;padding:40px 20px 100px;}
         </div>
       </div>
     </div>
-
-    <!-- Row 2: Person + Suche + Button -->
     <div class="pf-row" style="align-items:center;">
       <div class="pf-group" style="flex:1;">
         <div class="pf-label">Person</div>
         <div class="chips" id="pchips"></div>
       </div>
-      <div class="fsearch-icon" style="min-width:140px;max-width:220px;">
-        <input class="fsearch" id="tsearch" placeholder="Suchen …" oninput="renderPlaner()"
-          style="width:100%;padding:7px 14px 7px 30px;border:1.5px solid var(--border);border-radius:20px;font-family:'Nunito',sans-serif;font-size:12px;color:var(--ink);background:var(--paper);outline:none;">
-      </div>
-      <button class="zt-add" onclick="toggleAddEntry()">＋ Neuer Eintrag</button>
+      <button class="freset" onclick="resetPlanerFilters()" style="align-self:flex-end;">↺ Reset</button>
     </div>
-
   </div>
 
   <!-- combined add form -->
@@ -1210,10 +1223,41 @@ function setEntryType(type) {
   }
 }
 
+function togglePlanerFilters() {
+  const panel = document.getElementById('planer-filters');
+  const btn = document.getElementById('pf-toggle-btn');
+  const icon = document.getElementById('pf-toggle-icon');
+  const open = panel.style.display !== 'none';
+  panel.style.display = open ? 'none' : 'flex';
+  btn.classList.toggle('active', !open);
+  icon.textContent = open ? '▼' : '▲';
+}
+
+function updateFilterBadge() {
+  const badge = document.getElementById('pf-active-badge');
+  if (!badge) return;
+  const active = planFilter !== 'all' || planPersonF !== null ||
+    (document.getElementById('tsearch')?.value||'') !== '';
+  badge.style.display = active ? 'inline' : 'none';
+  badge.textContent = active ? '●' : '';
+  const btn = document.getElementById('pf-toggle-btn');
+  if (btn) btn.classList.toggle('active', active || document.getElementById('planer-filters')?.style.display !== 'none');
+}
+
+function resetPlanerFilters() {
+  planFilter = 'all'; planPersonF = null;
+  document.querySelectorAll('.chip[data-pf]').forEach(c => { c.classList.toggle('on', c.dataset.pf==='all'); });
+  buildPlanerPersonChips();
+  const s = document.getElementById('tsearch'); if (s) s.value = '';
+  updateFilterBadge();
+  renderPlaner();
+}
+
 function filterPlaner(chip) {
   document.querySelectorAll('.chip[data-pf]').forEach(c => c.classList.remove('on'));
   chip.classList.add('on');
   planFilter = chip.dataset.pf;
+  updateFilterBadge();
   renderPlaner();
 }
 
@@ -1854,26 +1898,68 @@ function openEdit(id) {
     {v:'17.07.2026',l:'17. Juli'},
     {v:'18.07.2026',l:'18. Juli'},
   ];
+  const typeBtns = `<div style="display:flex;gap:8px;margin-bottom:16px;">
+    <button id="em-type-todo" onclick="setEditType('todo')"
+      style="flex:1;padding:8px;border-radius:8px;border:2px solid var(--primary);background:var(--primary);color:#fff;font-family:'Nunito',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;">✓ Aufgabe</button>
+    <button id="em-type-event" onclick="setEditType('event')"
+      style="flex:1;padding:8px;border-radius:8px;border:2px solid var(--border);background:none;color:var(--muted);font-family:'Nunito',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;">📅 Termin</button>
+  </div>`;
   showModal(
-    modalTitle('Aufgabe <em style="font-style:italic;color:var(--primary)">bearbeiten</em>') +
-    modalField('Aufgabe', mInp('em-txt', t.text, 'Aufgabe …')) +
+    modalTitle('Eintrag <em style="font-style:italic;color:var(--primary)">bearbeiten</em>') +
+    typeBtns +
+    modalField('Beschreibung', mInp('em-txt', t.text, 'Beschreibung …')) +
     `<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">` +
     modalField('Person', mSel('em-per', persons.map(p=>({v:p.id,l:`${p.emoji} ${p.name}`})), t.person)) +
-    modalField('Fälligkeit', mSel('em-due', dueOpts, t.due||'')) +
+    modalField('Fälligkeit / Datum', mSel('em-due', dueOpts, t.due||'')) +
+    `</div>` +
+    `<div id="em-time-field" style="margin-bottom:12px">` +
+    modalField('Uhrzeit (optional)', `<input id="em-time" type="time" value="${t.time||''}" style="width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:8px;font-family:'Nunito',sans-serif;font-size:13px;color:var(--ink);background:var(--paper);outline:none;">`) +
     `</div>` +
     modalField('Notiz (optional)', mInp('em-note', t.note||'', 'Zusatzinfo …')) +
-    mActions(`saveTodoModal(${id})`,
-      '')
+    mActions(`saveTodoModal(${id})`, '')
   );
 }
+
+function setEditType(type) {
+  const todoBt  = document.getElementById('em-type-todo');
+  const eventBt = document.getElementById('em-type-event');
+  if (type === 'todo') {
+    todoBt.style.cssText  = 'flex:1;padding:8px;border-radius:8px;border:2px solid var(--primary);background:var(--primary);color:#fff;font-family:Nunito,sans-serif;font-size:12px;font-weight:600;cursor:pointer;';
+    eventBt.style.cssText = 'flex:1;padding:8px;border-radius:8px;border:2px solid var(--border);background:none;color:var(--muted);font-family:Nunito,sans-serif;font-size:12px;font-weight:600;cursor:pointer;';
+    todoBt.dataset.active = '1'; eventBt.dataset.active = '';
+  } else {
+    eventBt.style.cssText = 'flex:1;padding:8px;border-radius:8px;border:2px solid var(--sage);background:var(--sage);color:#fff;font-family:Nunito,sans-serif;font-size:12px;font-weight:600;cursor:pointer;';
+    todoBt.style.cssText  = 'flex:1;padding:8px;border-radius:8px;border:2px solid var(--border);background:none;color:var(--muted);font-family:Nunito,sans-serif;font-size:12px;font-weight:600;cursor:pointer;';
+    eventBt.dataset.active = '1'; todoBt.dataset.active = '';
+  }
+}
+
 function saveTodoModal(id) {
   const t = todos.find(x => x.id === id); if (!t) return;
   const txt = document.getElementById('em-txt').value.trim(); if (!txt) return;
-  t.text = txt;
-  t.person = document.getElementById('em-per').value;
-  t.due = document.getElementById('em-due').value || null;
-  t.note = document.getElementById('em-note').value.trim() || null;
-  closeModal(); save(); renderPlaner();
+  const eventBt = document.getElementById('em-type-event');
+  const isEvent = eventBt && eventBt.dataset.active === '1';
+
+  if (isEvent) {
+    // Convert todo → custom event
+    const dueVal = document.getElementById('em-due').value;
+    let date = '2026-07-18';
+    if (dueVal) { const p=dueVal.split('.'); date=`${p[2]}-${p[1]}-${p[0]}`; }
+    const time = document.getElementById('em-time')?.value || null;
+    const person = document.getElementById('em-per').value;
+    const pName = persons.find(p=>p.id===person)?.name || null;
+    customEvents.push({id:'c_'+Date.now(), date, time, desc:txt, person:pName, static:false});
+    todos = todos.filter(x => x.id !== id);
+    closeModal(); save(); renderPlaner(); renderAblauf();
+    showToast('📅 Als Termin gespeichert');
+  } else {
+    t.text = txt;
+    t.person = document.getElementById('em-per').value;
+    t.due = document.getElementById('em-due').value || null;
+    t.time = document.getElementById('em-time')?.value || null;
+    t.note = document.getElementById('em-note').value.trim() || null;
+    closeModal(); save(); renderPlaner(); renderAblauf();
+  }
 }
 
 // ══════════════════════════════════════════════

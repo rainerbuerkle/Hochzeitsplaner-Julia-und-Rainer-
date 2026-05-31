@@ -3,726 +3,1039 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>💍 Julia & Rainer — Hochzeit 18. Juli 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<title>💍 Julia & Rainer — 18. Juli 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,300;1,500&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --cream: #faf7f2; --blush: #e8c9b8; --rose: #c4786a; --deep: #3d2c2c;
-    --gold: #b8965a; --sage: #8fa68b; --text: #4a3535; --muted: #9a8080;
-    --white: #ffffff; --done-bg: #f0f5ef;
-    --julia-color: #c4786a; --rainer-color: #7a9cb5; --both-color: #b8965a; --urgent-color: #d45a4a;
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { background:var(--cream); color:var(--text); font-family:'Jost',sans-serif; font-weight:300; min-height:100vh; }
+:root {
+  --ink: #1a2612;
+  --paper: #f5faea;
+  --green: #2e9e50;
+  --green-dark: #1e7038;
+  --orange: #d4500a;
+  --orange-dark: #a83800;
+  --gold: #e8a000;
+  --blue: #1a6fbf;
+  --violet: #7040c0;
+  --red: #c0380a;
+  --muted: #6b8560;
+  --border: rgba(26,38,18,0.13);
+  --white: #ffffff;
+  --card-bg: #ffffff;
+  --done-bg: #e8f5e2;
+  --shadow: 0 4px 28px rgba(26,38,18,0.09);
+  --julia: #d4500a;
+  --rainer: #1a6fbf;
+  --both: #c08800;
+  --hoffi: #7040c0;
+  --justine: #2e9e50;
+  --caro: #c0380a;
+  --urgent: #cc2200;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:linear-gradient(160deg,#f5faea 0%,#edf6ff 45%,#f5f0ff 80%,#fff5e0 100%);background-attachment:fixed;color:var(--ink);font-family:'Nunito',sans-serif;font-weight:300;min-height:100vh;overflow-x:hidden;}
 
-  /* HEADER */
-  header { background:var(--deep); color:var(--cream); text-align:center; padding:56px 20px 44px; position:relative; overflow:hidden; }
-  header::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 30% 50%,rgba(196,120,106,.25) 0%,transparent 60%),radial-gradient(ellipse at 70% 50%,rgba(143,166,139,.15) 0%,transparent 60%); }
-  .header-inner { position:relative; z-index:1; }
-  .header-eyebrow { font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--blush); margin-bottom:14px; font-weight:400; }
-  header h1 { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(42px,8vw,78px); line-height:1; letter-spacing:-1px; }
-  header h1 em { font-style:italic; color:var(--blush); }
-  .header-date { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:21px; color:var(--blush); margin-top:14px; letter-spacing:1px; }
-  .header-divider { width:80px; height:1px; background:linear-gradient(to right,transparent,var(--blush),transparent); margin:22px auto; }
-  .countdown { display:inline-flex; gap:28px; background:rgba(255,255,255,.06); border:1px solid rgba(232,201,184,.2); border-radius:4px; padding:14px 28px; }
-  .countdown-item { text-align:center; }
-  .countdown-num { display:block; font-family:'Cormorant Garamond',serif; font-size:34px; font-weight:300; color:var(--blush); line-height:1; }
-  .countdown-label { display:block; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-top:3px; }
+/* HEADER */
+.site-header{background:linear-gradient(145deg,#1a5c2a 0%,#1a4a8a 35%,#6a1890 60%,#c04800 82%,#c08000 100%);color:#fff;text-align:center;padding:52px 20px 44px;position:relative;overflow:hidden;}
+.site-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 55% at 15% 40%,rgba(255,255,255,.08),transparent),radial-gradient(ellipse 45% 45% at 85% 60%,rgba(255,255,255,.06),transparent),radial-gradient(ellipse 35% 35% at 50% 10%,rgba(232,160,0,.15),transparent);}
+.hdr{position:relative;z-index:1;}
+.hdr-eye{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:#f0c040;margin-bottom:16px;}
+.hdr h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(46px,9vw,88px);line-height:.95;letter-spacing:-2px;color:#fff;text-shadow:0 3px 24px rgba(0,0,0,.3);}
+.hdr h1 em{font-style:italic;color:#f0c040;}
+.hdr-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:rgba(255,255,255,.65);margin-top:14px;}
+.hdr-line{width:80px;height:2px;background:linear-gradient(to right,transparent,#f0c040,#fff,#7dd4a0,transparent);margin:22px auto;border-radius:2px;}
+.countdown{display:inline-flex;background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.2);border-radius:16px;overflow:hidden;margin-top:4px;backdrop-filter:blur(8px);}
+.cd-item{padding:14px 24px;text-align:center;position:relative;}
+.cd-item+.cd-item::before{content:'';position:absolute;left:0;top:20%;height:60%;width:1px;background:rgba(255,255,255,.15);}
+.cd-num{display:block;font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:600;color:#f0c040;line-height:1;}
+.cd-lbl{display:block;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:4px;}
 
-  /* NAV */
-  nav { background:var(--white); border-bottom:1px solid rgba(0,0,0,.06); position:sticky; top:0; z-index:100; box-shadow:0 2px 20px rgba(61,44,44,.06); }
-  .nav-inner { max-width:980px; margin:0 auto; display:flex; padding:0 16px; align-items:stretch; }
-  .tab-btn { flex:1; padding:16px 8px; border:none; background:none; cursor:pointer; font-family:'Jost',sans-serif; font-size:11px; font-weight:500; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); border-bottom:2px solid transparent; transition:all .25s; display:flex; align-items:center; justify-content:center; gap:6px; }
-  .tab-btn:hover { color:var(--rose); }
-  .tab-btn.active { color:var(--rose); border-bottom-color:var(--rose); }
-  .tab-icon { font-size:15px; }
-  .sync-pill { font-size:10px; letter-spacing:.5px; padding:4px 12px; margin-left:auto; display:flex; align-items:center; color:var(--muted); white-space:nowrap; flex-shrink:0; }
+/* NAV */
+nav{background:var(--white);border-bottom:3px solid rgba(26,38,18,.08);position:sticky;top:0;z-index:200;box-shadow:0 4px 30px rgba(26,38,18,.08);}
+.nav-wrap{max-width:1000px;margin:0 auto;display:flex;align-items:stretch;padding:0 16px;}
+.tab{flex:1;padding:16px 6px;border:none;background:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border-bottom:2px solid transparent;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap;}
+.tab:hover{color:var(--orange);}
+.tab.on{color:var(--orange);border-bottom-color:var(--orange);font-weight:600;}
+.tab-icon{font-size:14px;}
+.sync-dot{width:8px;height:8px;border-radius:50%;background:var(--muted);margin-left:auto;flex-shrink:0;}
+.sync-dot.live{background:var(--green);box-shadow:0 0 10px var(--green);animation:sdpulse 2s ease-in-out infinite;}
+@keyframes sdpulse{0%,100%{box-shadow:0 0 8px var(--green)}50%{box-shadow:0 0 18px var(--green),0 0 30px rgba(46,158,80,.5)}}
 
-  /* MAIN */
-  main { max-width:980px; margin:0 auto; padding:40px 20px 80px; }
-  .tab-panel { display:none; }
-  .tab-panel.active { display:block; }
+/* MAIN */
+main{max-width:1000px;margin:0 auto;padding:40px 20px 100px;}
+.panel{display:none;}
+.panel.on{display:block;}
 
-  /* SECTION HEADER */
-  .section-header { margin-bottom:32px; }
-  .section-tag { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--sage); font-weight:500; margin-bottom:8px; }
-  .section-title { font-family:'Cormorant Garamond',serif; font-size:38px; font-weight:300; color:var(--deep); line-height:1.1; }
-  .section-title em { font-style:italic; color:var(--rose); }
+/* SECTION HEAD */
+.sec-head{margin-bottom:28px;}
+.sec-eye{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--green);font-weight:600;margin-bottom:6px;}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:400;color:var(--ink);line-height:1.05;}
+.sec-title em{font-style:italic;background:linear-gradient(135deg,var(--orange),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 
-  /* PROGRESS */
-  .progress-wrap { margin-top:14px; display:flex; align-items:center; gap:14px; }
-  .progress-bar-bg { flex:1; height:4px; background:rgba(0,0,0,.07); border-radius:2px; overflow:hidden; }
-  .progress-bar-fill { height:100%; background:linear-gradient(to right,var(--sage),var(--rose)); border-radius:2px; transition:width .5s ease; }
-  .progress-text { font-size:11px; letter-spacing:1px; color:var(--muted); white-space:nowrap; }
+/* PROGRESS */
+.prog-row{margin-top:14px;display:flex;align-items:center;gap:14px;}
+.prog-bg{flex:1;height:6px;background:rgba(26,38,18,.08);border-radius:10px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(to right,var(--green),var(--gold),var(--orange));border-radius:10px;transition:width .6s cubic-bezier(.4,0,.2,1);}
+.prog-txt{font-size:11px;color:var(--muted);white-space:nowrap;}
 
-  /* FILTER BAR */
-  .filter-bar { background:var(--white); border:1px solid rgba(0,0,0,.07); border-radius:12px; padding:18px 22px; margin-bottom:26px; display:flex; flex-wrap:wrap; gap:14px; align-items:flex-end; }
-  .filter-group { display:flex; flex-direction:column; gap:6px; }
-  .filter-label { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); font-weight:500; }
-  .filter-chips { display:flex; flex-wrap:wrap; gap:6px; }
-  .chip { padding:5px 13px; border-radius:20px; border:1px solid rgba(0,0,0,.1); background:var(--cream); font-family:'Jost',sans-serif; font-size:12px; font-weight:400; color:var(--muted); cursor:pointer; transition:all .18s; white-space:nowrap; user-select:none; }
-  .chip:hover { border-color:var(--rose); color:var(--rose); }
-  .chip.active { background:var(--rose); border-color:var(--rose); color:white; font-weight:500; }
-  .chip.julia-chip.active { background:var(--julia-color); border-color:var(--julia-color); }
-  .chip.rainer-chip.active { background:var(--rainer-color); border-color:var(--rainer-color); }
-  .chip.both-chip.active { background:var(--both-color); border-color:var(--both-color); }
-  .chip.urgent-chip.active { background:var(--urgent-color); border-color:var(--urgent-color); }
-  .filter-search-wrap { flex:1; min-width:160px; }
-  .filter-search { width:100%; padding:8px 14px 8px 32px; border:1px solid rgba(0,0,0,.1); border-radius:20px; font-family:'Jost',sans-serif; font-size:13px; font-weight:300; color:var(--text); background:var(--cream); outline:none; transition:border-color .2s; }
-  .filter-search:focus { border-color:var(--rose); background:var(--white); }
-  .filter-search-icon { position:relative; }
-  .filter-search-icon::before { content:'🔍'; position:absolute; left:10px; top:50%; transform:translateY(-50%); font-size:11px; pointer-events:none; z-index:1; }
-  .filter-reset-btn { padding:7px 14px; border:1px solid rgba(0,0,0,.1); border-radius:20px; background:none; font-family:'Jost',sans-serif; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); cursor:pointer; transition:all .18s; align-self:flex-end; }
-  .filter-reset-btn:hover { border-color:var(--rose); color:var(--rose); }
-  .filter-results-count { font-size:11px; color:var(--muted); letter-spacing:1px; align-self:flex-end; padding-bottom:2px; }
+/* FILTER BAR */
+.filter-bar{background:var(--white);border:1.5px solid var(--border);border-radius:14px;padding:18px 20px;margin-bottom:24px;display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;box-shadow:var(--shadow);}
+.fg{display:flex;flex-direction:column;gap:6px;}
+.fl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:600;}
+.chips{display:flex;flex-wrap:wrap;gap:5px;}
+.chip{padding:5px 13px;border-radius:20px;border:1.5px solid var(--border);background:var(--paper);font-family:'Nunito',sans-serif;font-size:12px;font-weight:400;color:var(--muted);cursor:pointer;transition:all .15s;white-space:nowrap;user-select:none;}
+.chip:hover{border-color:var(--orange);color:var(--orange);}
+.chip.on{color:#fff;font-weight:600;border-color:transparent;}
+.chip.on.c-julia{background:var(--julia);box-shadow:0 3px 10px rgba(212,80,10,.35);}
+.chip.on.c-rainer{background:var(--rainer);box-shadow:0 3px 10px rgba(26,111,191,.35);}
+.chip.on.c-both{background:var(--both);box-shadow:0 3px 10px rgba(192,136,0,.35);}
+.chip.on.c-hoffi{background:var(--hoffi);box-shadow:0 3px 10px rgba(112,64,192,.35);}
+.chip.on.c-justine{background:var(--justine);box-shadow:0 3px 10px rgba(46,158,80,.35);}
+.chip.on.c-caro{background:var(--caro);box-shadow:0 3px 10px rgba(192,56,10,.35);}
+.chip.on.c-urgent{background:var(--urgent);box-shadow:0 3px 10px rgba(204,34,0,.35);}
+.chip.on:not([class*='c-']){background:var(--orange);}
+.fsearch-wrap{flex:1;min-width:160px;}
+.fsearch{width:100%;padding:8px 14px 8px 32px;border:1.5px solid var(--border);border-radius:20px;font-family:'Nunito',sans-serif;font-size:13px;color:var(--ink);background:var(--paper);outline:none;transition:all .2s;}
+.fsearch:focus{border-color:var(--orange);background:var(--white);}
+.fsearch-icon{position:relative;}
+.fsearch-icon::before{content:'🔍';position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:11px;pointer-events:none;}
+.freset{padding:7px 14px;border:1.5px solid var(--border);border-radius:20px;background:none;font-family:'Nunito',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all .15s;align-self:flex-end;}
+.freset:hover{border-color:var(--orange);color:var(--orange);}
+.fcount{font-size:11px;color:var(--muted);align-self:flex-end;padding-bottom:2px;}
 
-  /* TODO */
-  .todo-list { display:flex; flex-direction:column; gap:8px; }
-  .todo-item { display:grid; grid-template-columns:24px 1fr auto; gap:14px; align-items:start; background:var(--white); border:1px solid rgba(0,0,0,.06); border-radius:10px; padding:16px 18px; transition:all .2s; user-select:none; }
-  .todo-item:hover { border-color:var(--blush); box-shadow:0 2px 12px rgba(196,120,106,.1); transform:translateY(-1px); }
-  .todo-item.done { background:var(--done-bg); border-color:rgba(143,166,139,.3); }
-  .todo-item.done .todo-text { text-decoration:line-through; color:var(--muted); }
-  .todo-item.urgent-highlight { border-left:3px solid var(--urgent-color); }
-  .todo-checkbox { width:20px; height:20px; border-radius:50%; border:2px solid var(--blush); flex-shrink:0; margin-top:2px; display:flex; align-items:center; justify-content:center; transition:all .2s; background:var(--white); cursor:pointer; }
-  .todo-item.done .todo-checkbox { background:var(--sage); border-color:var(--sage); color:white; font-size:11px; }
-  .todo-body { cursor:pointer; }
-  .todo-text { font-size:15px; font-weight:400; line-height:1.45; color:var(--text); }
-  .todo-note { font-size:12px; color:var(--muted); margin-top:4px; line-height:1.5; }
-  .todo-meta { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
-  .badge { display:inline-flex; align-items:center; gap:4px; padding:3px 10px; border-radius:20px; font-size:11px; font-weight:500; }
-  .badge-julia { background:rgba(196,120,106,.12); color:var(--julia-color); border:1px solid rgba(196,120,106,.25); }
-  .badge-rainer { background:rgba(122,156,181,.12); color:var(--rainer-color); border:1px solid rgba(122,156,181,.25); }
-  .badge-both { background:rgba(184,150,90,.12); color:var(--both-color); border:1px solid rgba(184,150,90,.25); }
-  .badge-date { background:rgba(61,44,44,.07); color:var(--text); border:1px solid rgba(0,0,0,.08); }
-  .badge-urgent { background:rgba(212,90,74,.1); color:var(--urgent-color); border:1px solid rgba(212,90,74,.2); }
-  .badge-done-tag { background:rgba(143,166,139,.15); color:var(--sage); border:1px solid rgba(143,166,139,.25); }
-  .badge-hoffi { background:rgba(150,100,180,.12); color:#8855bb; border:1px solid rgba(150,100,180,.25); }
-  .badge-justine { background:rgba(80,160,140,.12); color:#2a9d8f; border:1px solid rgba(80,160,140,.25); }
-  .badge-caro { background:rgba(230,160,50,.12); color:#d4860a; border:1px solid rgba(230,160,50,.25); }
-  .todo-actions { display:flex; align-items:center; }
-  .delete-btn { width:28px; height:28px; border-radius:50%; border:none; background:none; color:var(--muted); cursor:pointer; font-size:16px; display:flex; align-items:center; justify-content:center; transition:all .18s; opacity:0; }
-  .todo-item:hover .delete-btn { opacity:1; }
-  .delete-btn:hover { background:rgba(212,90,74,.1); color:var(--urgent-color); }
+/* BADGE */
+.badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:500;}
+.b-julia{background:rgba(212,80,10,.1);color:var(--julia);border:1px solid rgba(212,80,10,.3);}
+.b-rainer{background:rgba(26,111,191,.1);color:var(--rainer);border:1px solid rgba(26,111,191,.3);}
+.b-both{background:rgba(192,136,0,.1);color:var(--both);border:1px solid rgba(192,136,0,.3);}
+.b-hoffi{background:rgba(112,64,192,.1);color:var(--hoffi);border:1px solid rgba(112,64,192,.3);}
+.b-justine{background:rgba(46,158,80,.1);color:var(--justine);border:1px solid rgba(46,158,80,.3);}
+.b-caro{background:rgba(192,56,10,.1);color:var(--caro);border:1px solid rgba(192,56,10,.3);}
+.b-date{background:rgba(26,38,18,.06);color:var(--ink);border:1px solid var(--border);}
+.b-urgent{background:rgba(204,34,0,.09);color:var(--urgent);border:1px solid rgba(204,34,0,.25);}
+.b-done{background:rgba(46,158,80,.1);color:var(--green);border:1px solid rgba(46,158,80,.3);}
 
-  /* ADD ROW */
-  .add-section { margin-top:24px; }
-  .add-section-title { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
-  .add-row { display:flex; gap:8px; flex-wrap:wrap; }
-  .add-input { flex:1; min-width:180px; padding:11px 16px; border:1px solid rgba(0,0,0,.1); border-radius:8px; font-family:'Jost',sans-serif; font-size:14px; font-weight:300; color:var(--text); background:var(--white); outline:none; transition:border-color .2s; }
-  .add-input:focus { border-color:var(--rose); }
-  .add-select { padding:11px 12px; border:1px solid rgba(0,0,0,.1); border-radius:8px; font-family:'Jost',sans-serif; font-size:13px; color:var(--text); background:var(--white); outline:none; cursor:pointer; }
-  .add-select:focus { border-color:var(--rose); }
-  .add-btn { padding:11px 20px; background:var(--rose); color:white; border:none; border-radius:8px; font-family:'Jost',sans-serif; font-size:12px; font-weight:500; letter-spacing:1px; text-transform:uppercase; cursor:pointer; transition:all .2s; white-space:nowrap; }
-  .add-btn:hover { background:var(--deep); transform:translateY(-1px); }
+/* TODO */
+.todo-list{display:flex;flex-direction:column;gap:8px;}
+.todo-card{background:var(--card-bg);border:1.5px solid var(--border);border-radius:12px;overflow:hidden;transition:all .2s;box-shadow:var(--shadow);}
+.todo-card:hover{border-color:var(--orange);box-shadow:0 6px 30px rgba(212,80,10,.14);transform:translateY(-2px);}
+.todo-card.done-card{background:var(--done-bg);border-color:rgba(46,158,80,.25);box-shadow:none;}
+.todo-card.done-card:hover{transform:none;border-color:rgba(46,158,80,.4);}
+.todo-card.urgent-card{border-left:4px solid var(--urgent);background:linear-gradient(to right,rgba(204,34,0,.04),var(--white));}
+.todo-main{display:grid;grid-template-columns:48px 1fr auto;align-items:start;}
+.todo-chk-col{display:flex;align-items:flex-start;justify-content:center;padding:16px 0 16px 16px;}
+.todo-chk{width:22px;height:22px;border-radius:50%;border:2.5px solid var(--green);background:var(--white);display:flex;align-items:center;justify-content:center;transition:all .2s;cursor:pointer;}
+.done-card .todo-chk{background:linear-gradient(135deg,var(--green),var(--green-dark));border-color:var(--green);color:#fff;font-size:12px;}
+.todo-body{padding:14px 10px 14px 10px;cursor:pointer;}
+.todo-txt{font-size:15px;font-weight:400;line-height:1.45;color:var(--ink);}
+.done-card .todo-txt{text-decoration:line-through;color:var(--muted);}
+.todo-note{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.5;}
+.todo-meta{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;}
+.todo-acts{display:flex;align-items:flex-start;gap:2px;padding:10px 10px 10px 0;}
+.ibtn{width:30px;height:30px;border-radius:8px;border:none;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;opacity:0;transition:all .15s;color:var(--muted);}
+.todo-card:hover .ibtn{opacity:1;}
+.ibtn.edit:hover{background:rgba(232,160,0,.15);color:var(--gold);}
+.ibtn.del:hover{background:rgba(204,34,0,.1);color:var(--urgent);}
 
-  /* EMPTY */
-  .empty-state { text-align:center; padding:48px 20px; color:var(--muted); }
-  .empty-state .big { font-size:40px; margin-bottom:12px; }
-  .empty-state p { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:20px; }
+/* EDIT FORM */
+.edit-form{display:none;padding:0 14px 14px 48px;border-top:1px solid var(--border);animation:slideDown .2s ease;}
+.edit-form.open{display:block;}
+@keyframes slideDown{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.erow{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+.einp{flex:1;min-width:140px;padding:9px 13px;border:1.5px solid var(--border);border-radius:8px;font-family:'Nunito',sans-serif;font-size:13px;color:var(--ink);background:var(--paper);outline:none;transition:border-color .2s;}
+.einp:focus{border-color:var(--orange);}
+.esel{padding:9px 11px;border:1.5px solid var(--border);border-radius:8px;font-family:'Nunito',sans-serif;font-size:13px;color:var(--ink);background:var(--paper);outline:none;cursor:pointer;}
+.esel:focus{border-color:var(--orange);}
+.ebtn{padding:9px 16px;border:none;border-radius:8px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:500;cursor:pointer;transition:all .2s;white-space:nowrap;}
+.ebtn.save{background:linear-gradient(135deg,var(--orange),var(--orange-dark));color:#fff;box-shadow:0 3px 12px rgba(212,80,10,.3);}
+.ebtn.save:hover{background:linear-gradient(135deg,var(--orange-dark),#803000);}
+.ebtn.cancel{background:none;border:1.5px solid var(--border);color:var(--muted);}
+.ebtn.cancel:hover{border-color:var(--muted);}
 
-  /* TIMELINE */
-  .zeitplan-filter { margin-bottom:22px; display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
-  .day-group { margin-bottom:44px; }
-  .day-label { display:flex; align-items:center; gap:20px; margin-bottom:18px; }
-  .day-bubble { background:var(--deep); color:var(--blush); border-radius:40px; padding:8px 20px; font-family:'Cormorant Garamond',serif; font-size:17px; font-style:italic; white-space:nowrap; flex-shrink:0; }
-  .day-bubble.wedding-day { background:var(--rose); color:var(--white); }
-  .day-line { flex:1; height:1px; background:rgba(0,0,0,.08); }
-  .timeline-items { display:flex; flex-direction:column; gap:8px; }
-  .timeline-item { display:grid; grid-template-columns:64px 1fr; gap:16px; background:var(--white); border:1px solid rgba(0,0,0,.06); border-radius:8px; padding:14px 20px; align-items:start; transition:all .2s; }
-  .timeline-item:hover { border-color:var(--blush); box-shadow:0 2px 12px rgba(196,120,106,.08); }
-  .timeline-item.highlight { background:linear-gradient(135deg,#fdf1ee,var(--white)); border-color:rgba(196,120,106,.3); }
-  .event-time { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:600; color:var(--rose); text-align:right; line-height:1.2; }
-  .event-time-empty { font-size:18px; color:var(--blush); text-align:right; opacity:.4; }
-  .event-desc { font-size:14px; font-weight:400; color:var(--text); line-height:1.4; }
-  .event-who { font-size:12px; color:var(--muted); margin-top:4px; display:flex; align-items:center; gap:4px; }
-  .event-who::before { content:'👤'; font-size:10px; }
+/* ADD */
+.add-box{margin-top:20px;background:var(--white);border:1.5px dashed var(--border);border-radius:12px;padding:18px;transition:border-color .2s;}
+.add-box:hover{border-color:var(--green);}
+.add-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;font-weight:600;}
+.add-row{display:flex;gap:8px;flex-wrap:wrap;}
+.ainp{flex:1;min-width:170px;padding:11px 15px;border:1.5px solid var(--border);border-radius:8px;font-family:'Nunito',sans-serif;font-size:14px;color:var(--ink);background:var(--paper);outline:none;transition:all .2s;}
+.ainp:focus{border-color:var(--orange);background:var(--white);}
+.asel{padding:11px 11px;border:1.5px solid var(--border);border-radius:8px;font-family:'Nunito',sans-serif;font-size:13px;color:var(--ink);background:var(--paper);outline:none;cursor:pointer;}
+.asel:focus{border-color:var(--orange);}
+.abtn{padding:11px 20px;background:linear-gradient(135deg,var(--orange),var(--orange-dark));color:#fff;border:none;border-radius:8px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap;box-shadow:0 4px 14px rgba(212,80,10,.3);}
+.abtn:hover{background:linear-gradient(135deg,var(--orange-dark),#803000);transform:translateY(-1px);box-shadow:0 6px 18px rgba(212,80,10,.4);}
 
-  /* PACK */
-  .pack-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:10px; }
-  .pack-item { display:flex; align-items:center; gap:14px; background:var(--white); border:1px solid rgba(0,0,0,.06); border-radius:8px; padding:14px 18px; cursor:pointer; transition:all .2s; user-select:none; }
-  .pack-item:hover { border-color:var(--blush); transform:translateY(-1px); box-shadow:0 4px 16px rgba(196,120,106,.1); }
-  .pack-item.done { background:var(--done-bg); border-color:rgba(143,166,139,.3); }
-  .pack-item.done .pack-label { text-decoration:line-through; color:var(--muted); }
-  .pack-checkbox { width:18px; height:18px; border-radius:4px; border:2px solid var(--blush); flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:10px; transition:all .2s; background:var(--white); }
-  .pack-item.done .pack-checkbox { background:var(--sage); border-color:var(--sage); color:white; }
-  .pack-label { font-size:15px; font-weight:300; flex:1; }
+/* ZEITPLAN */
+.zt-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;align-items:center;}
+.zt-add{margin-left:auto;padding:8px 16px;background:linear-gradient(135deg,var(--green),var(--green-dark));color:#fff;border:none;border-radius:8px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;box-shadow:0 4px 14px rgba(46,158,80,.3);}
+.zt-add:hover{background:linear-gradient(135deg,var(--green-dark),#154d28);transform:translateY(-1px);}
+.nef{background:linear-gradient(135deg,#f0faff,var(--white));border:2px solid rgba(26,111,191,.25);border-radius:14px;padding:24px;margin-bottom:22px;box-shadow:0 4px 24px rgba(26,111,191,.1);animation:fadeUp .3s ease;}
+.nef-title{font-family:'Cormorant Garamond',serif;font-size:22px;margin-bottom:14px;color:var(--ink);}
+.nef-title em{font-style:italic;color:var(--blue);}
+.nef-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.nef-full{grid-column:1/-1;}
+.nef-f{display:flex;flex-direction:column;gap:5px;}
+.nef-l{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:600;}
+.nef-i{padding:10px 13px;border:1.5px solid var(--border);border-radius:8px;font-family:'Nunito',sans-serif;font-size:14px;color:var(--ink);background:var(--paper);outline:none;transition:all .2s;}
+.nef-i:focus{border-color:var(--blue);background:var(--white);}
+.nef-acts{display:flex;gap:8px;margin-top:12px;}
+.nef-save{padding:10px 20px;background:linear-gradient(135deg,var(--blue),#0f4d8a);color:#fff;border:none;border-radius:8px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;box-shadow:0 4px 14px rgba(26,111,191,.3);}
+.nef-save:hover{background:linear-gradient(135deg,#0f4d8a,#0a3060);}
+.nef-cancel{padding:10px 14px;background:none;border:1.5px solid var(--border);color:var(--muted);border-radius:8px;font-family:'Nunito',sans-serif;font-size:12px;cursor:pointer;}
+.nef-cancel:hover{border-color:var(--muted);}
+.day-grp{margin-bottom:40px;}
+.day-lbl{display:flex;align-items:center;gap:16px;margin-bottom:16px;}
+.day-pill{background:linear-gradient(135deg,#1a2612,#1a3a60);color:#f0c040;border-radius:40px;padding:7px 18px;font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;white-space:nowrap;flex-shrink:0;}
+.day-pill.wedding{background:linear-gradient(135deg,var(--orange),var(--violet));color:#fff;box-shadow:0 4px 20px rgba(112,64,192,.4);}
+.day-hr{flex:1;height:1px;background:var(--border);}
+.tl-items{display:flex;flex-direction:column;gap:8px;}
+.tl-item{display:grid;grid-template-columns:60px 1fr auto;gap:14px;background:var(--card-bg);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;align-items:start;transition:all .2s;box-shadow:var(--shadow);}
+.tl-item:hover{border-color:var(--blue);box-shadow:0 6px 24px rgba(26,111,191,.15);}
+.tl-item.hl{background:linear-gradient(135deg,#fffbea,#fdf4e0);border-color:rgba(232,160,0,.5);border-left:4px solid var(--gold);}
+.ev-time{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:var(--orange);text-align:right;line-height:1.2;}
+.ev-empty{font-size:18px;color:var(--muted);text-align:right;opacity:.35;}
+.ev-desc{font-size:14px;font-weight:400;color:var(--ink);line-height:1.4;}
+.ev-who{font-size:12px;color:var(--muted);margin-top:4px;display:flex;align-items:center;gap:4px;}
+.ev-who::before{content:'👤';font-size:10px;}
+.tl-del{width:26px;height:26px;border-radius:6px;border:none;background:none;cursor:pointer;color:var(--muted);opacity:0;transition:all .15s;display:flex;align-items:center;justify-content:center;font-size:14px;}
+.tl-item:hover .tl-del{opacity:1;}
+.tl-del:hover{background:rgba(204,34,0,.1);color:var(--urgent);}
 
-  /* MUSIK */
-  .musik-intro { background:var(--deep); border-radius:12px; padding:28px 32px; margin-bottom:32px; text-align:center; position:relative; overflow:hidden; }
-  .musik-intro::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 30% 50%,rgba(196,120,106,.2) 0%,transparent 60%),radial-gradient(ellipse at 70% 50%,rgba(184,150,90,.15) 0%,transparent 60%); }
-  .musik-intro-inner { position:relative; z-index:1; }
-  .musik-note { font-size:36px; margin-bottom:10px; animation:float 3s ease-in-out infinite; }
-  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
-  .musik-intro h2 { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:32px; color:var(--cream); margin-bottom:8px; }
-  .musik-intro h2 em { font-style:italic; color:var(--blush); }
-  .musik-intro p { font-size:13px; color:rgba(232,201,184,.7); line-height:1.7; max-width:400px; margin:0 auto; }
+/* PACK */
+.pack-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;}
+.pack-card{display:flex;align-items:center;gap:12px;background:var(--card-bg);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;cursor:pointer;transition:all .2s;box-shadow:var(--shadow);user-select:none;}
+.pack-card:hover{border-color:var(--green);transform:translateY(-1px);box-shadow:0 6px 22px rgba(46,158,80,.18);}
+.pack-card.done{background:var(--done-bg);border-color:rgba(46,158,80,.3);box-shadow:none;}
+.pack-card.done:hover{transform:none;border-color:rgba(46,158,80,.5);}
+.pack-card.done .pack-lbl{text-decoration:line-through;color:var(--muted);}
+.pack-chk{width:20px;height:20px;border-radius:5px;border:2.5px solid var(--green);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;transition:all .2s;background:var(--white);}
+.pack-card.done .pack-chk{background:linear-gradient(135deg,var(--green),var(--green-dark));border-color:var(--green);color:#fff;}
+.pack-lbl{font-size:14px;font-weight:300;flex:1;}
 
-  .musik-share-box { background:var(--white); border:1px solid rgba(0,0,0,.07); border-radius:10px; padding:16px 20px; margin-bottom:28px; display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
-  .musik-share-label { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); font-weight:500; flex-shrink:0; }
-  .musik-share-url { flex:1; min-width:180px; font-size:12px; color:var(--text); background:var(--cream); border:1px solid rgba(0,0,0,.08); border-radius:6px; padding:8px 12px; font-family:monospace; word-break:break-all; }
-  .copy-btn { padding:8px 16px; background:var(--rose); color:white; border:none; border-radius:6px; font-family:'Jost',sans-serif; font-size:11px; font-weight:500; letter-spacing:1px; text-transform:uppercase; cursor:pointer; transition:all .2s; white-space:nowrap; flex-shrink:0; }
-  .copy-btn:hover { background:var(--deep); }
-  .copy-btn.copied { background:var(--sage); }
+/* MUSIK */
+.musik-hero{background:linear-gradient(150deg,#1a2612,#102050,#400880);border-radius:16px;padding:32px;margin-bottom:26px;text-align:center;position:relative;overflow:hidden;}
+.musik-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 30% 50%,rgba(232,160,0,.15),transparent),radial-gradient(ellipse 50% 50% at 70% 40%,rgba(112,64,192,.15),transparent);}
+.musik-inner{position:relative;z-index:1;}
+.musik-note{font-size:38px;animation:float 3s ease-in-out infinite;display:block;margin-bottom:12px;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.musik-hero h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:32px;color:#fff;margin-bottom:8px;}
+.musik-hero h2 em{font-style:italic;color:#f0c040;}
+.musik-hero p{font-size:13px;color:rgba(255,255,255,.55);line-height:1.7;max-width:380px;margin:0 auto;}
+.share-box{background:var(--white);border:1.5px solid var(--border);border-radius:10px;padding:14px 18px;margin-bottom:22px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;box-shadow:var(--shadow);}
+.share-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:600;flex-shrink:0;}
+.share-url{flex:1;min-width:140px;font-size:12px;color:var(--ink);background:var(--paper);border:1px solid var(--border);border-radius:6px;padding:7px 10px;font-family:monospace;word-break:break-all;}
+.copy-btn{padding:8px 16px;background:linear-gradient(135deg,var(--blue),#0f4d8a);color:#fff;border:none;border-radius:7px;font-family:'Nunito',sans-serif;font-size:11px;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap;flex-shrink:0;box-shadow:0 3px 12px rgba(26,111,191,.3);}
+.copy-btn:hover{background:linear-gradient(135deg,#0f4d8a,#0a3060);}
+.copy-btn.copied{background:linear-gradient(135deg,var(--green),var(--green-dark));}
+.wish-form{background:var(--card-bg);border:1.5px solid var(--border);border-radius:14px;padding:26px;margin-bottom:30px;box-shadow:var(--shadow);}
+.wf-title{font-family:'Cormorant Garamond',serif;font-size:22px;margin-bottom:6px;color:var(--ink);}
+.wf-title em{font-style:italic;color:var(--orange);}
+.wf-hint{font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.6;}
+.form-grid{display:flex;flex-direction:column;gap:12px;}
+.form-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.ff{display:flex;flex-direction:column;gap:5px;}
+.flbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:600;}
+.fi{padding:11px 15px;border:1.5px solid var(--border);border-radius:8px;font-family:'Nunito',sans-serif;font-size:14px;color:var(--ink);background:var(--paper);outline:none;transition:all .2s;}
+.fi:focus{border-color:var(--orange);background:var(--white);box-shadow:0 0 0 3px rgba(212,80,10,.07);}
+.fi::placeholder{color:var(--muted);}
+.wsub{width:100%;padding:13px;background:linear-gradient(135deg,var(--orange),var(--orange-dark));color:#fff;border:none;border-radius:8px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .2s;box-shadow:0 4px 16px rgba(212,80,10,.3);}
+.wsub:hover{background:linear-gradient(135deg,var(--orange-dark),#803000);transform:translateY(-1px);}
+.wsub:disabled{background:#ccc;transform:none;cursor:not-allowed;box-shadow:none;}
+.wsuccess{display:none;text-align:center;padding:16px;background:rgba(46,158,80,.08);border:1px solid rgba(46,158,80,.25);border-radius:8px;color:var(--green);font-size:14px;margin-top:12px;}
+.wsuccess.show{display:block;}
+.wishes-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px;}
+.wishes-ttl{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--ink);}
+.wishes-ttl em{font-style:italic;color:var(--orange);}
+.wish-cnt{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:5px 14px;background:rgba(26,38,18,.04);border-radius:20px;}
+.wishes-list{display:flex;flex-direction:column;gap:10px;}
+.wish-card{background:var(--card-bg);border:1.5px solid var(--border);border-radius:12px;padding:16px 18px;display:grid;grid-template-columns:42px 1fr auto;gap:14px;align-items:center;transition:all .2s;box-shadow:var(--shadow);animation:fadeUp .4s ease both;}
+.wish-card:hover{border-color:var(--violet);box-shadow:0 6px 24px rgba(112,64,192,.16);}
+.wish-rank{width:42px;height:42px;border-radius:50%;background:var(--paper);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:var(--muted);}
+.wish-rank.top{background:linear-gradient(135deg,var(--gold),#c07800);color:#fff;border-color:var(--gold);box-shadow:0 4px 16px rgba(232,160,0,.45);}
+.wish-song{font-size:15px;font-weight:500;color:var(--ink);}
+.wish-artist{font-size:13px;color:var(--muted);margin-top:2px;}
+.wish-from{font-size:11px;color:var(--blue);margin-top:5px;display:flex;align-items:center;gap:4px;}
+.wish-from::before{content:'♥';font-size:9px;}
+.vote-col{display:flex;flex-direction:column;align-items:center;gap:4px;}
+.vote-btn{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--border);background:var(--paper);cursor:pointer;font-size:14px;transition:all .18s;display:flex;align-items:center;justify-content:center;color:var(--muted);}
+.vote-btn:hover{background:linear-gradient(135deg,var(--orange),var(--orange-dark));border-color:var(--orange);color:#fff;transform:scale(1.15);box-shadow:0 4px 14px rgba(212,80,10,.4);}
+.vote-btn.voted{background:linear-gradient(135deg,var(--orange),var(--orange-dark));border-color:var(--orange);color:#fff;box-shadow:0 3px 12px rgba(212,80,10,.35);}
+.vote-cnt{font-size:13px;font-weight:600;color:var(--ink);}
 
-  .submit-card { background:var(--white); border:1px solid rgba(0,0,0,.07); border-radius:14px; padding:28px; margin-bottom:36px; box-shadow:0 4px 24px rgba(61,44,44,.05); }
-  .submit-card-title { font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:300; color:var(--deep); margin-bottom:6px; }
-  .submit-card-title em { font-style:italic; color:var(--rose); }
-  .submit-hint { font-size:13px; color:var(--muted); margin-bottom:22px; line-height:1.6; }
-  .form-grid { display:flex; flex-direction:column; gap:13px; }
-  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-  .form-field { display:flex; flex-direction:column; gap:6px; }
-  .form-label { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); font-weight:500; }
-  .form-input { padding:12px 16px; border:1px solid rgba(0,0,0,.1); border-radius:8px; font-family:'Jost',sans-serif; font-size:14px; font-weight:300; color:var(--text); background:var(--cream); outline:none; transition:all .2s; }
-  .form-input:focus { border-color:var(--rose); background:var(--white); box-shadow:0 0 0 3px rgba(196,120,106,.08); }
-  .form-input::placeholder { color:var(--muted); }
-  .submit-btn { width:100%; padding:14px; background:var(--rose); color:white; border:none; border-radius:8px; font-family:'Jost',sans-serif; font-size:12px; font-weight:500; letter-spacing:2px; text-transform:uppercase; cursor:pointer; transition:all .2s; margin-top:4px; }
-  .submit-btn:hover { background:var(--deep); transform:translateY(-1px); }
-  .submit-btn:disabled { background:var(--muted); transform:none; cursor:not-allowed; }
-  .success-msg { display:none; text-align:center; padding:18px; background:rgba(143,166,139,.1); border:1px solid rgba(143,166,139,.3); border-radius:8px; color:var(--sage); font-size:14px; margin-top:14px; }
-  .success-msg.show { display:block; }
-  .success-msg .big { font-size:26px; margin-bottom:5px; }
+/* SETTINGS */
+.settings-lock{text-align:center;padding:60px 20px;max-width:360px;margin:0 auto;}
+.lock-icon{font-size:48px;margin-bottom:16px;}
+.lock-title{font-family:'Cormorant Garamond',serif;font-size:28px;margin-bottom:8px;color:var(--ink);}
+.lock-hint{font-size:14px;color:var(--muted);margin-bottom:24px;line-height:1.6;}
+.lock-inp{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:10px;font-family:'Nunito',sans-serif;font-size:18px;text-align:center;letter-spacing:8px;color:var(--ink);background:var(--paper);outline:none;transition:all .2s;margin-bottom:12px;}
+.lock-inp:focus{border-color:var(--orange);}
+.lock-inp.err{border-color:var(--urgent);animation:shake .3s ease;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.lock-btn{width:100%;padding:13px;background:linear-gradient(135deg,var(--orange),var(--orange-dark));color:#fff;border:none;border-radius:10px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;box-shadow:0 4px 16px rgba(212,80,10,.3);}
+.lock-btn:hover{background:linear-gradient(135deg,var(--orange-dark),#803000);}
+.settings-open{display:none;animation:fadeUp .3s ease;}
+.settings-open.on{display:block;}
+.ss{background:var(--card-bg);border:1.5px solid var(--border);border-radius:14px;padding:24px;margin-bottom:18px;box-shadow:var(--shadow);}
+.ss-title{font-family:'Cormorant Garamond',serif;font-size:22px;margin-bottom:6px;color:var(--ink);}
+.ss-title em{font-style:italic;color:var(--orange);}
+.ss-hint{font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.5;}
+.persons-list{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
+.p-row{display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--paper);border-radius:8px;border:1px solid var(--border);}
+.p-emoji{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;}
+.p-name{flex:1;font-size:14px;}
+.p-del{width:26px;height:26px;border-radius:6px;border:none;background:none;cursor:pointer;color:var(--muted);font-size:14px;transition:all .15s;display:flex;align-items:center;justify-content:center;}
+.p-del:hover{background:rgba(204,34,0,.1);color:var(--urgent);}
+.p-del.fixed{opacity:.2;pointer-events:none;}
+.new-p-row{display:flex;gap:8px;}
+.p-emoji-inp{width:50px;padding:10px;border:1.5px solid var(--border);border-radius:8px;font-size:18px;text-align:center;background:var(--paper);outline:none;}
+.p-emoji-inp:focus{border-color:var(--orange);}
+.p-name-inp{flex:1;padding:10px 13px;border:1.5px solid var(--border);border-radius:8px;font-family:'Nunito',sans-serif;font-size:14px;color:var(--ink);background:var(--paper);outline:none;}
+.p-name-inp:focus{border-color:var(--orange);}
+.p-add-btn{padding:10px 16px;background:linear-gradient(135deg,var(--orange),var(--orange-dark));color:#fff;border:none;border-radius:8px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;box-shadow:0 3px 12px rgba(212,80,10,.3);white-space:nowrap;}
+.p-add-btn:hover{background:linear-gradient(135deg,var(--orange-dark),#803000);}
+.danger-btns{display:flex;gap:10px;flex-wrap:wrap;}
+.danger-btn{padding:10px 16px;background:rgba(204,34,0,.08);color:var(--urgent);border:1.5px solid rgba(204,34,0,.2);border-radius:8px;font-family:'Nunito',sans-serif;font-size:12px;cursor:pointer;transition:all .2s;}
+.danger-btn:hover{background:rgba(204,34,0,.16);}
+.lock-out{padding:10px 18px;background:none;border:1.5px solid rgba(204,34,0,.3);color:var(--urgent);border-radius:8px;font-family:'Nunito',sans-serif;font-size:12px;cursor:pointer;transition:all .2s;margin-top:8px;}
+.lock-out:hover{background:rgba(204,34,0,.06);}
 
-  .wishes-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; flex-wrap:wrap; gap:10px; }
-  .wishes-title { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; color:var(--deep); }
-  .wishes-title em { font-style:italic; color:var(--rose); }
-  .wish-count-badge { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); padding:5px 14px; background:rgba(0,0,0,.04); border-radius:20px; }
-  .wishes-list { display:flex; flex-direction:column; gap:10px; }
-  .wish-card { background:var(--white); border:1px solid rgba(0,0,0,.06); border-radius:10px; padding:16px 18px; display:grid; grid-template-columns:42px 1fr auto; gap:14px; align-items:center; transition:all .2s; animation:fadeUp .4s ease both; }
-  .wish-card:hover { border-color:var(--blush); box-shadow:0 2px 12px rgba(196,120,106,.08); }
-  .wish-rank { width:42px; height:42px; border-radius:50%; background:var(--cream); border:1px solid rgba(0,0,0,.07); display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:600; color:var(--muted); flex-shrink:0; }
-  .wish-rank.top { background:linear-gradient(135deg,var(--gold),#e8c06a); color:white; border-color:var(--gold); }
-  .wish-song { font-size:15px; font-weight:500; color:var(--deep); line-height:1.3; }
-  .wish-artist { font-size:13px; color:var(--muted); margin-top:2px; }
-  .wish-from { font-size:11px; color:var(--blush); margin-top:5px; display:flex; align-items:center; gap:4px; }
-  .wish-from::before { content:'♥'; font-size:9px; }
-  .wish-votes { display:flex; flex-direction:column; align-items:center; gap:4px; flex-shrink:0; }
-  .vote-btn { width:34px; height:34px; border-radius:50%; border:1px solid rgba(0,0,0,.1); background:var(--cream); cursor:pointer; font-size:14px; transition:all .18s; display:flex; align-items:center; justify-content:center; }
-  .vote-btn:hover { background:var(--rose); border-color:var(--rose); transform:scale(1.1); color:white; }
-  .vote-btn.voted { background:var(--rose); border-color:var(--rose); color:white; }
-  .vote-count { font-size:13px; font-weight:500; color:var(--text); }
-  .empty-wishes { text-align:center; padding:40px 20px; color:var(--muted); }
-  .empty-wishes .big { font-size:38px; margin-bottom:10px; }
-  .empty-wishes p { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:19px; }
-
-  /* TOAST */
-  .all-done-toast { position:fixed; bottom:28px; left:50%; transform:translateX(-50%) translateY(100px); background:var(--sage); color:white; padding:13px 26px; border-radius:40px; font-size:14px; font-weight:500; letter-spacing:1px; opacity:0; transition:all .5s; pointer-events:none; z-index:999; }
-  .all-done-toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
-
-  @keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
-  .fade-up { animation:fadeUp .45s ease both; }
-
-  @media(max-width:620px) {
-    .countdown{gap:18px;padding:12px 18px;}
-    .tab-btn span:not(.tab-icon){display:none;}
-    .pack-grid{grid-template-columns:1fr;}
-    .section-title{font-size:30px;}
-    .filter-bar{padding:14px;}
-    .todo-item{grid-template-columns:24px 1fr;}
-    .todo-actions{display:none;}
-    .form-row{grid-template-columns:1fr;}
-    .wish-card{grid-template-columns:36px 1fr auto;}
-    .sync-pill{display:none;}
-  }
+/* EMPTY / TOAST / MISC */
+.empty{text-align:center;padding:48px 20px;color:var(--muted);}
+.empty .big{font-size:40px;margin-bottom:10px;}
+.empty p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;}
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(120px);background:linear-gradient(135deg,var(--green),var(--green-dark));color:#fff;padding:13px 26px;border-radius:40px;font-size:14px;font-weight:600;letter-spacing:.5px;opacity:0;transition:all .45s cubic-bezier(.4,0,.2,1);pointer-events:none;z-index:999;box-shadow:0 6px 24px rgba(46,158,80,.4);}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{animation:fadeUp .4s ease both;}
+@media(max-width:600px){
+  .countdown{gap:0;}.cd-item{padding:12px 16px;}
+  .tab span:not(.tab-icon){display:none;}
+  .pack-grid{grid-template-columns:1fr 1fr;}
+  .sec-title{font-size:32px;}
+  .form-row2{grid-template-columns:1fr;}
+  .nef-grid{grid-template-columns:1fr;}
+  .todo-main{grid-template-columns:44px 1fr;}
+  .todo-acts{display:none;}
+  .tl-item{grid-template-columns:56px 1fr;}
+  .tl-del{display:none;}
+}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="header-inner">
-    <div class="header-eyebrow">✦ Hochzeitsplanung ✦</div>
+<header class="site-header">
+  <div class="hdr">
+    <div class="hdr-eye">✦ Hochzeitsplanung ✦</div>
     <h1>Julia <em>&</em> Rainer</h1>
-    <div class="header-date">18. Juli 2026 — Standesamt & Burg Michelwinnaden</div>
-    <div class="header-divider"></div>
+    <div class="hdr-sub">18. Juli 2026 — Standesamt & Burg Michelwinnaden</div>
+    <div class="hdr-line"></div>
     <div class="countdown" id="countdown">
-      <div class="countdown-item"><span class="countdown-num" id="cd-days">—</span><span class="countdown-label">Tage</span></div>
-      <div class="countdown-item"><span class="countdown-num" id="cd-hours">—</span><span class="countdown-label">Stunden</span></div>
-      <div class="countdown-item"><span class="countdown-num" id="cd-mins">—</span><span class="countdown-label">Minuten</span></div>
+      <div class="cd-item"><span class="cd-num" id="cd-d">—</span><span class="cd-lbl">Tage</span></div>
+      <div class="cd-item"><span class="cd-num" id="cd-h">—</span><span class="cd-lbl">Std</span></div>
+      <div class="cd-item"><span class="cd-num" id="cd-m">—</span><span class="cd-lbl">Min</span></div>
     </div>
   </div>
 </header>
 
 <nav>
-  <div class="nav-inner">
-    <button class="tab-btn active" onclick="switchTab('todos',this)"><span class="tab-icon">✓</span><span>To-Dos</span></button>
-    <button class="tab-btn" onclick="switchTab('zeitplan',this)"><span class="tab-icon">📅</span><span>Zeitplan</span></button>
-    <button class="tab-btn" onclick="switchTab('packliste',this)"><span class="tab-icon">🧳</span><span>Packliste</span></button>
-    <button class="tab-btn" onclick="switchTab('musik',this)"><span class="tab-icon">🎵</span><span>Musik</span></button>
-    <div class="sync-pill" id="sync-status">⟳</div>
+  <div class="nav-wrap">
+    <button class="tab on" onclick="goTab('todos',this)"><span class="tab-icon">✓</span><span>To-Dos</span></button>
+    <button class="tab" onclick="goTab('zeit',this)"><span class="tab-icon">📅</span><span>Zeitplan</span></button>
+    <button class="tab" onclick="goTab('pack',this)"><span class="tab-icon">🧳</span><span>Packliste</span></button>
+    <button class="tab" onclick="goTab('musik',this)"><span class="tab-icon">🎵</span><span>Musik</span></button>
+    <button class="tab" onclick="goTab('settings',this)"><span class="tab-icon">⚙️</span><span>Einstellungen</span></button>
+    <div class="sync-dot" id="sync-dot"></div>
   </div>
 </nav>
 
 <main>
 
-  <!-- ══ TO-DOS ══ -->
-  <div class="tab-panel active" id="panel-todos">
-    <div class="section-header fade-up">
-      <div class="section-tag">Offene Aufgaben</div>
-      <div class="section-title">To-Do <em>Liste</em></div>
-      <div class="progress-wrap">
-        <div class="progress-bar-bg"><div class="progress-bar-fill" id="todo-progress" style="width:0%"></div></div>
-        <span class="progress-text" id="todo-progress-text">0 / 0 erledigt</span>
-      </div>
-    </div>
-
-    <div class="filter-bar fade-up">
-      <div class="filter-group">
-        <div class="filter-label">Person</div>
-        <div class="filter-chips">
-          <div class="chip julia-chip" data-filter="person" data-value="julia" onclick="toggleFilter(this)">👰 Julia</div>
-          <div class="chip rainer-chip" data-filter="person" data-value="rainer" onclick="toggleFilter(this)">🤵 Rainer</div>
-          <div class="chip both-chip" data-filter="person" data-value="both" onclick="toggleFilter(this)">💑 Beide</div>
-          <div class="chip" data-filter="person" data-value="hoffi" onclick="toggleFilter(this)">🙋 Hoffi</div>
-          <div class="chip" data-filter="person" data-value="justine" onclick="toggleFilter(this)">🙋 Justine</div>
-          <div class="chip" data-filter="person" data-value="caro" onclick="toggleFilter(this)">🙋 Caro</div>
-        </div>
-      </div>
-      <div class="filter-group">
-        <div class="filter-label">Fälligkeit</div>
-        <div class="filter-chips">
-          <div class="chip urgent-chip" data-filter="due" data-value="overdue" onclick="toggleFilter(this)">⚠️ Überfällig</div>
-          <div class="chip" data-filter="due" data-value="week" onclick="toggleFilter(this)">📆 Diese Woche</div>
-          <div class="chip" data-filter="due" data-value="04.07" onclick="toggleFilter(this)">4. Juli</div>
-          <div class="chip" data-filter="due" data-value="11.07" onclick="toggleFilter(this)">11. Juli</div>
-          <div class="chip" data-filter="due" data-value="17.07" onclick="toggleFilter(this)">17. Juli</div>
-          <div class="chip" data-filter="due" data-value="18.07" onclick="toggleFilter(this)">18. Juli</div>
-        </div>
-      </div>
-      <div class="filter-group">
-        <div class="filter-label">Status</div>
-        <div class="filter-chips">
-          <div class="chip" data-filter="status" data-value="open" onclick="toggleFilter(this)">○ Offen</div>
-          <div class="chip" data-filter="status" data-value="done" onclick="toggleFilter(this)">✓ Erledigt</div>
-        </div>
-      </div>
-      <div class="filter-group filter-search-wrap">
-        <div class="filter-label">Suche</div>
-        <div class="filter-search-icon">
-          <input class="filter-search" id="todo-search" placeholder="Aufgabe suchen …" oninput="applyFilters()">
-        </div>
-      </div>
-      <button class="filter-reset-btn" onclick="resetFilters()">↺ Reset</button>
-      <div class="filter-results-count" id="filter-count"></div>
-    </div>
-
-    <div class="todo-list" id="todo-list"></div>
-
-    <div class="add-section">
-      <div class="add-section-title">Neue Aufgabe</div>
-      <div class="add-row">
-        <input class="add-input" id="todo-input" placeholder="Aufgabe …" onkeydown="if(event.key==='Enter')addTodo()">
-        <select class="add-select" id="todo-person">
-          <option value="both">💑 Beide</option>
-          <option value="julia">👰 Julia</option>
-          <option value="rainer">🤵 Rainer</option>
-          <option value="hoffi">🙋 Hoffi</option>
-          <option value="justine">🙋 Justine</option>
-          <option value="caro">🙋 Caro</option>
-        </select>
-        <select class="add-select" id="todo-due">
-          <option value="">Kein Datum</option>
-          <option value="04.07.2026">04. Juli</option>
-          <option value="11.07.2026">11. Juli</option>
-          <option value="17.07.2026">17. Juli</option>
-          <option value="18.07.2026">18. Juli</option>
-        </select>
-        <button class="add-btn" onclick="addTodo()">+ Hinzufügen</button>
-      </div>
+<!-- TODOS -->
+<div class="panel on" id="panel-todos">
+  <div class="sec-head fade-up">
+    <div class="sec-eye">Offene Aufgaben</div>
+    <div class="sec-title">To-Do <em>Liste</em></div>
+    <div class="prog-row"><div class="prog-bg"><div class="prog-fill" id="tp" style="width:0%"></div></div><span class="prog-txt" id="tt">0 / 0</span></div>
+  </div>
+  <div class="filter-bar fade-up">
+    <div class="fg"><div class="fl">Person</div><div class="chips" id="pchips"></div></div>
+    <div class="fg"><div class="fl">Fälligkeit</div><div class="chips">
+      <div class="chip c-urgent" data-f="due" data-v="overdue" onclick="toggleF(this)">⚠️ Überfällig</div>
+      <div class="chip" data-f="due" data-v="week" onclick="toggleF(this)">📆 Diese Woche</div>
+      <div class="chip" data-f="due" data-v="04.07" onclick="toggleF(this)">4. Juli</div>
+      <div class="chip" data-f="due" data-v="11.07" onclick="toggleF(this)">11. Juli</div>
+      <div class="chip" data-f="due" data-v="17.07" onclick="toggleF(this)">17. Juli</div>
+      <div class="chip" data-f="due" data-v="18.07" onclick="toggleF(this)">18. Juli</div>
+    </div></div>
+    <div class="fg"><div class="fl">Status</div><div class="chips">
+      <div class="chip" data-f="status" data-v="open" onclick="toggleF(this)">○ Offen</div>
+      <div class="chip" data-f="status" data-v="done" onclick="toggleF(this)">✓ Erledigt</div>
+    </div></div>
+    <div class="fg fsearch-wrap"><div class="fl">Suche</div><div class="fsearch-icon"><input class="fsearch" id="tsearch" placeholder="Suchen …" oninput="applyF()"></div></div>
+    <button class="freset" onclick="resetF()">↺ Reset</button>
+    <div class="fcount" id="fcount"></div>
+  </div>
+  <div class="todo-list" id="todo-list"></div>
+  <div class="add-box"><div class="add-lbl">Neue Aufgabe</div>
+    <div class="add-row">
+      <input class="ainp" id="t-inp" placeholder="Aufgabe …" onkeydown="if(event.key==='Enter')addTodo()">
+      <select class="asel" id="t-per"></select>
+      <select class="asel" id="t-due">
+        <option value="">Kein Datum</option>
+        <option value="04.07.2026">04. Juli</option>
+        <option value="11.07.2026">11. Juli</option>
+        <option value="17.07.2026">17. Juli</option>
+        <option value="18.07.2026">18. Juli</option>
+      </select>
+      <button class="abtn" onclick="addTodo()">+ Hinzufügen</button>
     </div>
   </div>
+</div>
 
-  <!-- ══ ZEITPLAN ══ -->
-  <div class="tab-panel" id="panel-zeitplan">
-    <div class="section-header fade-up">
-      <div class="section-tag">Ablauf & Termine</div>
-      <div class="section-title">Zeit<em>plan</em></div>
-    </div>
-    <div class="zeitplan-filter fade-up">
-      <span style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-right:4px">Tag:</span>
-      <div class="chip active" data-zf="all" onclick="filterZeit(this)">Alle</div>
-      <div class="chip" data-zf="04.07" onclick="filterZeit(this)">04. Juli</div>
-      <div class="chip" data-zf="11.07" onclick="filterZeit(this)">11. Juli</div>
-      <div class="chip" data-zf="17.07" onclick="filterZeit(this)">17. Juli</div>
-      <div class="chip" data-zf="18.07" onclick="filterZeit(this)">18. Juli ✨</div>
-      <div class="chip" data-zf="19.07" onclick="filterZeit(this)">19. Juli</div>
-    </div>
-    <div id="zeitplan-container"></div>
+<!-- ZEITPLAN -->
+<div class="panel" id="panel-zeit">
+  <div class="sec-head fade-up"><div class="sec-eye">Ablauf & Termine</div><div class="sec-title">Zeit<em>plan</em></div></div>
+  <div class="zt-bar fade-up">
+    <span style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:600">Zeitraum:</span>
+    <div class="chip on" data-zf="all" onclick="filterZ(this)">Alle</div>
+    <div class="chip" data-zf="before" onclick="filterZ(this)">Vor Hochzeit</div>
+    <div class="chip" data-zf="wedding" onclick="filterZ(this)">18. Juli ✨</div>
+    <div class="chip" data-zf="after" onclick="filterZ(this)">Danach</div>
+    <span style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:600;margin-left:6px">Person:</span>
+    <div class="chips" id="zpchips"></div>
+    <button class="zt-add" onclick="toggleNef()">＋ Neuer Eintrag</button>
   </div>
-
-  <!-- ══ PACKLISTE ══ -->
-  <div class="tab-panel" id="panel-packliste">
-    <div class="section-header fade-up">
-      <div class="section-tag">Für den 18. Juli</div>
-      <div class="section-title">Pack<em>liste</em></div>
-      <div class="progress-wrap">
-        <div class="progress-bar-bg"><div class="progress-bar-fill" id="pack-progress" style="width:0%"></div></div>
-        <span class="progress-text" id="pack-progress-text">0 / 0 eingepackt</span>
+  <div id="nef-wrap" style="display:none">
+    <div class="nef">
+      <div class="nef-title">Neuer <em>Eintrag</em></div>
+      <div class="nef-grid">
+        <div class="nef-full nef-f"><div class="nef-l">Beschreibung *</div><input class="nef-i" id="nef-desc" placeholder="z.B. Blumen abholen"></div>
+        <div class="nef-f"><div class="nef-l">Datum *</div><input class="nef-i" id="nef-date" type="date"></div>
+        <div class="nef-f"><div class="nef-l">Uhrzeit</div><input class="nef-i" id="nef-time" type="time"></div>
+        <div class="nef-f"><div class="nef-l">Verantwortlich</div><select class="nef-i" id="nef-per"></select></div>
       </div>
-    </div>
-    <div class="pack-grid" id="pack-grid"></div>
-    <div class="add-row" style="margin-top:20px">
-      <input class="add-input" id="pack-input" placeholder="Neuen Gegenstand …" onkeydown="if(event.key==='Enter')addPackItem()">
-      <button class="add-btn" onclick="addPackItem()">+ Hinzufügen</button>
+      <div class="nef-acts"><button class="nef-save" onclick="saveNef()">✓ Speichern</button><button class="nef-cancel" onclick="toggleNef()">Abbrechen</button></div>
     </div>
   </div>
+  <div id="zeit-cont"></div>
+</div>
 
-  <!-- ══ MUSIK ══ -->
-  <div class="tab-panel" id="panel-musik">
-    <div class="musik-intro fade-up">
-      <div class="musik-intro-inner">
-        <div class="musik-note">🎵</div>
-        <h2>Musik<em>wünsche</em></h2>
-        <p>Welcher Song darf auf unserer Hochzeit auf keinen Fall fehlen? Schreib ihn hier rein — wir freuen uns über jeden Wunsch! 🎶</p>
+<!-- PACK -->
+<div class="panel" id="panel-pack">
+  <div class="sec-head fade-up"><div class="sec-eye">Für den 18. Juli</div><div class="sec-title">Pack<em>liste</em></div>
+    <div class="prog-row"><div class="prog-bg"><div class="prog-fill" id="pp" style="width:0%"></div></div><span class="prog-txt" id="pt">0 / 0</span></div>
+  </div>
+  <div class="pack-grid" id="pack-grid"></div>
+  <div class="add-row" style="margin-top:18px">
+    <input class="ainp" id="p-inp" placeholder="Neuen Gegenstand …" onkeydown="if(event.key==='Enter')addPack()">
+    <button class="abtn" onclick="addPack()">+ Hinzufügen</button>
+  </div>
+</div>
+
+<!-- MUSIK -->
+<div class="panel" id="panel-musik">
+  <div class="musik-hero fade-up"><div class="musik-inner">
+    <span class="musik-note">🎵</span>
+    <h2>Musik<em>wünsche</em></h2>
+    <p>Welcher Song darf auf unserer Hochzeit nicht fehlen? Wir freuen uns über jeden Wunsch! 🎶</p>
+  </div></div>
+  <div class="share-box fade-up">
+    <div class="share-lbl">🔗 Link teilen</div>
+    <div class="share-url" id="share-url">Lade …</div>
+    <button class="copy-btn" id="copy-btn" onclick="copyLink()">📋 Kopieren</button>
+  </div>
+  <div class="wish-form fade-up">
+    <div class="wf-title">Wunsch <em>eintragen</em></div>
+    <div class="wf-hint">Titel und Interpret reichen — Name optional 😊</div>
+    <div class="form-grid">
+      <div class="form-row2">
+        <div class="ff"><div class="flbl">Songtitel *</div><input class="fi" id="w-song" placeholder="z.B. Dancing Queen" onkeydown="if(event.key==='Enter')submitWish()"></div>
+        <div class="ff"><div class="flbl">Interpret *</div><input class="fi" id="w-artist" placeholder="z.B. ABBA" onkeydown="if(event.key==='Enter')submitWish()"></div>
       </div>
+      <div class="ff"><div class="flbl">Dein Name (optional)</div><input class="fi" id="w-name" placeholder="z.B. Max" onkeydown="if(event.key==='Enter')submitWish()"></div>
+      <button class="wsub" id="w-sub" onclick="submitWish()">🎵 Wunsch absenden</button>
     </div>
+    <div class="wsuccess" id="w-ok"><div style="font-size:24px;margin-bottom:4px">🎉</div>Danke! Dein Wunsch wurde gespeichert.</div>
+  </div>
+  <div class="wishes-hdr"><div class="wishes-ttl">Alle <em>Wünsche</em></div><div class="wish-cnt" id="wish-cnt">0 Wünsche</div></div>
+  <div class="wishes-list" id="wishes-list"><div class="empty"><div class="big">🎶</div><p>Noch keine Wünsche!</p></div></div>
+</div>
 
-    <div class="musik-share-box fade-up">
-      <div class="musik-share-label">🔗 Link teilen</div>
-      <div class="musik-share-url" id="share-url">Diese Seite einfach als Link teilen!</div>
-      <button class="copy-btn" id="copy-btn" onclick="copyLink()">📋 Kopieren</button>
-    </div>
-
-    <div class="submit-card fade-up">
-      <div class="submit-card-title">Wunsch <em>eintragen</em></div>
-      <div class="submit-hint">Titel und Interpret reichen — der Name ist optional aber nett! 😊</div>
-      <div class="form-grid">
-        <div class="form-row">
-          <div class="form-field">
-            <div class="form-label">Songtitel *</div>
-            <input class="form-input" id="inp-song" placeholder="z.B. Dancing Queen" onkeydown="if(event.key==='Enter')submitWish()">
-          </div>
-          <div class="form-field">
-            <div class="form-label">Interpret *</div>
-            <input class="form-input" id="inp-artist" placeholder="z.B. ABBA" onkeydown="if(event.key==='Enter')submitWish()">
-          </div>
-        </div>
-        <div class="form-field">
-          <div class="form-label">Dein Name (optional)</div>
-          <input class="form-input" id="inp-name" placeholder="z.B. Max" onkeydown="if(event.key==='Enter')submitWish()">
-        </div>
-        <button class="submit-btn" id="submit-btn" onclick="submitWish()">🎵 Wunsch absenden</button>
-      </div>
-      <div class="success-msg" id="success-msg">
-        <div class="big">🎉</div>
-        Danke! Dein Wunsch wurde gespeichert.
-      </div>
-    </div>
-
-    <div class="wishes-header">
-      <div class="wishes-title">Alle <em>Wünsche</em></div>
-      <div class="wish-count-badge" id="wish-count">0 Wünsche</div>
-    </div>
-    <div class="wishes-list" id="wishes-list">
-      <div class="empty-wishes"><div class="big">🎶</div><p>Noch keine Wünsche — sei der Erste!</p></div>
+<!-- SETTINGS -->
+<div class="panel" id="panel-settings">
+  <div id="s-lock">
+    <div class="settings-lock">
+      <div class="lock-icon">🔒</div>
+      <div class="lock-title">Einstellungen</div>
+      <div class="lock-hint">Passwort eingeben um die Einstellungen zu öffnen.</div>
+      <input class="lock-inp" id="pw" type="password" placeholder="••••" maxlength="10" onkeydown="if(event.key==='Enter')checkPw()">
+      <button class="lock-btn" onclick="checkPw()">Entsperren</button>
     </div>
   </div>
+  <div class="settings-open" id="s-open">
+    <div class="sec-head"><div class="sec-eye">Verwaltung</div><div class="sec-title">Ein<em>stellungen</em></div></div>
+    <div class="ss">
+      <div class="ss-title">Personen <em>verwalten</em></div>
+      <div class="ss-hint">Diese Personen stehen bei Todos und Zeitplan zur Auswahl. Feste Personen (Julia, Rainer, Beide) können nicht gelöscht werden.</div>
+      <div class="persons-list" id="pers-list"></div>
+      <div class="new-p-row">
+        <input class="p-emoji-inp" id="np-emoji" placeholder="😊" maxlength="2" value="🙋">
+        <input class="p-name-inp" id="np-name" placeholder="Name …" onkeydown="if(event.key==='Enter')addPerson()">
+        <button class="p-add-btn" onclick="addPerson()">+ Person</button>
+      </div>
+    </div>
+    <div class="ss">
+      <div class="ss-title">Daten <em>zurücksetzen</em></div>
+      <div class="ss-hint">Achtung: Diese Aktionen können nicht rückgängig gemacht werden!</div>
+      <div class="danger-btns">
+        <button class="danger-btn" onclick="resetTodos()">Todos zurücksetzen</button>
+        <button class="danger-btn" onclick="resetWishes()">Musikwünsche löschen</button>
+      </div>
+    </div>
+    <button class="lock-out" onclick="lockSettings()">🔒 Einstellungen schließen</button>
+  </div>
+</div>
 
 </main>
-
-<div class="all-done-toast" id="toast">🎉 Alles erledigt!</div>
+<div class="toast" id="toast">🎉 Alles erledigt!</div>
 
 <script>
-// ─── FIREBASE ────────────────────────────────────────────────────────────────
+// ══════════════════════════════════════════════
+// FIREBASE – alle Daten live synchronisiert
+// ══════════════════════════════════════════════
 const FB = 'https://hochzeit-julia-und-rainer-default-rtdb.europe-west1.firebasedatabase.app';
-const fbGet  = async p => { try { return await (await fetch(`${FB}/${p}.json`)).json(); } catch { return null; } };
-const fbSet  = async (p,d) => { try { await fetch(`${FB}/${p}.json`,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)}); } catch {} };
-const fbPush = async (p,d) => { try { return await (await fetch(`${FB}/${p}.json`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)})).json(); } catch { return null; } };
+const fbG = async p => { try { return await (await fetch(`${FB}/${p}.json`)).json(); } catch { return null; } };
+const fbS = async (p,d) => { try { await fetch(`${FB}/${p}.json`, {method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify(d)}); } catch {} };
+const fbP = async (p,d) => { try { return await (await fetch(`${FB}/${p}.json`, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(d)})).json(); } catch { return null; } };
 
-// ─── DATA ────────────────────────────────────────────────────────────────────
-const defaultTodos = [
-  {id:1, text:'Gästebuch bestellen', person:'both', due:'11.07.2026', done:false},
-  {id:2, text:'Ringhalter bestellen', person:'both', due:'11.07.2026', done:false},
-  {id:3, text:'Deo für das Bad kaufen', person:'both', due:'17.07.2026', done:false},
-  {id:4, text:'Lieder fürs Standesamt aussuchen', person:'both', due:'11.07.2026', done:false},
-  {id:5, text:'Welches Lied wird als Hochzeitstanz getanzt?', person:'both', due:'11.07.2026', done:false},
-  {id:6, text:'Sitzordnung definieren', person:'both', due:'11.07.2026', done:false},
-  {id:7, text:'Sitzkarten schreiben & organisieren', person:'both', due:'17.07.2026', done:false},
-  {id:8, text:'Personengruppen für Fotos festlegen', person:'both', due:'11.07.2026', done:false, note:'Bereits geplant: Feuerwehr Rainer, Clique, Studimädels, JGA Julia, JGA Rainer → Bitte ergänzen!'},
-  {id:9, text:'Fotobox-Hintergrund: Platz messen & Laura Bescheid geben', person:'both', due:'11.07.2026', done:false, note:'Sie kann den Hintergrund mitbringen'},
-  {id:10,text:'Vasen bei Nati abholen', person:'both', due:'04.07.2026', done:false},
-  {id:11,text:'Vasen bei Eva abholen', person:'both', due:'04.07.2026', done:false},
-  {id:12,text:'Weiße Decken bei Nati abholen', person:'both', due:'04.07.2026', done:false},
-  {id:13,text:'Lichterkette bei Sarah abholen', person:'both', due:'04.07.2026', done:false},
-  {id:14,text:'Vasen zu Blumenkraus bringen', person:'both', due:'04.07.2026', done:false},
-  {id:15,text:'Bei der Konditorin anrufen – Abholzeit der Hochzeitstorte klären', person:'both', due:'04.07.2026', done:false},
-  {id:16,text:'Essenslieferant anrufen (Bestätigung)', person:'both', due:'11.07.2026', done:false},
-  {id:17,text:'Musikbox bei Peter ausleihen', person:'both', due:'11.07.2026', done:false},
-  {id:18,text:'DJ nochmal anfragen', person:'both', due:'11.07.2026', done:false},
-  {id:19,text:'Spieleanhänger & Fotobox abholen', person:'both', due:'17.07.2026', done:false},
-  {id:20,text:'Q-Ace abholen', person:'both', due:'17.07.2026', done:false},
-  {id:21,text:'Karten / Geschenkbox bei Eva abholen', person:'both', due:'17.07.2026', done:false},
-  {id:22,text:'Hochzeitstorte abholen', person:'both', due:'18.07.2026', done:false},
-  {id:23,text:'Frühstück organisieren', person:'both', due:'18.07.2026', done:false},
+// ══════════════════════════════════════════════
+// STANDARD-DATEN
+// ══════════════════════════════════════════════
+const DEF_PERSONS = [
+  {id:'julia',   emoji:'👰', name:'Julia',   fixed:true},
+  {id:'rainer',  emoji:'🤵', name:'Rainer',  fixed:true},
+  {id:'both',    emoji:'💑', name:'Beide',   fixed:true},
+  {id:'hoffi',   emoji:'🙋', name:'Hoffi',   fixed:false},
+  {id:'justine', emoji:'🙋', name:'Justine', fixed:false},
+  {id:'caro',    emoji:'🙋', name:'Caro',    fixed:false},
 ];
 
-const defaultPack = [
+const DEF_TODOS = [
+  {id:1,  text:'Gästebuch bestellen',                             person:'both',   due:'11.07.2026', done:false},
+  {id:2,  text:'Ringhalter bestellen',                            person:'both',   due:'11.07.2026', done:false},
+  {id:3,  text:'Deo für das Bad kaufen',                          person:'both',   due:'17.07.2026', done:false},
+  {id:4,  text:'Lieder fürs Standesamt aussuchen',                person:'both',   due:'11.07.2026', done:false},
+  {id:5,  text:'Hochzeitstanz-Lied festlegen',                    person:'both',   due:'11.07.2026', done:false},
+  {id:6,  text:'Sitzordnung definieren',                          person:'both',   due:'11.07.2026', done:false},
+  {id:7,  text:'Sitzkarten schreiben & organisieren',             person:'both',   due:'17.07.2026', done:false},
+  {id:8,  text:'Personengruppen für Fotos festlegen',             person:'both',   due:'11.07.2026', done:false, note:'Feuerwehr Rainer, Clique, Studimädels, JGA Julia, JGA Rainer → bitte ergänzen!'},
+  {id:9,  text:'Fotobox-Hintergrund messen & Laura informieren',  person:'both',   due:'11.07.2026', done:false, note:'Laura kann Hintergrund mitbringen'},
+  {id:10, text:'Vasen bei Nati abholen',                          person:'both',   due:'04.07.2026', done:false},
+  {id:11, text:'Vasen bei Eva abholen',                           person:'both',   due:'04.07.2026', done:false},
+  {id:12, text:'Weiße Decken bei Nati abholen',                   person:'both',   due:'04.07.2026', done:false},
+  {id:13, text:'Lichterkette bei Sarah abholen',                  person:'both',   due:'04.07.2026', done:false},
+  {id:14, text:'Vasen zu Blumenkraus bringen',                    person:'both',   due:'04.07.2026', done:false},
+  {id:15, text:'Konditorin anrufen – Abholzeit Torte klären',     person:'both',   due:'04.07.2026', done:false},
+  {id:16, text:'Essenslieferant anrufen (Bestätigung)',           person:'both',   due:'11.07.2026', done:false},
+  {id:17, text:'Musikbox bei Peter ausleihen',                    person:'both',   due:'11.07.2026', done:false},
+  {id:18, text:'DJ nochmal anfragen',                             person:'both',   due:'11.07.2026', done:false},
+  {id:19, text:'Spieleanhänger & Fotobox abholen',                person:'both',   due:'17.07.2026', done:false},
+  {id:20, text:'Q-Ace abholen',                                   person:'both',   due:'17.07.2026', done:false},
+  {id:21, text:'Karten / Geschenkbox bei Eva abholen',            person:'both',   due:'17.07.2026', done:false},
+  {id:22, text:'Hochzeitstorte abholen',                          person:'both',   due:'18.07.2026', done:false},
+  {id:23, text:'Frühstück organisieren',                          person:'both',   due:'18.07.2026', done:false},
+];
+
+const DEF_PACK = [
   {id:1,text:'Ringe',done:false},{id:2,text:'Ausweise',done:false},
   {id:3,text:'Gästeliste',done:false},{id:4,text:'Gästebuch',done:false},
 ];
 
-const zeitplan = [
-  {date:'04. Juli 2026',dateKey:'04.07',isWeddingDay:false,events:[
-    {time:null,desc:'Vasen bei Nati abholen',who:null},
-    {time:null,desc:'Vasen bei Eva abholen',who:null},
-    {time:null,desc:'Weiße Decken bei Nati abholen',who:null},
-    {time:null,desc:'Lichterkette bei Sarah abholen',who:null},
-    {time:null,desc:'Vasen zu Blumenkraus bringen',who:null},
-    {time:null,desc:'Bei der Konditorin anrufen – Abholzeit der Hochzeitstorte klären',who:null},
-  ]},
-  {date:'11. Juli 2026',dateKey:'11.07',isWeddingDay:false,events:[
-    {time:null,desc:'Essenslieferant anrufen (Bestätigung)',who:null},
-    {time:null,desc:'Musikbox bei Peter ausleihen',who:null},
-    {time:null,desc:'DJ nochmal anfragen',who:null},
-  ]},
-  {date:'17. Juli 2026',dateKey:'17.07',isWeddingDay:false,events:[
-    {time:'13:00',desc:'Aufbau',who:'Julia, Rainer, Marcel, Jussi, Caro'},
-    {time:null,desc:'Blumen bei Kraus abholen',who:'Justine'},
-    {time:null,desc:'Spieleanhänger & Fotobox abholen',who:null},
-    {time:null,desc:'Q-Ace abholen',who:null},
-    {time:null,desc:'Karten / Geschenkbox bei Eva abholen',who:null},
-  ]},
-  {date:'18. Juli 2026 ✨',dateKey:'18.07',isWeddingDay:true,events:[
-    {time:'08:00',desc:'Blumen bei Kraus abholen',who:'Justine'},
-    {time:'08:00',desc:'Friseur Julia',who:'Julia'},
-    {time:'11:00',desc:'First Look Shooting mit Trauzeugen (bis ca. 12:20 Uhr)',who:'Trauzeugen, Laura (Fotografin)'},
-    {time:'12:30',desc:'Familienbilder enge Familie – Eltern / Geschwister (bis ca. 12:50 Uhr)',who:'Laura (Fotografin)'},
-    {time:'13:00',desc:'Mittagessen',who:null},
-    {time:'13:30',desc:'Laura fährt los zum Standesamt',who:'Laura (Fotografin)'},
-    {time:'13:40',desc:'Laura an Standesamt – fotografiert Deko etc.',who:'Laura (Fotografin)'},
-    {time:'14:00',desc:'🎉 Trauung – Standesamt',who:null,highlight:true},
-    {time:'14:45',desc:'Trauung Ende',who:null},
-    {time:'14:45',desc:'Sektempfang (bis ca. 16:40 Uhr)',who:null},
-    {time:'14:45',desc:'Gruppenbild mit Feuerwehr von Rainer (beim Sektempfang)',who:'Laura (Fotografin)'},
-    {time:'15:00',desc:'Hochzeitstorte abholen',who:null},
-    {time:'16:45',desc:'Laura fährt an die Abend-Location',who:'Laura (Fotografin)'},
-    {time:'17:00',desc:'Ankunft / Sammeln bei der Burg Michelwinnaden',who:null},
-    {time:'17:00',desc:'Sektempfang Ende',who:null},
-    {time:'17:30',desc:'Fotoshooting bei der Burg Michelwinnaden',who:null},
-    {time:'17:30',desc:'Gruppenbilder der Clique (Studimädels, JGA Julia, JGA Rainer etc.)',who:'Laura (Fotografin)'},
-    {time:'19:00',desc:'Essen 🥂',who:null},
-    {time:null,desc:'Im Laufe des Tages: Gäste gratulieren lassen (nicht direkt nach Standesamt)',who:null},
-  ]},
-  {date:'19. Juli 2026',dateKey:'19.07',isWeddingDay:false,events:[
-    {time:'10:30',desc:'Frühstück bei Bürkles',who:null},
-    {time:null,desc:'Frühstück organisieren',who:null},
-    {time:null,desc:'Abholung der Dekoartikel (Abbau)',who:null},
-  ]},
+const STATIC_EVENTS = [
+  {id:'s1', date:'2026-07-04',time:null,   desc:'Vasen bei Nati abholen',                              person:null,  static:true},
+  {id:'s2', date:'2026-07-04',time:null,   desc:'Vasen bei Eva abholen',                               person:null,  static:true},
+  {id:'s3', date:'2026-07-04',time:null,   desc:'Weiße Decken bei Nati abholen',                       person:null,  static:true},
+  {id:'s4', date:'2026-07-04',time:null,   desc:'Lichterkette bei Sarah abholen',                      person:null,  static:true},
+  {id:'s5', date:'2026-07-04',time:null,   desc:'Vasen zu Blumenkraus bringen',                        person:null,  static:true},
+  {id:'s6', date:'2026-07-04',time:null,   desc:'Konditorin anrufen – Abholzeit Torte klären',         person:null,  static:true},
+  {id:'s7', date:'2026-07-11',time:null,   desc:'Essenslieferant anrufen (Bestätigung)',               person:null,  static:true},
+  {id:'s8', date:'2026-07-11',time:null,   desc:'Musikbox bei Peter ausleihen',                        person:null,  static:true},
+  {id:'s9', date:'2026-07-11',time:null,   desc:'DJ nochmal anfragen',                                 person:null,  static:true},
+  {id:'s10',date:'2026-07-17',time:'13:00',desc:'Aufbau',                                              person:'Julia, Rainer, Marcel, Jussi, Caro', static:true},
+  {id:'s11',date:'2026-07-17',time:null,   desc:'Blumen bei Kraus abholen',                            person:'Justine', static:true},
+  {id:'s12',date:'2026-07-17',time:null,   desc:'Spieleanhänger & Fotobox abholen',                    person:null,  static:true},
+  {id:'s13',date:'2026-07-17',time:null,   desc:'Q-Ace abholen',                                       person:null,  static:true},
+  {id:'s14',date:'2026-07-17',time:null,   desc:'Karten / Geschenkbox bei Eva abholen',                person:null,  static:true},
+  {id:'s15',date:'2026-07-18',time:'08:00',desc:'Blumen bei Kraus abholen',                            person:'Justine', static:true},
+  {id:'s16',date:'2026-07-18',time:'08:00',desc:'Friseur Julia',                                       person:'Julia',   static:true},
+  {id:'s17',date:'2026-07-18',time:'11:00',desc:'First Look Shooting mit Trauzeugen (bis ca. 12:20)', person:'Trauzeugen, Laura', static:true},
+  {id:'s18',date:'2026-07-18',time:'12:30',desc:'Familienbilder enge Familie (bis ca. 12:50)',         person:'Laura',   static:true},
+  {id:'s19',date:'2026-07-18',time:'13:00',desc:'Mittagessen',                                         person:null,  static:true},
+  {id:'s20',date:'2026-07-18',time:'13:30',desc:'Laura fährt zum Standesamt',                          person:'Laura',   static:true},
+  {id:'s21',date:'2026-07-18',time:'13:40',desc:'Laura fotografiert Deko am Standesamt',               person:'Laura',   static:true},
+  {id:'s22',date:'2026-07-18',time:'14:00',desc:'🎉 TRAUUNG – Standesamt',                             person:null,  static:true, highlight:true},
+  {id:'s23',date:'2026-07-18',time:'14:45',desc:'Trauung Ende',                                        person:null,  static:true},
+  {id:'s24',date:'2026-07-18',time:'14:45',desc:'Sektempfang (bis ca. 16:40 Uhr)',                     person:null,  static:true},
+  {id:'s25',date:'2026-07-18',time:'14:45',desc:'Gruppenbild mit Feuerwehr von Rainer',                person:'Laura',   static:true},
+  {id:'s26',date:'2026-07-18',time:'15:00',desc:'Hochzeitstorte abholen',                              person:null,  static:true},
+  {id:'s27',date:'2026-07-18',time:'16:45',desc:'Laura fährt zur Abend-Location',                      person:'Laura',   static:true},
+  {id:'s28',date:'2026-07-18',time:'17:00',desc:'Ankunft bei der Burg Michelwinnaden',                 person:null,  static:true},
+  {id:'s29',date:'2026-07-18',time:'17:30',desc:'Fotoshooting bei der Burg Michelwinnaden',            person:null,  static:true},
+  {id:'s30',date:'2026-07-18',time:'17:30',desc:'Gruppenbilder Clique (Studimädels, JGA etc.)',        person:'Laura',   static:true},
+  {id:'s31',date:'2026-07-18',time:'19:00',desc:'Essen 🥂',                                            person:null,  static:true},
+  {id:'s32',date:'2026-07-19',time:'10:30',desc:'Frühstück bei Bürkles',                               person:null,  static:true},
+  {id:'s33',date:'2026-07-19',time:null,   desc:'Frühstück organisieren',                              person:null,  static:true},
+  {id:'s34',date:'2026-07-19',time:null,   desc:'Abholung der Dekoartikel (Abbau)',                    person:null,  static:true},
 ];
 
-// ─── STATE ───────────────────────────────────────────────────────────────────
-let todos = JSON.parse(JSON.stringify(defaultTodos));
-let packItems = JSON.parse(JSON.stringify(defaultPack));
-let wishes = [];
-let myVotes = JSON.parse(localStorage.getItem('wedding_my_votes')||'[]');
-let activeFilters = {person:null,due:null,status:null};
-let lastTodosHash='', lastPackHash='', lastWishHash='';
-let zeitFilter = 'all';
+// ══════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════
+let todos        = JSON.parse(JSON.stringify(DEF_TODOS));
+let packItems    = JSON.parse(JSON.stringify(DEF_PACK));
+let persons      = JSON.parse(JSON.stringify(DEF_PERSONS));
+let customEvents = [];
+let wishes       = [];
+let myVotes      = JSON.parse(localStorage.getItem('hvotes') || '[]');
+let activeF      = {person:null, due:null, status:null};
+let zeitF        = 'all';
+let zeitPF       = null;
+let settled      = false;
+let lastH        = {todos:'', pack:'', persons:'', events:'', wishes:''};
 
-const saveVotes = () => localStorage.setItem('wedding_my_votes', JSON.stringify(myVotes));
-const escHtml = s => s ? String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') : '';
+const esc = s => s ? String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') : '';
+const saveVotes = () => localStorage.setItem('hvotes', JSON.stringify(myVotes));
 
-// ─── FIREBASE SAVE ───────────────────────────────────────────────────────────
+// ══════════════════════════════════════════════
+// FIREBASE SAVE
+// ══════════════════════════════════════════════
 function save() {
-  fbSet('todos', todos);
-  fbSet('pack', packItems);
+  fbS('todos', todos);
+  fbS('pack', packItems);
+  fbS('persons', persons);
+  fbS('customEvents', customEvents);
 }
 
-// ─── TABS ────────────────────────────────────────────────────────────────────
-function switchTab(name, btn) {
-  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('panel-'+name).classList.add('active');
-  btn.classList.add('active');
+// ══════════════════════════════════════════════
+// TABS
+// ══════════════════════════════════════════════
+function goTab(name, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b => b.classList.remove('on'));
+  document.getElementById('panel-' + name).classList.add('on');
+  btn.classList.add('on');
 }
 
-// ─── COUNTDOWN ───────────────────────────────────────────────────────────────
-function updateCountdown() {
+// ══════════════════════════════════════════════
+// COUNTDOWN
+// ══════════════════════════════════════════════
+function tick() {
   const diff = new Date('2026-07-18T14:00:00') - new Date();
-  if (diff<=0){document.getElementById('countdown').innerHTML='<span style="font-family:Cormorant Garamond,serif;font-style:italic;font-size:22px;color:var(--blush)">🎉 Heute ist euer großer Tag!</span>';return;}
-  document.getElementById('cd-days').textContent=Math.floor(diff/86400000);
-  document.getElementById('cd-hours').textContent=String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
-  document.getElementById('cd-mins').textContent=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+  if (diff <= 0) { document.getElementById('countdown').innerHTML = '<div class="cd-item"><span class="cd-num">🎉</span><span class="cd-lbl">Heute!</span></div>'; return; }
+  document.getElementById('cd-d').textContent = Math.floor(diff / 86400000);
+  document.getElementById('cd-h').textContent = String(Math.floor((diff % 86400000) / 3600000)).padStart(2,'0');
+  document.getElementById('cd-m').textContent = String(Math.floor((diff % 3600000) / 60000)).padStart(2,'0');
 }
-setInterval(updateCountdown,30000); updateCountdown();
+setInterval(tick, 30000); tick();
 
-// ─── SYNC STATUS ─────────────────────────────────────────────────────────────
-function setSyncStatus(t,c){const el=document.getElementById('sync-status');if(el){el.textContent=t;el.style.color=c||'var(--muted)';}}
+// ══════════════════════════════════════════════
+// PERSONS
+// ══════════════════════════════════════════════
+function pById(id) { return persons.find(p => p.id === id) || {emoji:'🙋', name:id, id}; }
 
-// ─── FILTERS ─────────────────────────────────────────────────────────────────
-function toggleFilter(chip){
-  const f=chip.dataset.filter, v=chip.dataset.value;
-  if(activeFilters[f]===v){activeFilters[f]=null;chip.classList.remove('active');}
-  else{document.querySelectorAll(`.chip[data-filter="${f}"]`).forEach(c=>c.classList.remove('active'));activeFilters[f]=v;chip.classList.add('active');}
-  applyFilters();
+function buildSelects() {
+  ['t-per','nef-per'].forEach(sid => {
+    const el = document.getElementById(sid); if (!el) return;
+    el.innerHTML = persons.map(p => `<option value="${p.id}">${p.emoji} ${esc(p.name)}</option>`).join('');
+  });
 }
-function resetFilters(){
-  activeFilters={person:null,due:null,status:null};
-  document.querySelectorAll('.chip[data-filter]').forEach(c=>c.classList.remove('active'));
-  document.getElementById('todo-search').value='';
-  applyFilters();
+
+function buildPersonChips() {
+  const tc = document.getElementById('pchips');
+  if (tc) {
+    tc.innerHTML = '';
+    persons.forEach(p => {
+      const d = document.createElement('div');
+      d.className = `chip c-${p.id}${activeF.person === p.id ? ' on' : ''}`;
+      d.dataset.f = 'person'; d.dataset.v = p.id;
+      d.textContent = `${p.emoji} ${p.name}`;
+      d.onclick = () => toggleF(d);
+      tc.appendChild(d);
+    });
+  }
+  const zc = document.getElementById('zpchips');
+  if (zc) {
+    zc.innerHTML = '';
+    const all = document.createElement('div');
+    all.className = 'chip' + (zeitPF === null ? ' on' : '');
+    all.textContent = 'Alle';
+    all.onclick = () => { zeitPF = null; renderZ(); buildPersonChips(); };
+    zc.appendChild(all);
+    persons.filter(p => p.id !== 'both').forEach(p => {
+      const d = document.createElement('div');
+      d.className = 'chip' + (zeitPF === p.id ? ' on' : '');
+      d.textContent = `${p.emoji} ${p.name}`;
+      d.onclick = () => { zeitPF = (zeitPF === p.id ? null : p.id); renderZ(); buildPersonChips(); };
+      zc.appendChild(d);
+    });
+  }
 }
-function parseDue(s){if(!s)return null;const p=s.split('.');return new Date(parseInt(p[2]),parseInt(p[1])-1,parseInt(p[0]));}
-function applyFilters(){
-  const search=(document.getElementById('todo-search').value||'').toLowerCase().trim();
-  const now=new Date(), td=new Date(now.getFullYear(),now.getMonth(),now.getDate()), we=new Date(td.getTime()+7*86400000);
-  let vis=0;
-  todos.forEach(t=>{
-    let show=true;
-    const dd=parseDue(t.due);
-    if(activeFilters.person&&t.person!==activeFilters.person)show=false;
-    if(activeFilters.due&&show){
-      if(activeFilters.due==='overdue')show=dd&&dd<td&&!t.done;
-      else if(activeFilters.due==='week')show=dd&&dd>=td&&dd<=we;
-      else show=t.due&&t.due.startsWith(activeFilters.due);
+
+function renderPersList() {
+  const list = document.getElementById('pers-list'); if (!list) return;
+  list.innerHTML = '';
+  persons.forEach(p => {
+    const row = document.createElement('div'); row.className = 'p-row';
+    row.innerHTML = `<div class="p-emoji">${p.emoji}</div><div class="p-name">${esc(p.name)}</div><button class="p-del${p.fixed ? ' fixed' : ''}" onclick="delPerson('${p.id}')">×</button>`;
+    list.appendChild(row);
+  });
+}
+
+function addPerson() {
+  const emoji = document.getElementById('np-emoji').value.trim() || '🙋';
+  const name = document.getElementById('np-name').value.trim();
+  if (!name) return;
+  persons.push({id:'p_'+Date.now(), emoji, name, fixed:false});
+  document.getElementById('np-name').value = '';
+  save(); renderPersList(); buildSelects(); buildPersonChips();
+}
+
+function delPerson(id) {
+  const p = persons.find(x => x.id === id);
+  if (!p || p.fixed) return;
+  if (!confirm(`Person "${p.name}" wirklich löschen?`)) return;
+  persons = persons.filter(x => x.id !== id);
+  save(); renderPersList(); buildSelects(); buildPersonChips();
+}
+
+// ══════════════════════════════════════════════
+// SETTINGS
+// ══════════════════════════════════════════════
+let sOpen = false;
+function checkPw() {
+  if (document.getElementById('pw').value === '123') {
+    sOpen = true;
+    document.getElementById('s-lock').style.display = 'none';
+    document.getElementById('s-open').classList.add('on');
+    renderPersList(); buildSelects();
+  } else {
+    const i = document.getElementById('pw');
+    i.classList.add('err'); i.value = '';
+    setTimeout(() => i.classList.remove('err'), 400);
+  }
+}
+function lockSettings() {
+  sOpen = false;
+  document.getElementById('s-lock').style.display = 'block';
+  document.getElementById('s-open').classList.remove('on');
+  document.getElementById('pw').value = '';
+}
+function resetTodos() {
+  if (!confirm('Alle Todos zurücksetzen?')) return;
+  todos = JSON.parse(JSON.stringify(DEF_TODOS));
+  save(); renderTodos();
+}
+function resetWishes() {
+  if (!confirm('Alle Musikwünsche löschen?')) return;
+  fbS('wishes', {}); wishes = []; renderWishes();
+}
+
+// ══════════════════════════════════════════════
+// FILTER
+// ══════════════════════════════════════════════
+function toggleF(chip) {
+  const f = chip.dataset.f, v = chip.dataset.v;
+  if (activeF[f] === v) { activeF[f] = null; chip.classList.remove('on'); }
+  else { document.querySelectorAll(`.chip[data-f="${f}"]`).forEach(c => c.classList.remove('on')); activeF[f] = v; chip.classList.add('on'); }
+  applyF();
+}
+function resetF() {
+  activeF = {person:null, due:null, status:null};
+  document.querySelectorAll('.chip[data-f]').forEach(c => c.classList.remove('on'));
+  document.getElementById('tsearch').value = '';
+  applyF();
+}
+function parseDue(s) {
+  if (!s) return null;
+  const p = s.split('.'); return new Date(parseInt(p[2]), parseInt(p[1])-1, parseInt(p[0]));
+}
+function applyF() {
+  const q = (document.getElementById('tsearch').value || '').toLowerCase();
+  const now = new Date(), td = new Date(now.getFullYear(), now.getMonth(), now.getDate()), we = new Date(td.getTime() + 7*86400000);
+  let vis = 0;
+  todos.forEach(t => {
+    let show = true;
+    const dd = parseDue(t.due);
+    if (activeF.person && t.person !== activeF.person) show = false;
+    if (activeF.due && show) {
+      if (activeF.due === 'overdue') show = dd && dd < td && !t.done;
+      else if (activeF.due === 'week') show = dd && dd >= td && dd <= we;
+      else show = t.due && t.due.startsWith(activeF.due);
     }
-    if(activeFilters.status&&show){if(activeFilters.status==='open')show=!t.done;else show=t.done;}
-    if(search&&show)show=t.text.toLowerCase().includes(search)||(t.note||'').toLowerCase().includes(search);
-    const el=document.getElementById('todo-el-'+t.id);
-    if(el)el.style.display=show?'':'none';
-    if(show)vis++;
+    if (activeF.status && show) { if (activeF.status === 'open') show = !t.done; else show = t.done; }
+    if (q && show) show = t.text.toLowerCase().includes(q) || (t.note||'').toLowerCase().includes(q);
+    const el = document.getElementById('te-' + t.id);
+    if (el) el.style.display = show ? '' : 'none';
+    if (show) vis++;
   });
-  const hasF=activeFilters.person||activeFilters.due||activeFilters.status||search;
-  document.getElementById('filter-count').textContent=hasF?`${vis} Aufgabe${vis!==1?'n':''} angezeigt`:'';
+  const hasF = activeF.person || activeF.due || activeF.status || q;
+  document.getElementById('fcount').textContent = hasF ? `${vis} angezeigt` : '';
 }
 
-// ─── TODOS ───────────────────────────────────────────────────────────────────
-function personBadge(p){
-  const m={julia:'<span class="badge badge-julia">👰 Julia</span>',rainer:'<span class="badge badge-rainer">🤵 Rainer</span>',both:'<span class="badge badge-both">💑 Beide</span>',hoffi:'<span class="badge badge-hoffi">🙋 Hoffi</span>',justine:'<span class="badge badge-justine">🙋 Justine</span>',caro:'<span class="badge badge-caro">🙋 Caro</span>'};
-  return m[p]||m.both;
+// ══════════════════════════════════════════════
+// TODOS
+// ══════════════════════════════════════════════
+function pBadge(pid) {
+  const p = pById(pid);
+  const cls = {julia:'b-julia',rainer:'b-rainer',both:'b-both',hoffi:'b-hoffi',justine:'b-justine',caro:'b-caro'}[pid] || 'b-both';
+  return `<span class="badge ${cls}">${p.emoji} ${esc(p.name)}</span>`;
 }
-function dueBadge(due){
-  if(!due)return '';
-  const d=parseDue(due),now=new Date(),td=new Date(now.getFullYear(),now.getMonth(),now.getDate());
-  const lbl=due.slice(0,5);
-  return d&&d<td?`<span class="badge badge-urgent">⚠️ ${lbl}</span>`:`<span class="badge badge-date">📅 ${lbl}</span>`;
-}
-function renderTodos(){
-  const list=document.getElementById('todo-list');
-  const done=todos.filter(t=>t.done).length;
-  const pct=todos.length?(done/todos.length*100):0;
-  document.getElementById('todo-progress').style.width=pct+'%';
-  document.getElementById('todo-progress-text').textContent=`${done} / ${todos.length} erledigt`;
-  list.innerHTML='';
-  if(!todos.length){list.innerHTML='<div class="empty-state"><div class="big">✓</div><p>Alle Aufgaben erledigt!</p></div>';return;}
-  const sorted=[...todos].sort((a,b)=>{
-    if(a.done!==b.done)return a.done?1:-1;
-    const da=parseDue(a.due),db=parseDue(b.due);
-    if(!da&&!db)return 0;if(!da)return 1;if(!db)return -1;return da-db;
-  });
-  sorted.forEach(t=>{
-    const now=new Date(),td=new Date(now.getFullYear(),now.getMonth(),now.getDate()),dd=parseDue(t.due),over=dd&&dd<td&&!t.done;
-    const el=document.createElement('div');
-    el.id='todo-el-'+t.id;
-    el.className='todo-item'+(t.done?' done':'')+(over?' urgent-highlight':'');
-    el.innerHTML=`<div class="todo-checkbox" onclick="toggleTodo(${t.id})">${t.done?'✓':''}</div><div class="todo-body" onclick="toggleTodo(${t.id})"><div class="todo-text">${escHtml(t.text)}</div>${t.note?`<div class="todo-note">${escHtml(t.note)}</div>`:''}<div class="todo-meta">${personBadge(t.person)}${dueBadge(t.due)}${t.done?'<span class="badge badge-done-tag">✓ Erledigt</span>':''}</div></div><div class="todo-actions"><button class="delete-btn" onclick="deleteTodo(${t.id})">×</button></div>`;
-    list.appendChild(el);
-  });
-  applyFilters();
-}
-function toggleTodo(id){const t=todos.find(x=>x.id===id);if(t){t.done=!t.done;save();renderTodos();checkAllDone('todos');}}
-function deleteTodo(id){todos=todos.filter(x=>x.id!==id);save();renderTodos();}
-function addTodo(){
-  const inp=document.getElementById('todo-input'),val=inp.value.trim();
-  if(!val)return;
-  todos.push({id:Date.now(),text:val,person:document.getElementById('todo-person').value,due:document.getElementById('todo-due').value||null,done:false});
-  inp.value='';save();renderTodos();
+function dueBadge(due) {
+  if (!due) return '';
+  const d = parseDue(due), now = new Date(), td = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const lbl = due.slice(0,5);
+  return d && d < td ? `<span class="badge b-urgent">⚠️ ${lbl}</span>` : `<span class="badge b-date">📅 ${lbl}</span>`;
 }
 
-// ─── PACK ────────────────────────────────────────────────────────────────────
-function renderPack(){
-  const grid=document.getElementById('pack-grid');
-  const done=packItems.filter(p=>p.done).length,pct=packItems.length?(done/packItems.length*100):0;
-  document.getElementById('pack-progress').style.width=pct+'%';
-  document.getElementById('pack-progress-text').textContent=`${done} / ${packItems.length} eingepackt`;
-  grid.innerHTML='';
-  packItems.forEach(p=>{
-    const el=document.createElement('div');
-    el.className='pack-item'+(p.done?' done':'');
-    el.onclick=()=>togglePack(p.id);
-    el.innerHTML=`<div class="pack-checkbox">${p.done?'✓':''}</div><span class="pack-label">${escHtml(p.text)}</span>`;
+function renderTodos() {
+  const list = document.getElementById('todo-list');
+  const done = todos.filter(t => t.done).length, pct = todos.length ? (done/todos.length*100) : 0;
+  document.getElementById('tp').style.width = pct + '%';
+  document.getElementById('tt').textContent = `${done} / ${todos.length} erledigt`;
+  list.innerHTML = '';
+  if (!todos.length) { list.innerHTML = '<div class="empty"><div class="big">✓</div><p>Alle Aufgaben erledigt!</p></div>'; return; }
+  const sorted = [...todos].sort((a,b) => {
+    if (a.done !== b.done) return a.done ? 1 : -1;
+    const da = parseDue(a.due), db = parseDue(b.due);
+    if (!da && !db) return 0; if (!da) return 1; if (!db) return -1; return da - db;
+  });
+  sorted.forEach(t => {
+    const now = new Date(), td = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const dd = parseDue(t.due), over = dd && dd < td && !t.done;
+    const card = document.createElement('div');
+    card.id = 'te-' + t.id;
+    card.className = 'todo-card' + (t.done ? ' done-card' : '') + (over ? ' urgent-card' : '');
+    card.innerHTML = `
+      <div class="todo-main">
+        <div class="todo-chk-col"><div class="todo-chk" onclick="toggleTodo(${t.id})">${t.done ? '✓' : ''}</div></div>
+        <div class="todo-body" onclick="toggleTodo(${t.id})">
+          <div class="todo-txt">${esc(t.text)}</div>
+          ${t.note ? `<div class="todo-note">${esc(t.note)}</div>` : ''}
+          <div class="todo-meta">${pBadge(t.person)}${dueBadge(t.due)}${t.done ? '<span class="badge b-done">✓ Erledigt</span>' : ''}</div>
+        </div>
+        <div class="todo-acts">
+          <button class="ibtn edit" onclick="openEdit(${t.id})" title="Bearbeiten">✏️</button>
+          <button class="ibtn del" onclick="delTodo(${t.id})" title="Löschen">×</button>
+        </div>
+      </div>
+      <div class="edit-form" id="ef-${t.id}">
+        <div class="erow">
+          <input class="einp" id="ei-txt-${t.id}" value="${esc(t.text)}" placeholder="Aufgabe …" style="flex:2">
+          <select class="esel" id="ei-per-${t.id}">${persons.map(p=>`<option value="${p.id}"${t.person===p.id?' selected':''}>${p.emoji} ${esc(p.name)}</option>`).join('')}</select>
+          <select class="esel" id="ei-due-${t.id}">
+            <option value=""${!t.due?' selected':''}>Kein Datum</option>
+            ${['04.07.2026','11.07.2026','17.07.2026','18.07.2026'].map(d=>`<option value="${d}"${t.due===d?' selected':''}>${d.slice(0,5)}</option>`).join('')}
+          </select>
+          <button class="ebtn save" onclick="saveEdit(${t.id})">✓ Speichern</button>
+          <button class="ebtn cancel" onclick="closeEdit(${t.id})">Abbrechen</button>
+        </div>
+        <div class="erow"><input class="einp" id="ei-note-${t.id}" value="${esc(t.note||'')}" placeholder="Notiz (optional) …"></div>
+      </div>`;
+    list.appendChild(card);
+  });
+  applyF();
+}
+
+function openEdit(id) {
+  document.querySelectorAll('.edit-form').forEach(f => { if (f.id !== 'ef-'+id) f.classList.remove('open'); });
+  document.getElementById('ef-'+id).classList.toggle('open');
+}
+function closeEdit(id) { document.getElementById('ef-'+id).classList.remove('open'); }
+function saveEdit(id) {
+  const t = todos.find(x => x.id === id); if (!t) return;
+  const txt = document.getElementById('ei-txt-'+id).value.trim(); if (!txt) return;
+  t.text = txt;
+  t.person = document.getElementById('ei-per-'+id).value;
+  t.due = document.getElementById('ei-due-'+id).value || null;
+  t.note = document.getElementById('ei-note-'+id).value.trim() || null;
+  closeEdit(id); save(); renderTodos();
+}
+function toggleTodo(id) {
+  const t = todos.find(x => x.id === id);
+  if (t) { t.done = !t.done; save(); renderTodos(); checkAllDone('todos'); }
+}
+function delTodo(id) {
+  if (!confirm('Aufgabe löschen?')) return;
+  todos = todos.filter(x => x.id !== id); save(); renderTodos();
+}
+function addTodo() {
+  const inp = document.getElementById('t-inp'), val = inp.value.trim(); if (!val) return;
+  todos.push({id:Date.now(), text:val, person:document.getElementById('t-per').value, due:document.getElementById('t-due').value||null, done:false});
+  inp.value = ''; save(); renderTodos();
+}
+
+// ══════════════════════════════════════════════
+// PACK
+// ══════════════════════════════════════════════
+function renderPack() {
+  const grid = document.getElementById('pack-grid');
+  const done = packItems.filter(p => p.done).length, pct = packItems.length ? (done/packItems.length*100) : 0;
+  document.getElementById('pp').style.width = pct + '%';
+  document.getElementById('pt').textContent = `${done} / ${packItems.length} eingepackt`;
+  grid.innerHTML = '';
+  packItems.forEach(p => {
+    const el = document.createElement('div');
+    el.className = 'pack-card' + (p.done ? ' done' : '');
+    el.onclick = () => togglePack(p.id);
+    el.innerHTML = `<div class="pack-chk">${p.done ? '✓' : ''}</div><span class="pack-lbl">${esc(p.text)}</span>`;
     grid.appendChild(el);
   });
 }
-function togglePack(id){const p=packItems.find(x=>x.id===id);if(p){p.done=!p.done;save();renderPack();checkAllDone('pack');}}
-function addPackItem(){const inp=document.getElementById('pack-input'),val=inp.value.trim();if(!val)return;packItems.push({id:Date.now(),text:val,done:false});inp.value='';save();renderPack();}
+function togglePack(id) {
+  const p = packItems.find(x => x.id === id);
+  if (p) { p.done = !p.done; save(); renderPack(); checkAllDone('pack'); }
+}
+function addPack() {
+  const inp = document.getElementById('p-inp'), val = inp.value.trim(); if (!val) return;
+  packItems.push({id:Date.now(), text:val, done:false}); inp.value = ''; save(); renderPack();
+}
 
-// ─── ZEITPLAN ────────────────────────────────────────────────────────────────
-function filterZeit(chip){document.querySelectorAll('.chip[data-zf]').forEach(c=>c.classList.remove('active'));chip.classList.add('active');zeitFilter=chip.dataset.zf;renderZeitplan();}
-function renderZeitplan(){
-  const cont=document.getElementById('zeitplan-container');cont.innerHTML='';
-  (zeitFilter==='all'?zeitplan:zeitplan.filter(d=>d.dateKey===zeitFilter)).forEach(day=>{
-    const g=document.createElement('div');g.className='day-group';
-    g.innerHTML=`<div class="day-label"><div class="day-bubble${day.isWeddingDay?' wedding-day':''}">${escHtml(day.date)}</div><div class="day-line"></div></div><div class="timeline-items">${day.events.map(e=>`<div class="timeline-item${e.highlight?' highlight':''}"><div class="${e.time?'event-time':'event-time-empty'}">${e.time||'—'}</div><div class="event-body"><div class="event-desc">${escHtml(e.desc)}</div>${e.who?`<div class="event-who">${escHtml(e.who)}</div>`:''}</div></div>`).join('')}</div>`;
-    cont.appendChild(g);
+// ══════════════════════════════════════════════
+// ZEITPLAN
+// ══════════════════════════════════════════════
+function filterZ(chip) {
+  document.querySelectorAll('.chip[data-zf]').forEach(c => c.classList.remove('on'));
+  chip.classList.add('on'); zeitF = chip.dataset.zf; renderZ();
+}
+function toggleNef() {
+  const w = document.getElementById('nef-wrap');
+  w.style.display = w.style.display === 'none' ? 'block' : 'none';
+}
+function saveNef() {
+  const desc = document.getElementById('nef-desc').value.trim();
+  const date = document.getElementById('nef-date').value;
+  if (!desc || !date) { alert('Bitte Beschreibung und Datum angeben.'); return; }
+  customEvents.push({id:'c_'+Date.now(), date, time:document.getElementById('nef-time').value||null, desc, person:document.getElementById('nef-per').value||null, static:false});
+  document.getElementById('nef-desc').value = '';
+  document.getElementById('nef-date').value = '';
+  document.getElementById('nef-time').value = '';
+  document.getElementById('nef-wrap').style.display = 'none';
+  save(); renderZ();
+}
+function delEvent(id) {
+  customEvents = customEvents.filter(e => e.id !== id); save(); renderZ();
+}
+function renderZ() {
+  const cont = document.getElementById('zeit-cont'); cont.innerHTML = '';
+  const W = '2026-07-18';
+  let evs = [...STATIC_EVENTS, ...customEvents];
+  if (zeitF === 'before')  evs = evs.filter(e => e.date < W);
+  else if (zeitF === 'wedding') evs = evs.filter(e => e.date === W);
+  else if (zeitF === 'after')   evs = evs.filter(e => e.date > W);
+  if (zeitPF) {
+    const pn = pById(zeitPF).name.toLowerCase();
+    evs = evs.filter(e => !e.person || e.person.toLowerCase().includes(pn));
+  }
+  const byDate = {};
+  evs.forEach(e => { if (!byDate[e.date]) byDate[e.date] = []; byDate[e.date].push(e); });
+  const dates = Object.keys(byDate).sort();
+  if (!dates.length) { cont.innerHTML = '<div class="empty"><div class="big">📅</div><p>Keine Einträge.</p></div>'; return; }
+  dates.forEach(date => {
+    const isW = date === W;
+    const label = new Date(date+'T12:00:00').toLocaleDateString('de-DE',{day:'numeric',month:'long',year:'numeric'});
+    const sorted = byDate[date].sort((a,b) => { if (!a.time&&!b.time) return 0; if (!a.time) return 1; if (!b.time) return -1; return a.time.localeCompare(b.time); });
+    const grp = document.createElement('div'); grp.className = 'day-grp';
+    grp.innerHTML = `<div class="day-lbl"><div class="day-pill${isW?' wedding':''}">${isW?'✨ ':''}${label}</div><div class="day-hr"></div></div>
+    <div class="tl-items">${sorted.map(e=>`
+      <div class="tl-item${e.highlight?' hl':''}">
+        <div class="${e.time?'ev-time':'ev-empty'}">${e.time||'—'}</div>
+        <div><div class="ev-desc">${esc(e.desc)}</div>${e.person?`<div class="ev-who">${esc(e.person)}</div>`:''}</div>
+        ${!e.static?`<button class="tl-del" onclick="delEvent('${e.id}')">×</button>`:'<div></div>'}
+      </div>`).join('')}
+    </div>`;
+    cont.appendChild(grp);
   });
 }
 
-// ─── MUSIK ───────────────────────────────────────────────────────────────────
-function copyLink(){
-  const url=window.location.href;
-  navigator.clipboard.writeText(url).catch(()=>{});
-  const btn=document.getElementById('copy-btn');
-  btn.textContent='✓ Kopiert!';btn.classList.add('copied');
-  setTimeout(()=>{btn.textContent='📋 Kopieren';btn.classList.remove('copied');},2500);
+// MUSIK
+function copyLink() {
+  const url = window.location.href;
+  navigator.clipboard.writeText(url).catch(() => {});
+  const btn = document.getElementById('copy-btn');
+  btn.textContent = '✓ Kopiert!'; btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = '📋 Kopieren'; btn.classList.remove('copied'); }, 2500);
 }
-async function submitWish(){
-  const song=document.getElementById('inp-song').value.trim(),artist=document.getElementById('inp-artist').value.trim(),name=document.getElementById('inp-name').value.trim();
-  if(!song||!artist){document.getElementById('inp-song').style.borderColor='var(--rose)';document.getElementById('inp-song').focus();return;}
-  const btn=document.getElementById('submit-btn');btn.disabled=true;btn.textContent='⟳ Wird gespeichert …';
-  const wish={song,artist,name:name||null,votes:0,ts:Date.now()};
-  const res=await fbPush('wishes',wish);
-  if(res&&res.name){wish.id=res.name;wishes.push(wish);}
-  document.getElementById('inp-song').value='';document.getElementById('inp-artist').value='';document.getElementById('inp-name').value='';
-  document.getElementById('inp-song').style.borderColor='';
-  btn.disabled=false;btn.textContent='🎵 Wunsch absenden';
-  const msg=document.getElementById('success-msg');msg.classList.add('show');setTimeout(()=>msg.classList.remove('show'),3000);
+async function submitWish() {
+  const song = document.getElementById('w-song').value.trim();
+  const artist = document.getElementById('w-artist').value.trim();
+  const name = document.getElementById('w-name').value.trim();
+  if (!song || !artist) { document.getElementById('w-song').style.borderColor = 'var(--orange)'; document.getElementById('w-song').focus(); return; }
+  const btn = document.getElementById('w-sub'); btn.disabled = true; btn.textContent = '⟳ Speichern …';
+  const wish = {song, artist, name:name||null, votes:0, ts:Date.now()};
+  const res = await fbP('wishes', wish);
+  if (res && res.name) { wish.id = res.name; wishes.push(wish); }
+  document.getElementById('w-song').value = ''; document.getElementById('w-artist').value = ''; document.getElementById('w-name').value = '';
+  document.getElementById('w-song').style.borderColor = '';
+  btn.disabled = false; btn.textContent = '🎵 Wunsch absenden';
+  const ok = document.getElementById('w-ok'); ok.classList.add('show'); setTimeout(() => ok.classList.remove('show'), 3000);
   renderWishes();
 }
-async function vote(id){
-  if(myVotes.includes(id)){myVotes=myVotes.filter(v=>v!==id);const w=wishes.find(x=>x.id===id);if(w){w.votes=Math.max(0,(w.votes||0)-1);await fbSet(`wishes/${id}/votes`,w.votes);}}
-  else{myVotes.push(id);const w=wishes.find(x=>x.id===id);if(w){w.votes=(w.votes||0)+1;await fbSet(`wishes/${id}/votes`,w.votes);}}
-  saveVotes();renderWishes();
+async function vote(id) {
+  const w = wishes.find(x => x.id === id); if (!w) return;
+  if (myVotes.includes(id)) { myVotes = myVotes.filter(v => v !== id); w.votes = Math.max(0,(w.votes||0)-1); await fbS(`wishes/${id}/votes`,w.votes); }
+  else { myVotes.push(id); w.votes = (w.votes||0)+1; await fbS(`wishes/${id}/votes`,w.votes); }
+  saveVotes(); renderWishes();
 }
-function renderWishes(){
-  const list=document.getElementById('wishes-list'),countEl=document.getElementById('wish-count');
-  if(!wishes.length){list.innerHTML='<div class="empty-wishes"><div class="big">🎶</div><p>Noch keine Wünsche — sei der Erste!</p></div>';countEl.textContent='0 Wünsche';return;}
-  const sorted=[...wishes].sort((a,b)=>(b.votes||0)-(a.votes||0)||a.ts-b.ts);
-  countEl.textContent=`${sorted.length} ${sorted.length===1?'Wunsch':'Wünsche'}`;
-  list.innerHTML='';
-  sorted.forEach((w,i)=>{
-    const voted=myVotes.includes(w.id),el=document.createElement('div');
-    el.className='wish-card';el.style.animationDelay=(i*.04)+'s';
-    el.innerHTML=`<div class="wish-rank${i===0&&w.votes>0?' top':''}">${i+1}</div><div class="wish-body"><div class="wish-song">${escHtml(w.song)}</div><div class="wish-artist">${escHtml(w.artist)}</div>${w.name?`<div class="wish-from">${escHtml(w.name)}</div>`:''}</div><div class="wish-votes"><button class="vote-btn${voted?' voted':''}" onclick="vote('${w.id}')">${voted?'♥':'♡'}</button><span class="vote-count">${w.votes||0}</span></div>`;
+function renderWishes() {
+  const list = document.getElementById('wishes-list'), cnt = document.getElementById('wish-cnt');
+  if (!wishes.length) { list.innerHTML = '<div class="empty"><div class="big">🎶</div><p>Noch keine Wünsche!</p></div>'; cnt.textContent = '0 Wünsche'; return; }
+  const s = [...wishes].sort((a,b) => (b.votes||0)-(a.votes||0) || a.ts-b.ts);
+  cnt.textContent = `${s.length} ${s.length===1?'Wunsch':'Wünsche'}`;
+  list.innerHTML = '';
+  s.forEach((w,i) => {
+    const voted = myVotes.includes(w.id), el = document.createElement('div');
+    el.className = 'wish-card'; el.style.animationDelay = (i*.04)+'s';
+    el.innerHTML = `<div class="wish-rank${i===0&&w.votes>0?' top':''}">${i+1}</div><div><div class="wish-song">${esc(w.song)}</div><div class="wish-artist">${esc(w.artist)}</div>${w.name?`<div class="wish-from">${esc(w.name)}</div>`:''}</div><div class="vote-col"><button class="vote-btn${voted?' voted':''}" onclick="vote('${w.id}')">${voted?'♥':'♡'}</button><span class="vote-cnt">${w.votes||0}</span></div>`;
     list.appendChild(el);
   });
 }
 
-// ─── HELPERS ─────────────────────────────────────────────────────────────────
-function checkAllDone(type){
-  const items=type==='todos'?todos:packItems;
-  if(items.length&&items.every(i=>i.done)){const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3500);}
+// HELPERS
+function checkAllDone(type) {
+  const items = type === 'todos' ? todos : packItems;
+  if (items.length && items.every(i => i.done)) {
+    const t = document.getElementById('toast'); t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3500);
+  }
 }
 
-// ─── POLL ────────────────────────────────────────────────────────────────────
-async function pollAll(){
-  const [rt,rp,rw]=await Promise.all([fbGet('todos'),fbGet('pack'),fbGet('wishes')]);
-  if(rt&&Array.isArray(rt)){const h=JSON.stringify(rt);if(h!==lastTodosHash){lastTodosHash=h;todos=rt;renderTodos();}}
-  if(rp&&Array.isArray(rp)){const h=JSON.stringify(rp);if(h!==lastPackHash){lastPackHash=h;packItems=rp;renderPack();}}
-  if(rw&&typeof rw==='object'){const arr=Object.entries(rw).map(([id,v])=>({...v,id}));const h=JSON.stringify(arr);if(h!==lastWishHash){lastWishHash=h;wishes=arr;renderWishes();}}
+// FIREBASE LIVE POLL (alle 3 Sekunden)
+async function poll() {
+  const [rt,rp,rpers,revs,rw] = await Promise.all([fbG('todos'),fbG('pack'),fbG('persons'),fbG('customEvents'),fbG('wishes')]);
+  if (rt && Array.isArray(rt)) { const h=JSON.stringify(rt); if(h!==lastH.todos){lastH.todos=h; todos=rt; renderTodos();} }
+  if (rp && Array.isArray(rp)) { const h=JSON.stringify(rp); if(h!==lastH.pack){lastH.pack=h; packItems=rp; renderPack();} }
+  if (rpers && Array.isArray(rpers)) { const h=JSON.stringify(rpers); if(h!==lastH.persons){lastH.persons=h; persons=rpers; buildSelects(); buildPersonChips(); if(sOpen)renderPersList();} }
+  if (revs && Array.isArray(revs)) { const h=JSON.stringify(revs); if(h!==lastH.events){lastH.events=h; customEvents=revs; renderZ();} }
+  if (rw && typeof rw==='object' && !Array.isArray(rw)) {
+    const arr = Object.entries(rw).map(([id,v]) => ({...v,id}));
+    const h = JSON.stringify(arr); if(h!==lastH.wishes){lastH.wishes=h; wishes=arr; renderWishes();}
+  }
 }
 
-// ─── INIT ────────────────────────────────────────────────────────────────────
-async function init(){
-  setSyncStatus('⟳ Verbinde …');
-  document.getElementById('share-url').textContent=window.location.href;
-  const [rt,rp,rw]=await Promise.all([fbGet('todos'),fbGet('pack'),fbGet('wishes')]);
-  if(rt&&Array.isArray(rt)&&rt.length){todos=rt;lastTodosHash=JSON.stringify(rt);}
-  else fbSet('todos',todos);
-  if(rp&&Array.isArray(rp)&&rp.length){packItems=rp;lastPackHash=JSON.stringify(rp);}
-  else fbSet('pack',packItems);
-  if(rw&&typeof rw==='object'){wishes=Object.entries(rw).map(([id,v])=>({...v,id}));lastWishHash=JSON.stringify(wishes);}
-  setSyncStatus('● Live-Sync aktiv','var(--sage)');
-  renderTodos();renderPack();renderZeitplan();renderWishes();
-  setInterval(pollAll,3000);
+// INIT
+async function init() {
+  document.getElementById('share-url').textContent = window.location.href;
+  const [rt,rp,rpers,revs,rw] = await Promise.all([fbG('todos'),fbG('pack'),fbG('persons'),fbG('customEvents'),fbG('wishes')]);
+  if (rt && Array.isArray(rt) && rt.length)          { todos=rt; lastH.todos=JSON.stringify(rt); }           else fbS('todos', todos);
+  if (rp && Array.isArray(rp) && rp.length)          { packItems=rp; lastH.pack=JSON.stringify(rp); }        else fbS('pack', packItems);
+  if (rpers && Array.isArray(rpers) && rpers.length) { persons=rpers; lastH.persons=JSON.stringify(rpers); } else fbS('persons', persons);
+  if (revs && Array.isArray(revs))                   { customEvents=revs; lastH.events=JSON.stringify(revs); } else fbS('customEvents', []);
+  if (rw && typeof rw==='object' && !Array.isArray(rw)) {
+    wishes = Object.entries(rw).map(([id,v]) => ({...v,id}));
+    lastH.wishes = JSON.stringify(wishes);
+  }
+  document.getElementById('sync-dot').classList.add('live');
+  buildSelects(); buildPersonChips();
+  renderTodos(); renderPack(); renderZ(); renderWishes();
+  setInterval(poll, 3000);
 }
 init();
 </script>
